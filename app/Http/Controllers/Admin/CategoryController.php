@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:create_categories'])->only(['create', 'store']);
+        $this->middleware(['permission:read_categories'])->only('index');
+        $this->middleware(['permission:update_categories'])->only(['edit', 'update']);
+        $this->middleware(['permission:delete_categories'])->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = request()->has('search')? Category::search(request()) : Category::where('parent_id', '0')->paginate(10); 
+        
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -25,7 +36,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $parents = Category::parent()->get();
+        return view('admin.categories.create', compact('parents'));
     }
 
     /**
@@ -36,7 +48,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($this->validateForm());
+
+        session()->flash('success', __('dashboard.categories.create_success'));
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -47,7 +62,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $categories = Category::where('parent_id', $category->id)->paginate(10); 
+        
+        return view('admin.categories.show', compact('categories'));
     }
 
     /**
@@ -58,7 +75,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -70,7 +87,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($this->validateForm());
+
+        
+        session()->flash('success', __('dashboard.categories.edit_success'));
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -81,6 +102,17 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->deleteWithChilds();
+
+        session()->flash('success', __('dashboard.categories.delete_success'));
+        return redirect()->route('admin.categories.index');
+    }
+
+    protected function validateForm()
+    {
+        return request()->validate([
+            'name' => 'required',
+            'parent_id' => 'integer'
+        ]);
     }
 }

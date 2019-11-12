@@ -27,4 +27,17 @@ $(window).ready(function () {
         })
     })
 
+    // Image Preview
+    $("#uploader").change(function() {
+        console.log(this, this.files)
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $('#preview').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(this.files[0]);
+        }
+    });   
 })

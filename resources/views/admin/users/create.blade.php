@@ -86,9 +86,12 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="image text-center">
+                        <img class="img-fluid" id="preview" src="{{ asset('admin/images/avatar.png') }}">
+                    </div>
+                    <div class="form-group mt-2">
                         <label for="image">{{ __('dashboard.users.image') }}</label>
-                        <input type="file" value="{{ old('image') }}"
+                        <input type="file" id="uploader" value="{{ old('image') }}"
                             class="form-control @error('image') is-invalid @enderror" id="image" name="image">
                         @error('image')
                         <span class="invalid-feedback">{{ $message }}</span>

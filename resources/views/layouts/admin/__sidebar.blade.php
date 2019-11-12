@@ -10,7 +10,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div>
-            <!-- Sidebar user panel (optional) -->
+            <!-- Sidebar user panel -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <img src="{{ auth()->user()->image() }}" class="img-circle elevation-2"
@@ -30,12 +30,22 @@
                             <p>{{ __('dashboard.title') }}</p>
                         </a>
                     </li>
+                    @if(auth()->user()->can('read_categories'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.categories.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-cubes"></i>
+                            <p>{{ __('dashboard.categories.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
+                    @if(auth()->user()->can('read_users'))
                     <li class="nav-item">
                         <a href="{{ route('admin.users.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-users"></i>
                             <p>{{ __('dashboard.users.title') }}</p>
                         </a>
                     </li>
+                    @endif
                     <li class="nav-item has-treeview">
                         <a href="javascript:void(0)" class="nav-link">
                             <i class="nav-icon fa fa-sitemap"></i>
@@ -45,20 +55,25 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            @if(auth()->user()->can('read_roles'))
                             <li class="nav-item">
                                 <a href="{{ route('admin.roles.index') }}" class="nav-link">
                                     <i class="text-danger fa fa-circle-o nav-icon"></i>
                                     <p>{{ __('dashboard.roles.title') }}</p>
                                 </a>
                             </li>
+                            @endif
+                            @if(auth()->user()->can('read_permissions'))
                             <li class="nav-item">
                                 <a href="{{ route('admin.permissions.index') }}" class="nav-link">
                                     <i class="text-danger fa fa-circle-o nav-icon"></i>
                                     <p>{{ __('dashboard.permissions.title') }}</p>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </li>
+
                     <li class="nav-header">تجريبى</li>
                     <li class="nav-item">
                         <a href="pages/calendar.html" class="nav-link">

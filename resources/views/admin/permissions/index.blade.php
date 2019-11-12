@@ -38,16 +38,7 @@
 <script src="{{ asset('admin/js/dataTables.bootstrap4.js') }}"></script>
 <script>
 $(document).ready(function(){
-    $('table').DataTable({
-        "language": {
-            "paginate": {
-                "next": "{{ __('dashboard.next') }}",
-                "previous": "{{ __('dashboard.previous') }}",
-            },
-            "search": '{{ __('dashboard.search') }}',
-            "zeroRecords": '{{ __('dashboard.infoEmpty') }}'
-        }
-    });
+    $('table').DataTable();
 })
 </script>
 @endsection

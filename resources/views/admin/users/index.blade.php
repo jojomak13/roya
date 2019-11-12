@@ -15,7 +15,7 @@
             <a href="{{ route('admin.users.create') }}" class="btn btn-primary mb-2 mr-2"><i class="fa fa-plus"></i> {{ __('dashboard.users.create') }}</a>
         </form>
         <hr>
-        <table id="table" class="table">
+        <table class="table">
             <thead>
                 <tr>
                     <th>{{ __('dashboard.users.first_name') }}</th>
