@@ -26,7 +26,7 @@
                 <select class="form-control @error('parent_id') is-invalid @enderror" id="parent_id" name="parent_id">
                     <option value="0">{{ __('dashboard.categories.parent_cat') }}</option>
                     @forEach($parents as $parent)
-                    <option {{ old('parent_id') == $parent->id }} value="{{ $parent->id }}">{{ $parent->name }}</option>
+                    <option {{ old('parent_id') == $parent->id?? 'selected':'' }} value="{{ $parent->id }}">{{ $parent->name }}</option>
                     @endforeach
                 </select>
                 @error('parent_id')

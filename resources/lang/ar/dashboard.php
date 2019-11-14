@@ -61,4 +61,17 @@ return [
 		'edit_success' => 'تم تعديل القسم بنجاح',
 		'delete_success' => 'تم حذف القسم بنجاح',
 	],
+	'stores' => [
+		'title' => 'المخازن',
+		'name' => 'أسم المخزن',		
+		'address' => 'عنوان المخزن',		
+		'supplier' => 'المورد',		
+		'choose_supplier' => 'أختر المورد',		
+		'products_count' => 'عدد المنتجات',		
+		'create' => 'مخزن جديد',
+		'edit' => 'تعديل المخزن',
+		'create_success' => 'تم انشاء المخزن بنجاح',
+		'edit_success' => 'تم تعديل المخزن بنجاح',
+		'delete_success' => 'تم حذف المخزن بنجاح',
+	],
 ];

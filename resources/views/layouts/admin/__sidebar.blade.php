@@ -1,8 +1,8 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="{{ asset('admin/images/logo.png') }}" alt="AdminLTE Logo"
+    <a href="{{ route('admin.home') }}" class="brand-link">
+        <img src="{{ asset('admin/images/logo.png') }}" alt="{{ config('app.name') }}"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ __('dashboard.title') }}</span>
     </a>
@@ -30,6 +30,14 @@
                             <p>{{ __('dashboard.title') }}</p>
                         </a>
                     </li>
+                    @if(auth()->user()->can('read_stores'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.stores.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-archive"></i>
+                            <p>{{ __('dashboard.stores.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
                     @if(auth()->user()->can('read_categories'))
                     <li class="nav-item">
                         <a href="{{ route('admin.categories.index') }}" class="nav-link">

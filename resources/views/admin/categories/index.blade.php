@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $key => $category)
+                @forelse ($categories as $key => $category)
                 <tr>
                     <th>{{ $category->name }}</th>
                     <th>
@@ -38,7 +38,11 @@
                         </a>
                     </th>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="2">{{ __('dashboard.no_record') }}</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
         {{ $categories->links() }}

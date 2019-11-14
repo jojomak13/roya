@@ -144,7 +144,7 @@ ul {
     .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
         margin-left: 0rem !important;
         margin-right: 4.6rem !important;
-        z-index:100;
+        z-index: 5;
     }
 
     .sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar:before {
