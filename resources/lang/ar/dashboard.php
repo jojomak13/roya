@@ -53,6 +53,7 @@ return [
 	'categories' => [
 		'title' => 'الأقسام',
 		'name' => 'أسم القسم',		
+		'children_count' => 'الأقسام الفرعية',		
 		'parent' => 'القسم الرئيسى',		
 		'parent_cat' => 'أختر القسم الرئيسى',		
 		'create' => 'قسم جديد',
