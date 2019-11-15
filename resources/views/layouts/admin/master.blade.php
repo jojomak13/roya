@@ -39,8 +39,6 @@
         <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('admin/js/adminlte.js') }}"></script>
         <script src="{{ asset('admin/js/sweatalert.min.js') }}"></script>
-        <!-- PAGE PLUGINS -->
-        <script src="{{ asset('admin/js/jquery.slimscroll.min.js') }}"></script>
         <!-- PAGE SCRIPTS -->
         <script src="{{ asset('admin/js/dashboard2.js') }}"></script>
         @yield('script')
