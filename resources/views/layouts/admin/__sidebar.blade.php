@@ -30,6 +30,14 @@
                             <p>{{ __('dashboard.title') }}</p>
                         </a>
                     </li>
+                    @if(auth()->user()->can('read_products'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.products.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-tags"></i>
+                            <p>{{ __('dashboard.products.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
                     @if(auth()->user()->can('read_stores'))
                     <li class="nav-item">
                         <a href="{{ route('admin.stores.index') }}" class="nav-link">

@@ -3,6 +3,7 @@
 return [
 	'title' => 'لوحة التحكم',
 	'logout' => 'تسجيل الخروج',
+	'store' => 'العودة للمتجر',
 	'profile' => 'تعديل الحساب',
 	'groups_and_privileges' => 'التراخيص و المجموعات',
 	'control' => 'التحكم',
@@ -61,7 +62,7 @@ return [
 		'create_success' => 'تم انشاء القسم بنجاح',
 		'edit_success' => 'تم تعديل القسم بنجاح',
 		'delete_success' => 'تم حذف القسم بنجاح',
-	],
+	],		
 	'stores' => [
 		'title' => 'المخازن',
 		'name' => 'أسم المخزن',		
@@ -74,5 +75,14 @@ return [
 		'create_success' => 'تم انشاء المخزن بنجاح',
 		'edit_success' => 'تم تعديل المخزن بنجاح',
 		'delete_success' => 'تم حذف المخزن بنجاح',
+	],
+	'products' => [
+		'title' => 'المنتجات',
+		'name' => 'أسم النتج',
+		'create' => 'منتج جديد',
+		'edit' => 'تعديل المنتج',
+		'create_success' => 'تم انشاء المنتج بنجاح',
+		'edit_success' => 'تم تعديل المنتج بنجاح',
+		'delete_success' => 'تم حذف المنتج بنجاح',
 	],
 ];

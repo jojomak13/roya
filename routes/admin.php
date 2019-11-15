@@ -20,5 +20,7 @@ Route::group($middlewares, function(){
 
 		Route::resource('stores', 'StoreController');
 
+		Route::resource('products', 'ProductController');
+
 	});
 });

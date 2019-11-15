@@ -65,6 +65,10 @@
                     <i class="fa fa-user ml-2"></i> {{ __('dashboard.profile') }}
                 </a>
                 <div class="dropdown-divider"></div>
+                <a href="{{ url('/') }}" class="dropdown-item">
+                    <i class="fa fa-shopping-cart ml-2"></i> {{ __('dashboard.store') }}
+                </a>
+                <div class="dropdown-divider"></div>
                 <a href="javascript:void" class="dropdown-item" onclick="this.children[1].submit()">
                     <i class="fa fa-sign-out ml-2"></i> {{ __('dashboard.logout') }}
                     <form action="{{ route('logout') }}" method="POST">@csrf</form>
