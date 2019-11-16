@@ -22,5 +22,7 @@ Route::group($middlewares, function(){
 
 		Route::resource('products', 'ProductController');
 
+		Route::resource('images', 'ImageController');
+
 	});
 });

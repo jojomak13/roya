@@ -96,4 +96,7 @@ return [
 		'edit_success' => 'تم تعديل المنتج بنجاح',
 		'delete_success' => 'تم حذف المنتج بنجاح',
 	],
+	'images' => [
+		'delete_success' => 'تم حذف الصورة بنجاح',
+	]
 ];

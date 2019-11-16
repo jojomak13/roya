@@ -271,3 +271,15 @@ ul {
 .datepicker-plot-area {
     font-family: 'Vazir', sans-serif;
 }
+/* Product Box */
+
+.product-box {
+    position: relative;
+}
+
+.product-box > button{
+    display: inline;
+    position: absolute;
+    top: 0;
+    border-radius: 0;
+}

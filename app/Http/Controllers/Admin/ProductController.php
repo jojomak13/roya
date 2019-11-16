@@ -56,7 +56,7 @@ class ProductController extends Controller
         
         $product->upload($request->images);
 
-        session()->flas('success', __('dashboard.products.create_success'));
+        session()->flash('success', __('dashboard.products.create_success'));
         return redirect()->route('admin.products.index');
     }
 
@@ -79,7 +79,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::where('parent_id', '!=', '0')->get();
+        $users = User::whereRoleIs('supplier')->get();
+
+        return view('admin.products.edit', compact('product', 'categories', 'users'));
     }
 
     /**
@@ -91,7 +94,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        if($request->has('images'))
+            $product->upload($request->images);
+        
+        $product->update($this->formValidate($product));
+
+        session()->flash('success', __('dashboard.products.edit_success'));
+        return redirect()->route('admin.products.index');
     }
 
     /**
@@ -102,7 +111,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        \Storage::deleteDirectory(dirname($product->images->first()->url));
+        $product->images()->delete();
+        $product->delete();
+
+        session()->flash('success', __('dashboard.products.delete_success'));
+        return redirect()->route('admin.products.index');
     }
 
     protected function formValidate($product = null)
