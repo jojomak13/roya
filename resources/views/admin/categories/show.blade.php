@@ -18,14 +18,14 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ __('dashboard.categories.name') }}</th>
+                    <th>{{ __('dashboard.categories.'.lang('name')) }}</th>
                     <th>{{ __('dashboard.control') }}</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($categories as $key => $category)
                 <tr>
-                    <th>{{ $category->name }}</th>
+                    <th>{{ $category->{lang('name')} }}</th>
                     <th>
                         <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                         <a href="javascript:void(0)" class="delete-btn btn btn-danger">

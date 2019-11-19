@@ -22,3 +22,6 @@ Route::post('login', 'Api\UserController@login');
 Route::post('register', 'Api\UserController@register');
 
 Route::get('categories', 'Api\CategoryController@index');
+
+Route::get('products/{category}', 'Api\ProductController@index');
+Route::get('product/{product}', 'Api\ProductController@show');

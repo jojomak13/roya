@@ -111,7 +111,8 @@ class CategoryController extends Controller
     protected function validateForm()
     {
         return request()->validate([
-            'name' => 'required',
+            'name_en' => 'required',
+            'name_ar' => 'required',
             'parent_id' => 'integer'
         ]);
     }

@@ -26,7 +26,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = request()->has('search')? Product::search(request()) : Product::paginate(10); 
+        $products = request()->has('search')? Product::search(request()) : 
+                Product::with(['category', 'user'])->paginate(10); 
 
         return view('admin.products.index', compact('products'));
     }
@@ -122,13 +123,15 @@ class ProductController extends Controller
     protected function formValidate($product = null)
     {
         $roles = [
-            'name' => 'required',
-            'buy_price' => 'required|integer',
-            'sell_price' => 'required|integer',
+            'name_en' => 'required',
+            'name_ar' => 'required',
+            'buy_price' => 'required',
+            'sell_price' => 'required',
             'user_id' => 'required',
             'category_id' => 'required',
-            'description' => 'required',
-            'weight' => 'required|integer',
+            'description_en' => 'required',
+            'description_ar' => 'required',
+            'weight' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
 

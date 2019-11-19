@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'parent_id'];
+    protected $fillable = ['name_en', 'name_ar', 'parent_id'];
     protected $append = ['children_count'];
 
     public function getChildrenCountAttribute()
@@ -26,7 +26,7 @@ class Category extends Model
 
     public static function search($request)
     {
-        return  static::where('parent_id', '0')->where('name', 'like', '%' . $request->search . '%')->paginate(10);
+        return  static::where('parent_id', '0')->where(lang('name'), 'like', '%' . $request->search . '%')->paginate(10);
     }
     
     public function deleteWithChilds()
@@ -38,5 +38,10 @@ class Category extends Model
         }
 
         return $this->delete();
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

@@ -14,10 +14,18 @@
         <form autocomplete="off" action="{{ route('admin.categories.store') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="name">{{ __('dashboard.categories.name') }}</label>
-                <input type="text" value="{{ old('name') }}" autofocus
-                    class="form-control @error('name') is-invalid @enderror" id="name" name="name">
-                @error('name')
+                <label for="name_en">{{ __('dashboard.categories.name_en') }}</label>
+                <input type="text" value="{{ old('name_en') }}" autofocus
+                    class="form-control @error('name_en') is-invalid @enderror" id="name_en" name="name_en">
+                @error('name_en')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="name_ar">{{ __('dashboard.categories.name_ar') }}</label>
+                <input type="text" value="{{ old('name_ar') }}" autofocus
+                    class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar">
+                @error('name_ar')
                 <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -26,7 +34,7 @@
                 <select class="form-control @error('parent_id') is-invalid @enderror" id="parent_id" name="parent_id">
                     <option value="0">{{ __('dashboard.categories.parent_cat') }}</option>
                     @forEach($parents as $parent)
-                    <option {{ old('parent_id') == $parent->id? 'selected':'' }} value="{{ $parent->id }}">{{ $parent->name }}</option>
+                    <option {{ old('parent_id') == $parent->id? 'selected':'' }} value="{{ $parent->id }}">{{ $parent->{lang('name')} }}</option>
                     @endforeach
                 </select>
                 @error('parent_id')

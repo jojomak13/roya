@@ -14,9 +14,16 @@
             @csrf
             @method('PATCH')
             <div class="form-group">
-                <label for="name">{{ __('dashboard.categories.name') }}</label>
-                <input type="text" autofocus class="form-control @error('name') is-invalid @enderror" value="{{ $category->name }}" id="name" name="name">
-                @error('name')
+                <label for="name_en">{{ __('dashboard.categories.name_en') }}</label>
+                <input type="text" autofocus class="form-control @error('name_en') is-invalid @enderror" value="{{ $category->name_en }}" id="name_en" name="name_en">
+                @error('name_en')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="name_ar">{{ __('dashboard.categories.name_ar') }}</label>
+                <input type="text" autofocus class="form-control @error('name_ar') is-invalid @enderror" value="{{ $category->name_ar }}" id="name_ar" name="name_ar">
+                @error('name_ar')
                 <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

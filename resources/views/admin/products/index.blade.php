@@ -18,7 +18,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ __('dashboard.products.name') }}</th>
+                    <th>{{ __('dashboard.products.'.lang('name')) }}</th>
                     <th>{{ __('dashboard.products.buy_price') }}</th>
                     <th>{{ __('dashboard.products.sell_price') }}</th>
                     <th>{{ __('dashboard.products.owner') }}</th>
@@ -31,13 +31,13 @@
             <tbody>
                 @forelse ($products as $product)
                 <tr>
-                    <th>{{ $product->name }}</th>
-                    <th>{{ $product->buy_price }}</th>
-                    <th>{{ $product->sell_price }}</th>
+                    <th>{{ $product->{lang('name')} }}</th>
+                    <th>@money($product->buy_price)</th>
+                    <th>@money($product->sell_price)</th>
                     <th>{{ $product->user->fullName() }}</th>
                     <th>----</th>
                     <th>----</th>
-                    <th>{{ $product->category->name }}<th>
+                    <th>{{ $product->category->{lang('name')} }}<th>
                     <th>
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                         <a href="javascript:void(0)" class="delete-btn btn btn-danger">

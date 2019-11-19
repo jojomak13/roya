@@ -18,7 +18,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ __('dashboard.categories.name') }}</th>
+                    <th>{{ __('dashboard.categories.'.lang('name')) }}</th>
                     <th>{{ __('dashboard.categories.children_count') }}</th>
                     <th>{{ __('dashboard.control') }}</th>
                 </tr>
@@ -26,7 +26,7 @@
             <tbody>
                 @forelse ($categories as $key => $category)
                 <tr>
-                    <th>{{ $category->name }}</th>
+                    <th>{{ $category->{lang('name')} }}</th>
                     <th>{{ $category->children_count }}</th>
                     <th>
                         <a href="{{ route('admin.categories.show', $category->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>

@@ -21,18 +21,27 @@
                     @csrf
                     @method('PATCH')
                     <div class="row">
-                        <div class="form-group col-12">
-                            <label for="name">{{ __('dashboard.products.name') }}</label>
-                            <input type="text" value="{{ $product->name }}" autofocus
-                                class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name">
-                            @error('name')
+                        <div class="form-group col-6">
+                            <label for="name_en">{{ __('dashboard.products.name_en') }}</label>
+                            <input type="text" value="{{ $product->name_en }}" autofocus
+                                class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                                name="name_en">
+                            @error('name_en')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="name_ar">{{ __('dashboard.products.name_ar') }}</label>
+                            <input type="text" value="{{ $product->name_ar }}"
+                                class="form-control @error('name_ar') is-invalid @enderror" id="name_ar"
+                                name="name_ar">
+                            @error('name_ar')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-6">
                             <label for="buy_price">{{ __('dashboard.products.buy_price') }}</label>
-                            <input type="number" min="1" value="{{ $product->buy_price }}"
+                            <input type="number" step="any" min="1" value="{{ $product->buy_price }}"
                                 class="form-control @error('buy_price') is-invalid @enderror" id="buy_price" name="buy_price">
                             @error('buy_price')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -40,7 +49,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="sell_price">{{ __('dashboard.products.sell_price') }}</label>
-                            <input type="number" min="1" value="{{ $product->sell_price }}"
+                            <input type="number" step="any" min="1" value="{{ $product->sell_price }}"
                                 class="form-control @error('sell_price') is-invalid @enderror" id="sell_price" name="sell_price">
                             @error('sell_price')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -63,7 +72,7 @@
                             <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
                                 <option value="">{{ __('dashboard.products.select_category') }}</option>
                                 @foreach ($categories as $cat)
-                                <option {{ $product->category_id == $cat->id? 'selected':'' }} value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                <option {{ $product->category_id == $cat->id? 'selected':'' }} value="{{ $cat->id }}">{{ $cat->{lang('name')} }}</option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -71,10 +80,18 @@
                             @enderror
                         </div>
                         <div class="form-group col-12">
-                            <label for="description">{{ __('dashboard.products.description') }}</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="description"
-                                name="description">{{ $product->description }}</textarea>
-                            @error('description')
+                            <label for="description_en">{{ __('dashboard.products.description_en') }}</label>
+                            <textarea id="desc_en" class="form-control @error('description_en') is-invalid @enderror" id="description_en"
+                                name="description_en">{{ $product->description_en }}</textarea>
+                            @error('description_en')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="description_ar">{{ __('dashboard.products.description_ar') }}</label>
+                            <textarea id="desc_ar" class="form-control @error('description_ar') is-invalid @enderror" id="description_ar"
+                                name="description_ar">{{ $product->description_ar }}</textarea>
+                            @error('description_ar')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -107,7 +124,7 @@
                     </div>
                     <div class="form-group">
                         <label for="weight">{{ __('dashboard.products.weight') }}</label>
-                        <input type="number" value="{{ $product->weight }}"
+                        <input type="number" step="any" value="{{ $product->weight }}"
                             class="form-control @error('weight') is-invalid @enderror" min="1" id="weight" name="weight">
                         @error('weight')
                         <span class="invalid-feedback">{{ $message }}</span>
@@ -121,10 +138,12 @@
 </form>
 @endsection
 
-
 @section('script')
+<script src="{{ asset('admin/js/plugins/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('admin/js/owl.carousel.min.js') }}"></script>
 <script>
+CKEDITOR.replace(document.getElementById('desc_en'))
+CKEDITOR.replace(document.getElementById('desc_ar'))
 $(window).on('load',function() { 
     $('.owl-carousel').owlCarousel({
         items: 1,
