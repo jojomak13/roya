@@ -65,7 +65,7 @@ class User extends Authenticatable
 
         $image = $request->image->store('users');
 
-        Image::make(public_path('storage/'.$image))->resize(300, null, function ($constraint) {
+        Image::make('storage/'.$image)->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
         })->save();
 
