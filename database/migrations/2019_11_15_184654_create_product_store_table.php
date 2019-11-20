@@ -17,6 +17,7 @@ class CreateProductStoreTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('store_id');
+            $table->smallInteger('quantity');
             $table->timestamps();
         });
     }

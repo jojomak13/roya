@@ -31,9 +31,8 @@
                     <th>{{ $store->name }}</th>
                     <th>{{ $store->user->fullName() }}</th>
                     <th>{{ $store->address }}</th>
-                    <th>------</th>
+                    <th>{{ $store->products->count() }}</th>
                     <th>
-                        <a href="{{ route('admin.stores.show', $store->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                         <a href="{{ route('admin.stores.edit', $store->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                         <a href="javascript:void(0)" class="delete-btn btn btn-danger">
                             <i class="fa fa-trash"></i>

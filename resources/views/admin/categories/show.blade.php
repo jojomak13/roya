@@ -18,7 +18,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ __('dashboard.categories.'.lang('name')) }}</th>
+                    <th>{{ __('dashboard.categories.name') }}</th>
                     <th>{{ __('dashboard.control') }}</th>
                 </tr>
             </thead>

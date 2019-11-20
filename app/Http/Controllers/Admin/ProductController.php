@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Store;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = request()->has('search')? Product::search(request()) : 
-                Product::with(['category', 'user'])->paginate(10); 
+                Product::with(['category', 'user', 'stores'])->paginate(10); 
 
         return view('admin.products.index', compact('products'));
     }
@@ -41,8 +42,9 @@ class ProductController extends Controller
     {
         $categories = Category::where('parent_id', '!=', '0')->get();
         $users = User::whereRoleIs('supplier')->get();
+        $stores = Store::all();
 
-        return view('admin.products.create', compact('categories', 'users'));
+        return view('admin.products.create', compact('categories', 'users', 'stores'));
     }
 
     /**
@@ -56,6 +58,11 @@ class ProductController extends Controller
         $product = Product::create($this->formValidate());
         
         $product->upload($request->images);
+        $product->stores()->sync([
+            $request->stores => [
+                'quantity' => $request->quantity
+            ]
+        ]);
 
         session()->flash('success', __('dashboard.products.create_success'));
         return redirect()->route('admin.products.index');
@@ -82,8 +89,9 @@ class ProductController extends Controller
     {
         $categories = Category::where('parent_id', '!=', '0')->get();
         $users = User::whereRoleIs('supplier')->get();
+        $stores = Store::all();
 
-        return view('admin.products.edit', compact('product', 'categories', 'users'));
+        return view('admin.products.edit', compact('product', 'categories', 'users', 'stores'));
     }
 
     /**
@@ -99,7 +107,12 @@ class ProductController extends Controller
             $product->upload($request->images);
         
         $product->update($this->formValidate($product));
-
+        $product->stores()->sync([
+            $request->stores => [
+                'quantity' => $request->quantity
+            ]
+        ]);
+        
         session()->flash('success', __('dashboard.products.edit_success'));
         return redirect()->route('admin.products.index');
     }
@@ -132,6 +145,8 @@ class ProductController extends Controller
             'description_en' => 'required',
             'description_ar' => 'required',
             'weight' => 'required',
+            'stores' => 'required',
+            'quantity' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
 

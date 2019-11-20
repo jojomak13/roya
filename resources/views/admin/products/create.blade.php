@@ -119,6 +119,25 @@
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="stores">{{ __('dashboard.products.stores') }}</label>
+                        <select name="stores" id="stores" class="form-control @error('stores') is-invalid @enderror">
+                            @foreach($stores as $store)
+                            <option value="{{ $store->id }}">{{ $store->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('stores')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">{{ __('dashboard.products.quantity') }}</label>
+                        <input type="number" step="any" value="{{ old('quantity') }}"
+                            class="form-control @error('quantity') is-invalid @enderror" min="1" id="quantity" name="quantity">
+                        @error('quantity')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
             </div>
         </div>

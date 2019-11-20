@@ -24,7 +24,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $stores = request()->has('search')? Store::search(request()) : Store::with('user')->paginate(10); 
+        $stores = request()->has('search')? Store::search(request()) : Store::with(['user'])->paginate(10); 
         return view('admin.stores.index', compact('stores'));
     }
 
@@ -62,7 +62,7 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
-        //
+        // 
     }
 
     /**

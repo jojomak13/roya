@@ -15,7 +15,7 @@ class Product extends Model
 
     public function stores()
     {
-        return $this->belongsToMany(Store::class);
+        return $this->belongsToMany(Store::class)->withPivot(['quantity'])->withTimeStamps();
     }
 
     public function user()
@@ -43,7 +43,6 @@ class Product extends Model
                 $constraint->aspectRatio();
             })->save();
         }
-        
     }
 
 
