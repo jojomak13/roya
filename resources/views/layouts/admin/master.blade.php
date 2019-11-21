@@ -36,12 +36,9 @@
 
         </div>
         <!-- ========================================================== -->
-        <script src="{{ asset('admin/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('admin/js/adminlte.js') }}"></script>
+        <script src="{{ asset('admin/app.js') }}"></script>
         <script src="{{ asset('admin/js/sweatalert.min.js') }}"></script>
-        <!-- PAGE SCRIPTS -->
         @yield('script')
-        <script src="{{ asset('admin/js/dashboard2.js') }}"></script>
+        <script src="{{ asset('admin/js/custom.js') }}"></script>
     </body>
 </html>
