@@ -39,5 +39,14 @@ $(window).ready(function () {
             
             reader.readAsDataURL(this.files[0]);
         }
-    });   
+    });
+    
 })
+
+function printBarCode(base64ocde){
+    printJS({
+        printable: `data:image/png;base64,${base64ocde}`,
+        type: 'image',
+        // imageStyle: 'width:100%;'  
+    })
+}

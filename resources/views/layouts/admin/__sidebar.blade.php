@@ -30,6 +30,14 @@
                             <p>{{ __('dashboard.title') }}</p>
                         </a>
                     </li>
+                    {{-- @if(auth()->user()->can('read_orders'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.orders.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-shopping-cart"></i>
+                            <p>{{ __('dashboard.orders.title') }}</p>
+                        </a>
+                    </li>
+                    @endif --}}
                     @if(auth()->user()->can('read_products'))
                     <li class="nav-item">
                         <a href="{{ route('admin.products.index') }}" class="nav-link">

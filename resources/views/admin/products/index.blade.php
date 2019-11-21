@@ -39,6 +39,10 @@
                     <th>{{ $product->stores->first()->name }}</th>
                     <th>{{ $product->category->{lang('name')} }}<th>
                     <th>
+                        @php 
+                            $data = DNS1D::getBarcodePNG($product->barcode, 'C39+')
+                        @endphp
+                        <button class="btn btn-success" onclick="printBarCode('{{ $data }}')"><i class="fa fa-print"></i></button>
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                         <a href="javascript:void(0)" class="delete-btn btn btn-danger">
                             <i class="fa fa-trash"></i>
@@ -59,4 +63,8 @@
         {{ $products->links() }}
     </div>
 </section>
+@endsection
+
+@section('script')
+<script src="{{ asset('admin/js/plugins/printjs/print.min.js') }}"></script>
 @endsection

@@ -8,6 +8,7 @@ return [
             'categories' => 'c,r,u,d',
             'stores' => 'c,r,u,d',
             'roles' => 'c,r,u,d',
+            'orders' => 'c,r,u,d',
             'dashboard' => 'r',
             'permissions' => 'r',
         ],

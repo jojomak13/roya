@@ -105,5 +105,15 @@ return [
 	],
 	'images' => [
 		'delete_success' => 'تم حذف الصورة بنجاح',
-	]
+	],
+	'orders' => [
+		'title' => 'الطلبات',
+		'name' => 'أسم الطلب',		
+		'products_count' => 'عدد المنتجات',		
+		'create' => 'طلب جديد',
+		'edit' => 'تعديل الطلب',
+		'create_success' => 'تم انشاء الطلب بنجاح',
+		'edit_success' => 'تم تعديل الطلب بنجاح',
+		'delete_success' => 'تم حذف الطلب بنجاح',
+	],
 ];

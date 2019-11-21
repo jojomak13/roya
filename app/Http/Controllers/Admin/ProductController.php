@@ -76,7 +76,12 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG("4", "C39+") . '" alt="barcode"   />';
+        // echo '<img src="data:image/png;base64,' . DNS2D::getBarcodePNG("4", "PDF417") . '" alt="barcode"   />';
+        // echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG("12546", "C39+",3,33,array(1,1,1), true) . '" alt="barcode"   />';
+
+        
+        // return $product;
     }
 
     /**

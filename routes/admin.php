@@ -15,7 +15,7 @@ Route::group($middlewares, function(){
 		Route::resource('roles', 'RoleController');
 
 		Route::resource('users', 'UserController');
-
+		
 		Route::resource('categories', 'CategoryController');
 
 		Route::resource('stores', 'StoreController');

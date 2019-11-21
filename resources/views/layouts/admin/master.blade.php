@@ -24,7 +24,7 @@
             @include('layouts.admin.__navbar')
 
             @include('layouts.admin.__sidebar')
-            
+
             <div class="content-wrapper"> 
                 @include('layouts.admin.__breadcrumbs')
                 <section class="content">
@@ -41,7 +41,7 @@
         <script src="{{ asset('admin/js/adminlte.js') }}"></script>
         <script src="{{ asset('admin/js/sweatalert.min.js') }}"></script>
         <!-- PAGE SCRIPTS -->
-        <script src="{{ asset('admin/js/dashboard2.js') }}"></script>
         @yield('script')
+        <script src="{{ asset('admin/js/dashboard2.js') }}"></script>
     </body>
 </html>

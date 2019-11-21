@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Faker\Factory;
 
 class Product extends Model
 {
-    protected $fillable = ['name_en', 'name_ar', 'buy_price', 'sell_price', 'weight', 'description_en', 'description_ar', 'user_id', 'category_id'];
+    protected $fillable = ['name_en', 'name_ar', 'barcode', 'buy_price', 'sell_price', 'weight', 'description_en', 'description_ar', 'user_id', 'category_id'];
 
     public function images()
     {
@@ -31,6 +32,16 @@ class Product extends Model
     public static function search($request)
     {
         return  static::where(lang('name'), 'like', '%' . $request->search . '%')->paginate(10);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::saving(function($product)
+        {
+            $facotry = Factory::create();
+            $product->barcode = $facotry->unique()->isbn10; 
+        });   
     }
 
     public function upload($images)
