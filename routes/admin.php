@@ -22,6 +22,8 @@ Route::group($middlewares, function(){
 
 		Route::resource('products', 'ProductController');
 
+		Route::resource('orders', 'OrderController');
+
 		Route::resource('images', 'ImageController');
 
 	});

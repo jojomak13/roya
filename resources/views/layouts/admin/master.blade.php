@@ -25,7 +25,7 @@
 
             @include('layouts.admin.__sidebar')
 
-            <div class="content-wrapper"> 
+            <div id="app" class="content-wrapper"> 
                 @include('layouts.admin.__breadcrumbs')
                 <section class="content">
                     <div class="container-fluid">
