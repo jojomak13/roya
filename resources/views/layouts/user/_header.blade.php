@@ -2,10 +2,10 @@
     <div class="container">
         <div class="top-nav d-flex justify-content-end">
             <ul>
-                <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                <li><a href="#"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
-                <li><a href="#"><i class="fa fa-lock"></i> Login</a></li>
+                <li><a href="#" title="My Account"><i class="fa fa-user"></i> My Account</a></li>
+                <li><a href="#" title="Wishlist"><i class="fa fa-heart"></i> Wishlist</a></li>
+                <li><a href="#" title="My Cart"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+                <li><a href="{{ route('login') }}" title="Login"><i class="fa fa-lock"></i> Login</a></li>
             </ul>
         </div>
         <div class="middle-nav d-flex justify-content-between">
