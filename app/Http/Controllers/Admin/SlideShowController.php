@@ -24,7 +24,7 @@ class SlideShowController extends Controller
      */
     public function index()
     {
-        $slideshows = request()->has('search')? SlideShow::search(request()) : SlideShow::paginate(10); 
+        $slideshows = request()->has('search')? SlideShow::search(request()) : SlideShow::latest()->paginate(10); 
 
         return view('admin.slideshow.index', compact('slideshows'));
     }

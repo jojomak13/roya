@@ -29,17 +29,6 @@ class Category extends Model
         return  static::where('parent_id', '0')->where(lang('name'), 'like', '%' . $request->search . '%')->paginate(10);
     }
     
-    public function deleteWithChilds()
-    {
-        $childs = static::where('parent_id', $this->id)->get();
-
-        foreach ($childs as $child){
-            $child->delete();
-        }
-
-        return $this->delete();
-    }
-
     public function products()
     {
         return $this->hasMany(Product::class);

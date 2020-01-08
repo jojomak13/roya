@@ -102,7 +102,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->deleteWithChilds();
+        $category->childrens()->delete();
+        $category->delete();
 
         session()->flash('success', __('dashboard.categories.delete_success'));
         return redirect()->route('admin.categories.index');

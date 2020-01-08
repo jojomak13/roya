@@ -26,6 +26,6 @@ class SlideShow extends Model
 
     public static function search($request)
     {
-        return  static::where(lang('title'), 'like', '%' . $request->search . '%')->paginate(10);
+        return  static::where(lang('title'), 'like', '%' . $request->search . '%')->latest()->paginate(10);
     }
 }
