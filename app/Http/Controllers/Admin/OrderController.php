@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:create_orders'])->only(['create', 'store']);
+        $this->middleware(['permission:read_orders'])->only('index');
+        $this->middleware(['permission:update_orders'])->only(['edit', 'update']);
+        $this->middleware(['permission:delete_orders'])->only('destroy');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -37,23 +47,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $sum = 0;
-        $products = [];
-        foreach ($request->all() as $product) {
-            $sum += $product['totalPrice'];
-            $products[$product['productId']] = [
-                'quantity' => $product['quantity'],
-                'total_price' => $product['totalPrice']
-            ];
-        }
         
+        $data = Order::handleOrder($request->all());
+
         $order = Order::create([
             'status' => 'completed',
-            'total_price' => $sum,
+            'total_price' => $data['total_price'],
             'user_id' => auth()->user()->id
         ]);
         
-        $order->products()->sync($products);
+        Product::updateQuantity($data['products']);
+        
+        $order->products()->sync($data['products']);
 
         session()->flash('success', __('dashboard.orders.create_success'));
         return redirect()->route('admin.orders.index');

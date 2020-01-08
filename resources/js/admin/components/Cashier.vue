@@ -27,10 +27,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(product, index) in products" :key="index">
+                        <tr v-for="(product, index) in products" :key="index" :class="{'bg-warning': !product.stores[0].pivot.quantity}">
                             <td>{{ index+1 }}</td>
                             <td>{{ product.name_ar }}</td>
-                            <td><input type="number" :p-id="product.id" @change="updateQuantity" value="1" min="1" class="form-control"></td>
+                            <td><input type="number" :p-id="product.id" @change="updateQuantity" :disabled="!product.stores[0].pivot.quantity" value="1" min="1" :max="product.stores[0].pivot.quantity" class="form-control"></td>
                             <td>{{ product.sell_price }}</td>
                             <td><button class="btn btn-danger" @click="deleteProduct(index)" :p-id="product.id"><i class="fa fa-trash"></i></button></td>
                         </tr>
@@ -58,8 +58,8 @@
                 this.cart.push({
                     productId: product.id,
                     price: product.sell_price,
-                    totalPrice: product.sell_price, 
-                    quantity: 1
+                    totalPrice: !product.stores[0].pivot.quantity? 0 : product.sell_price, 
+                    quantity: !product.stores[0].pivot.quantity? 0 : 1
                 })
             },
             updateQuantity(e){

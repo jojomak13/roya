@@ -76,7 +76,7 @@ class ProductController extends Controller
      */
     public function show($barcode)
     {        
-        $product = Product::Where('barcode', $barcode)->first();
+        $product = Product::Where('barcode', $barcode)->with('stores')->first();
 
         return response()->json([
             'status' => $product ? true : false,

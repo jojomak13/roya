@@ -56,5 +56,13 @@ class Product extends Model
         }
     }
 
+    public static function updateQuantity($products)
+    {
+        foreach($products as $id => $data){
+            $product = static::findOrFail($id);
+            $product->stores[0]->pivot->quantity -= $data['quantity'];
+            $product->stores[0]->pivot->save();
+        }
+    }
 
 }

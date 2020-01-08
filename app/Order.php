@@ -23,4 +23,24 @@ class Order extends Model
             'error' =>  __('dashboard.orders.error'),
         ][$status];
     }
+
+    public static function handleOrder($request)
+    {
+        $sum = 0;
+        $products = [];
+        foreach ($request as $product) {
+            $sum += $product['totalPrice'];
+
+            if($product['quantity']){
+                $products[$product['productId']] = [
+                    'quantity' => $product['quantity'],
+                    'total_price' => $product['totalPrice']
+                ];
+            }
+            
+        }
+
+        return ['products' => $products, 'total_price' => $sum];
+    }
+
 }
