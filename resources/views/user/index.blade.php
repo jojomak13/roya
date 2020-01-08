@@ -102,12 +102,11 @@
                         <button class="prev"><i class="fa fa-chevron-left"></i></button>
                         <button class="next"><i class="fa fa-chevron-right"></i></button>
                         <div id="slideshow" class="owl-carousel  owl-theme">
+                        @foreach($slideshows as $slide)
                             <div class="item">
-                                <img class="owl-lazy" data-src="{{ asset('user/images/slide-3.jpg') }}" class="img-fluid" alt="">
+                                <img class="owl-lazy" data-src="{{ url('storage/'.$slide->image) }}" class="img-fluid" alt="">
                             </div>
-                            <div class="item">
-                                <img class="owl-lazy" data-src="{{ asset('user/images/slide-2.jpg') }}" class="img-fluid" alt="">
-                            </div>
+                        @endforeach
                         </div>
                     </div>
                     <div class="options bg-primary d-flex justify-content-between p-3 text-center text-white">

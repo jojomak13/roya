@@ -26,5 +26,7 @@ Route::group($middlewares, function(){
 
 		Route::resource('images', 'ImageController');
 
+		Route::resource('slideshow', 'SlideShowController');
+
 	});
 });

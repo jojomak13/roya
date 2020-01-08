@@ -38,6 +38,16 @@
                         </a>
                     </li>
                     @endif
+
+                    @if(auth()->user()->can('read_slideshow'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.slideshow.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-image"></i>
+                            <p>{{ __('dashboard.slideshow.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
+
                     @if(auth()->user()->can('read_products'))
                     <li class="nav-item">
                         <a href="{{ route('admin.products.index') }}" class="nav-link">
