@@ -19,12 +19,17 @@ class HomeController extends Controller
         $categories = \App\Category::parent()->with('childrens')->get();
         $newProducts = \App\Product::latest()->with(['firstImage', 'category'])->take(10)->get();
         $hotProducts = \App\Product::latest()->where('status', 'hot')->with(['firstImage', 'category'])->take(10)->get();
+        $offers = \App\Offer::latest()->with(['products' => function($el){
+            $el->with(['firstImage', 'category'])->take(4);
+        }])->get();
 
+        
         return view('user.index', compact(
             'slideshows',
             'categories',
             'newProducts',
-            'hotProducts'
+            'hotProducts',
+            'offers'
         ));
     }
 }

@@ -90,12 +90,15 @@
                                     @endif
                                 </div>
                                 <div class="image">
-                                    <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="product name"
-                                        title="product name">
+                                    <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
+                                        title="{{ $product->{lang('name')} }}">
                                 </div>
                                 <div class="info d-flex justify-content-between">
                                     <p class="price">
-                                        <span>@money($product->sell_price) <span>@lang('user.currency')</span></span>
+                                        <span>@money($product->price) <span>@lang('user.currency')</span></span>
+                                        @if($product->discount)
+                                        <del>@money($product->sell_price)</del>
+                                        @endif
                                     </p>
                                     <div class="d-flex align-self-center">
                                         <a href="#" title="add to cart" class="cart">
@@ -141,12 +144,15 @@
                                     @endif
                                 </div>
                                 <div class="image">
-                                    <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="product name"
-                                        title="product name">
+                                    <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
+                                        title="{{ $product->{lang('name')} }}">
                                 </div>
                                 <div class="info d-flex justify-content-between">
                                     <p class="price">
-                                        <span>@money($product->sell_price) <span>@lang('user.currency')</span></span>
+                                        <span>@money($product->price) <span>@lang('user.currency')</span></span>
+                                        @if($product->discount)
+                                        <del>@money($product->sell_price)</del>
+                                        @endif
                                     </p>
                                     <div class="d-flex align-self-center">
                                         <a href="#" title="add to cart" class="cart">
@@ -173,132 +179,65 @@
     </div>
 
     <!-- Start Deals -->
-    <section class="deals">
-        <div class="container">
-            <div class="deal-ad">
-                <img src="{{ asset('user/images/ad.jpg') }}" class="img-fluid" alt="ad" title="ad">
-                <div class="mask">
-                    <div class="content">
-                        <h3>Black Friday Offer</h3>
-                        <h4>Up To <span class="text-warning">50%</span></h4>
-                        <a href="#" class="btn btn-primary">Show More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="deal-products">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-card">
-                            <div class="card-head">
-                                <p class="category"><a href="#">Audio Speakers</a></p>
-                                <h4><a href="#">Wireless Audio System</a></h4>
-                                <span class="tag bg-warning">offer</span>
-                            </div>
-                            <div class="image">
-                                <img class="img-fluid" src="{{ asset('user/images/p-2.jpg') }}" alt="product name" title="product name">
-                            </div>
-                            <div class="info d-flex justify-content-between">
-                                <p class="price">
-                                    <span>$1,999.00</span>
-                                </p>
-                                <div class=" d-flex align-self-center">
-                                    <a href="#" title="add to cart" class="cart"><i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                            <div class="stars">
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-card">
-                            <div class="card-head">
-                                <p class="category"><a href="#">Audio Speakers</a></p>
-                                <h4><a href="#">Wireless Audio System</a></h4>
-                                <span class="tag bg-warning">offer</span>
-                            </div>
-                            <div class="image">
-                                <img class="img-fluid" src="{{ asset('user/images/p-2.jpg') }}" alt="product name" title="product name">
-                            </div>
-                            <div class="info d-flex justify-content-between">
-                                <p class="price">
-                                    <span>$1,999.00</span>
-                                </p>
-                                <div class=" d-flex align-self-center">
-                                    <a href="#" title="add to cart" class="cart"><i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                            <div class="stars">
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-card">
-                            <div class="card-head">
-                                <p class="category"><a href="#">Audio Speakers</a></p>
-                                <h4><a href="#">Wireless Audio System</a></h4>
-                                <span class="tag bg-warning">offer</span>
-                            </div>
-                            <div class="image">
-                                <img class="img-fluid" src="{{ asset('user/images/p-2.jpg') }}" alt="product name" title="product name">
-                            </div>
-                            <div class="info d-flex justify-content-between">
-                                <p class="price">
-                                    <span>$1,999.00</span>
-                                </p>
-                                <div class=" d-flex align-self-center">
-                                    <a href="#" title="add to cart" class="cart"><i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                            <div class="stars">
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-card">
-                            <div class="card-head">
-                                <p class="category"><a href="#">Audio Speakers</a></p>
-                                <h4><a href="#">Wireless Audio System</a></h4>
-                                <span class="tag bg-warning">offer</span>
-                            </div>
-                            <div class="image">
-                                <img class="img-fluid" src="{{ asset('user/images/p-2.jpg') }}" alt="product name" title="product name">
-                            </div>
-                            <div class="info d-flex justify-content-between">
-                                <p class="price">
-                                    <span>$1,999.00</span>
-                                </p>
-                                <div class=" d-flex align-self-center">
-                                    <a href="#" title="add to cart" class="cart"><i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                            <div class="stars">
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star checked"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                            </div>
+    @foreach($offers as $offer)
+        @if(count($offer->products))
+        <section class="deals">
+            <div class="container">
+                <div class="deal-ad">
+                    <img src="{{ url('storage/'.$offer->image) }}" class="img-fluid" alt="{{ $offer->{lang('name')} }}" title="{{ $offer->{lang('name')} }}">
+                    <div class="mask">
+                        <div class="content">
+                            <h3>{{ $offer->{lang('name')} }}</h3>
+                            <h4>@lang('user.offer') <span class="text-warning">{{ $offer->max_discount }}%</span></h4>
+                            <a href="#" class="btn btn-primary">Show More</a>
                         </div>
                     </div>
                 </div>
+                <div class="deal-products">
+                    <div class="row">
+                        @foreach($offer->products as $product)
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="product-card">
+                                <div class="card-head">
+                                    <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
+                                    <h4><a href="#">{{ $product->{lang('name')} }}</a></h4>
+                                    @if($product->status)
+                                    <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
+                                    @endif
+                                </div>
+                                <div class="image">
+                                    <img class="img-fluid owl-lazy" src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
+                                        title="{{ $product->{lang('name')} }}">
+                                </div>
+                                <div class="info d-flex justify-content-between">
+                                    <p class="price">
+                                        <span>@money($product->price) <span>@lang('user.currency')</span></span>
+                                        @if($product->discount)
+                                        <del>@money($product->sell_price)</del>
+                                        @endif
+                                    </p>
+                                    <div class="d-flex align-self-center">
+                                        <a href="#" title="add to cart" class="cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="stars">
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+        @endif
+    @endforeach
     <!-- End Deals -->
 
     <div class="container">

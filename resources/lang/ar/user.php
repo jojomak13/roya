@@ -19,5 +19,6 @@ return [
     'categories' => 'الأقسام',
     'newProducts' => 'المنتجات الجديدة',
     'specialOffer' => 'عروض مميزة',
-    'currency' => 'ج.م'
+    'currency' => 'ج.م',
+    'offer' => 'خصم يصل الى'
 ];

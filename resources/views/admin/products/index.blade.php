@@ -18,10 +18,11 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>{{ __('dashboard.products.barcode') }}</th>
                     <th>{{ __('dashboard.products.name') }}</th>
                     <th>{{ __('dashboard.products.buy_price') }}</th>
                     <th>{{ __('dashboard.products.sell_price') }}</th>
-                    <th>{{ __('dashboard.products.owner') }}</th>
+                    {{-- <th>{{ __('dashboard.products.owner') }}</th> --}}
                     <th>{{ __('dashboard.products.quantity') }}</th>
                     <th>{{ __('dashboard.products.store') }}</th>
                     <th>{{ __('dashboard.products.category') }}</th>
@@ -31,10 +32,11 @@
             <tbody>
                 @forelse ($products as $product)
                 <tr>
+                    <th>{{ $product->barcode }}</th>
                     <th>{{ $product->{lang('name')} }}</th>
                     <th>@money($product->buy_price)</th>
-                    <th>@money($product->sell_price)</th>
-                    <th>{{ $product->user->fullName() }}</th>
+                    <th>@money($product->price) ({{ $product->discount }}%)</th>
+                    {{-- <th>{{ $product->user->fullName() }}</th> --}}
                     <th>{{ $product->stores->first()->pivot->quantity }}</th>
                     <th>{{ $product->stores->first()->name }}</th>
                     <th>{{ $product->category->{lang('name')} }}<th>

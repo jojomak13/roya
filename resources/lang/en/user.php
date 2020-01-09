@@ -19,5 +19,6 @@ return [
     'categories' => 'Categories',
     'newProducts' => 'New products',
     'specialOffer' => 'Special Offer',
-    'currency' => 'EGP'
+    'currency' => 'EGP',
+    'offer' => 'Up To',
 ];

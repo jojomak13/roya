@@ -56,6 +56,26 @@
                             @enderror
                         </div>
                         <div class="form-group col-6">
+                            <label for="discount">{{ __('dashboard.products.discount') }}</label>
+                            <input type="number" step="any" min="0" max="100" value="{{ $product->discount }}"
+                                class="form-control @error('discount') is-invalid @enderror" id="discount" name="discount">
+                            @error('discount')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="offer_id">{{ __('dashboard.products.offer') }}</label>
+                            <select class="form-control @error('offer_id') is-invalid @enderror" id="offer_id" name="offer_id">
+                                <option value="">{{ __('dashboard.products.select_offer') }}</option>
+                                @foreach ($offers as $offer)
+                                <option {{ $product->offer_id == $offer->id? 'selected':'' }} value="{{ $offer->id }}">{{ $offer->{lang('name')} }}</option>
+                                @endforeach
+                            </select>
+                            @error('offer_id')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-6">
                             <label for="user_id">{{ __('dashboard.products.owner') }}</label>
                             <select class="form-control @error('user_id') is-invalid @enderror" id="user_id" name="user_id">
                                 <option value="">{{ __('dashboard.products.select_owner') }}</option>

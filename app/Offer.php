@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Offer extends Model
 {
     protected $fillable = ['name_en', 'name_ar', 'image'];
+    protected $appends = ['max_discount'];
 
     public function products()
     {
         return $this->hasMany(Product::class);    
+    }
+
+    public function getMaxDiscountAttribute()
+    {
+        return $this->products()->max('discount');
     }
 
     public function uploadImage($imageName = 'image')
@@ -22,7 +28,7 @@ class Offer extends Model
 
             $uploadedImage = request()->$imageName->store('offers/');
             
-            \Image::make('storage/'.$uploadedImage)->resize(870, 412)->save();
+            \Image::make('storage/'.$uploadedImage)->resize(850, 200)->save();
 
             $this->update(['image' => $uploadedImage]);
         }

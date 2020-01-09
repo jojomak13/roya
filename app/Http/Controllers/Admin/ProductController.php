@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Offer;
 use App\Store;
 use App\Product;
 use App\Category;
@@ -43,8 +44,9 @@ class ProductController extends Controller
         $categories = Category::where('parent_id', '!=', '0')->get();
         $users = User::whereRoleIs('supplier')->get();
         $stores = Store::all();
+        $offers = Offer::all();
 
-        return view('admin.products.create', compact('categories', 'users', 'stores'));
+        return view('admin.products.create', compact('categories', 'users', 'stores', 'offers'));
     }
 
     /**
@@ -96,8 +98,9 @@ class ProductController extends Controller
         $categories = Category::where('parent_id', '!=', '0')->get();
         $users = User::whereRoleIs('supplier')->get();
         $stores = Store::all();
+        $offers = Offer::all();
 
-        return view('admin.products.edit', compact('product', 'categories', 'users', 'stores'));
+        return view('admin.products.edit', compact('product', 'categories', 'users', 'stores', 'offers'));
     }
 
     /**
@@ -146,6 +149,8 @@ class ProductController extends Controller
             'name_ar' => 'required',
             'buy_price' => 'required',
             'sell_price' => 'required',
+            'discount' => 'required|int|min:0|max:100',
+            'offer_id' => '',
             'user_id' => 'required',
             'category_id' => 'required',
             'description_en' => 'required',
