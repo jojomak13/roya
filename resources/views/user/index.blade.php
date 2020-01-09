@@ -15,81 +15,19 @@
                         </div>
                         <div class="card-body">
                             <ul>
+                            @foreach($categories as $parent)
                                 <li class="category-dropdown">
                                     <a href="javascript:void(0)">
-                                        <i class="fa fa-truck"></i>
-                                        <span>Fashion</span>
+                                        <span>{{ $parent->{lang('name')} }}</span>
                                         <i class="fa fa-chevron-right"></i>
                                     </a>
                                     <ul class="category-dropdown-items">
-                                        <li><a href="#">Home 1</a></li>
-                                        <li><a href="#">Home 2</a></li>
-                                        <li><a href="#">Home 3</a></li>
-                                        <li><a href="#">Home 4</a></li>
+                                    @foreach($parent->childrens as $child)
+                                        <li><a href="#">{{ $child->{lang('name')} }}</a></li>
+                                    @endforeach
                                     </ul>
                                 </li>
-                                <li class="category-dropdown">
-                                    <a href="javascript:void(0)">
-                                        <i class="fa fa-shopping-bag"></i>
-                                        <span>Clothing</span>
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                    <ul class="category-dropdown-items">
-                                        <li><a href="#">Home 1</a></li>
-                                        <li><a href="#">Home 2</a></li>
-                                        <li><a href="#">Home 3</a></li>
-                                        <li><a href="#">Home 4</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-laptop"></i>
-                                        <span>Eelectronics</span>
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-paw"></i>
-                                        <span>Shoes</span>
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-clock-o"></i>
-                                        <span>Watches</span>
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-diamond"></i>
-                                        <span>Jewellery</span>
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-heartbeat"></i>
-                                        <span>Health & Beauty</span>
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-futbol-o"></i>
-                                        <span>Sports</span>
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-envira"></i>
-                                        <span>Home and Garden</span>
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </li>
+                            @endforeach
                             </ul>
                         </div>
                     </div>
@@ -138,7 +76,7 @@
             <div class="col-lg-3">
                 <section class="hot-deal">
                     <div class="section-head">
-                        <h3>Special Offer</h3>
+                        <h3>{{ __('user.specialOffer') }}</h3>
                     </div>
                     <div class="product-card active">
                         <div class="card-head">
@@ -174,7 +112,7 @@
             <div class="col-lg-9">
                 <section class="new-products">
                     <div class="section-head d-flex justify-content-between">
-                        <h3>New Products</h3>
+                        <h3>{{ __('user.newProducts') }}</h3>
                         <div class="carousel-control d-flex align-self-center">
                             <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
                             <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
@@ -182,20 +120,20 @@
                     </div>
 
                     <div id="new-products" class="owl-carousel owl-theme">
+                        @foreach($newProducts as $product)
                         <div class="item">
                             <div class="product-card">
                                 <div class="card-head">
-                                    <p class="category"><a href="#">Audio Speakers</a></p>
-                                    <h4><a href="#">Wireless Audio System</a></h4>
+                                    <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
+                                    <h4><a href="#">{{ $product->{lang('name')} }}</a></h4>
                                 </div>
                                 <div class="image">
-                                    <img class="img-fluid owl-lazy" data-src="{{ asset('user/images/p-1.jpg') }}" alt="product name"
+                                    <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="product name"
                                         title="product name">
                                 </div>
                                 <div class="info d-flex justify-content-between">
                                     <p class="price">
-                                        <span class="text-danger">$1,999.00</span>
-                                        <del>$2,999.00</del>
+                                        <span class="text-danger">$ @money($product->sell_price) </span>
                                     </p>
                                     <div class="d-flex align-self-center">
                                         <a href="#" title="add to cart" class="cart"><i
@@ -211,64 +149,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="product-card">
-                                <div class="card-head">
-                                    <p class="category"><a href="#">Audio Speakers</a></p>
-                                    <h4><a href="#">Wireless Audio System</a></h4>
-                                    <span class="tag bg-primary">NEW</span>
-                                </div>
-                                <div class="image">
-                                    <img class="img-fluid owl-lazy" data-src="{{ asset('user/images/p-2.jpg') }}" alt="product name"
-                                        title="product name">
-                                </div>
-                                <div class="info d-flex justify-content-between">
-                                    <p class="price">
-                                        <span>$1,999.00</span>
-                                    </p>
-                                    <div class=" d-flex align-self-center">
-                                        <a href="#" title="add to cart" class="cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                                <div class="stars">
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="product-card">
-                                <div class="card-head">
-                                    <p class="category"><a href="#">Audio Speakers</a></p>
-                                    <h4><a href="#">Wireless Audio System</a></h4>
-                                </div>
-                                <div class="image">
-                                    <img class="img-fluid owl-lazy" data-src="{{ asset('user/images/p-3.jpg') }}" alt="product name"
-                                        title="product name">
-                                </div>
-                                <div class="info d-flex justify-content-between">
-                                    <p class="price">
-                                        <span class="text-danger">$1,999.00</span>
-                                        <del>$2,999.00</del>
-                                    </p>
-                                    <div class="d-flex align-self-center">
-                                        <a href="#" title="add to cart" class="cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                                <div class="stars">
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </section>
             </div>

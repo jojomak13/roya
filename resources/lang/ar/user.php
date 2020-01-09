@@ -7,4 +7,7 @@ return [
     'title' => [
         'home' => 'الرئيسية'    
     ],
+    'newProducts' => 'المنتجات الجديدة',
+    'specialOffer' => 'عروض مميزة'
+
 ];

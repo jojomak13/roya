@@ -17,7 +17,12 @@ class HomeController extends Controller
 
         $slideshows = \App\SlideShow::latest()->get();
         $categories = \App\Category::parent()->with('childrens')->get();
-        return $categories;
-        return view('user.index', compact('slideshows'));
+        $newProducts = \App\Product::latest()->with(['firstImage', 'category'])->take(10)->get();
+
+        return view('user.index', compact(
+            'slideshows',
+            'categories',
+            'newProducts'
+        ));
     }
 }

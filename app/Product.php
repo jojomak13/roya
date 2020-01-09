@@ -2,11 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Faker\Factory;
+use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    
     protected $fillable = ['name_en', 'name_ar', 'barcode', 'buy_price', 'sell_price', 'weight', 'description_en', 'description_ar', 'user_id', 'category_id'];
 
     public function images()
@@ -14,6 +15,11 @@ class Product extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function firstImage()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+    
     public function stores()
     {
         return $this->belongsToMany(Store::class)->withPivot(['quantity'])->withTimeStamps();

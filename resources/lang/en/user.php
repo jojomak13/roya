@@ -7,4 +7,6 @@ return [
     'title' => [
         'home' => 'Home'
     ],
+    'newProducts' => 'New products',
+    'specialOffer' => 'Special Offer'
 ];
