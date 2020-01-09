@@ -23,6 +23,15 @@ $(".category-dropdown").on("click", function() {
 });
 // End Category Dropdown
 
+// Start Offers
+$("#offers").owlCarousel({
+	// margin: 10,
+	lazyLoad: true,
+	dots: false,
+	items: 1
+});
+// End Offers
+
 // Start new products
 let newProducts = $("#new-products").owlCarousel({
 	margin: 10,

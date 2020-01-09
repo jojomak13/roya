@@ -56,6 +56,16 @@
                         </a>
                     </li>
                     @endif
+
+                    @if(auth()->user()->can('read_products'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.offers.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-strikethrough"></i>
+                            <p>{{ __('dashboard.offers.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
+
                     @if(auth()->user()->can('read_stores'))
                     <li class="nav-item">
                         <a href="{{ route('admin.stores.index') }}" class="nav-link">

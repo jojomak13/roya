@@ -7,7 +7,17 @@ return [
     'title' => [
         'home' => 'الرئيسية'    
     ],
+    'header' => [
+        'myAccount' => 'حسابى',
+        'wishlist' => 'المفضلة',
+        'mycart' => 'العربة',
+        'login' => 'تسجيل الدخول',
+        'all' => 'الكل',
+        'home' => 'الرئيسية',
+        'search' => 'بحث'
+    ],
+    'categories' => 'الأقسام',
     'newProducts' => 'المنتجات الجديدة',
-    'specialOffer' => 'عروض مميزة'
-
+    'specialOffer' => 'عروض مميزة',
+    'currency' => 'ج.م'
 ];

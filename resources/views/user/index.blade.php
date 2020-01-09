@@ -11,7 +11,7 @@
                 <div class="col-lg-3 col-md-12">
                     <div class="cats card">
                         <div class="card-header">
-                            <h5 class="card-title"><i class="fa fa-bars"></i> Categories</h5>
+                            <h5 class="card-title"><i class="fa fa-bars"></i> @lang('user.categories')</h5>
                         </div>
                         <div class="card-body">
                             <ul>
@@ -78,31 +78,41 @@
                     <div class="section-head">
                         <h3>{{ __('user.specialOffer') }}</h3>
                     </div>
-                    <div class="product-card active">
-                        <div class="card-head">
-                            <p class="category"><a href="#">Audio Speakers</a></p>
-                            <h4><a href="#">Wireless Audio System</a></h4>
-                            <span class="tag bg-danger">Hot</span>
-                        </div>
-                        <div class="image">
-                            <img class="img-fluid" src="{{ asset('user/images/p-1.jpg') }}" alt="product name" title="product name">
-                        </div>
-                        <div class="info d-flex justify-content-between">
-                            <p class="price">
-                                <span class="text-danger">$1,999.00</span>
-                                <del>$2,999.00</del>
-                            </p>
-                            <div class="d-flex align-self-center">
-                                <a href="#" title="add to cart" class="cart"><i class="fa fa-shopping-cart"></i></a>
+                    <div id="offers" class="owl-carousel owl-theme">
+                    @foreach($hotProducts as $product)
+                        <div class="item">
+                            <div class="product-card active">
+                                <div class="card-head">
+                                    <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
+                                    <h4><a href="#">{{ $product->{lang('name')} }}</a></h4>
+                                    @if($product->status)
+                                    <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
+                                    @endif
+                                </div>
+                                <div class="image">
+                                    <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="product name"
+                                        title="product name">
+                                </div>
+                                <div class="info d-flex justify-content-between">
+                                    <p class="price">
+                                        <span>@money($product->sell_price) <span>@lang('user.currency')</span></span>
+                                    </p>
+                                    <div class="d-flex align-self-center">
+                                        <a href="#" title="add to cart" class="cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="stars">
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="stars">
-                            <span class="star checked"><i class="fa fa-star"></i></span>
-                            <span class="star checked"><i class="fa fa-star"></i></span>
-                            <span class="star checked"><i class="fa fa-star"></i></span>
-                            <span class="star checked"><i class="fa fa-star"></i></span>
-                            <span class="star checked"><i class="fa fa-star"></i></span>
-                        </div>
+                    @endforeach
                     </div>
                 </section>
             </div>
@@ -126,6 +136,9 @@
                                 <div class="card-head">
                                     <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
                                     <h4><a href="#">{{ $product->{lang('name')} }}</a></h4>
+                                    @if($product->status)
+                                    <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
+                                    @endif
                                 </div>
                                 <div class="image">
                                     <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="product name"
@@ -133,15 +146,16 @@
                                 </div>
                                 <div class="info d-flex justify-content-between">
                                     <p class="price">
-                                        <span class="text-danger">$ @money($product->sell_price) </span>
+                                        <span>@money($product->sell_price) <span>@lang('user.currency')</span></span>
                                     </p>
                                     <div class="d-flex align-self-center">
-                                        <a href="#" title="add to cart" class="cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
+                                        <a href="#" title="add to cart" class="cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="stars">
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    <span class="star"><i class="fa fa-star"></i></span>
                                     <span class="star checked"><i class="fa fa-star"></i></span>
                                     <span class="star checked"><i class="fa fa-star"></i></span>
                                     <span class="star checked"><i class="fa fa-star"></i></span>

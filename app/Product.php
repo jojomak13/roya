@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    
-    protected $fillable = ['name_en', 'name_ar', 'barcode', 'buy_price', 'sell_price', 'weight', 'description_en', 'description_ar', 'user_id', 'category_id'];
+    protected $fillable = ['name_en', 'name_ar', 'barcode', 'buy_price', 'sell_price', 'weight', 'description_en', 'description_ar', 'user_id', 'category_id', 'status', 'color'];
+    protected $append = ['handled_status'];
 
     public function images()
     {
@@ -33,6 +33,11 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function Offer()
+    {
+        return $this->belongsTo(Offer::class);
     }
 
     public static function search($request)
@@ -69,6 +74,41 @@ class Product extends Model
             $product->stores[0]->pivot->quantity -= $data['quantity'];
             $product->stores[0]->pivot->save();
         }
+    }
+
+    public static function colors()
+    {
+        return [
+            'black' => '#000',
+            'white' => '#fff',
+            'gray' => '#CCC',
+            'red' => '#900',
+            'blue' => '#009',
+            'green' => '#090',
+            'yellow' => '#990',
+            'purple' => '#909'
+        ];
+    }
+
+    public static function status()
+    {
+        return [
+            'available' => 'Available',
+            'hot' => 'Hot',
+            'offer' => 'Offer',
+            'outOfStock' => 'Out Of Stock',
+        ];
+    }
+
+    public function gethandledStatusAttribute()
+    {
+        return [
+            'available' => ['Available', 'primary'],
+            'hot' => ['Hot', 'danger'],
+            'offer' => ['Offer', 'warning'],
+            'outOfStock' => ['Out Of Stock', 'danger'],
+        ][$this->status];
+        
     }
 
 }

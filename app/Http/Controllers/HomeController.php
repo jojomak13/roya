@@ -18,11 +18,13 @@ class HomeController extends Controller
         $slideshows = \App\SlideShow::latest()->get();
         $categories = \App\Category::parent()->with('childrens')->get();
         $newProducts = \App\Product::latest()->with(['firstImage', 'category'])->take(10)->get();
+        $hotProducts = \App\Product::latest()->where('status', 'hot')->with(['firstImage', 'category'])->take(10)->get();
 
         return view('user.index', compact(
             'slideshows',
             'categories',
-            'newProducts'
+            'newProducts',
+            'hotProducts'
         ));
     }
 }

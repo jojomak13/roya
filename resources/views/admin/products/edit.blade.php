@@ -131,13 +131,25 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="stores">{{ __('dashboard.products.stores') }}</label>
-                        <select name="stores" id="stores" class="form-control @error('stores') is-invalid @enderror">
-                            @foreach($stores as $store)
-                            <option {{ $product->stores->first()->id == $store->id? 'selected':'' }} value="{{ $store->id }}">{{ $store->name }}</option>
+                        <label for="color">{{ __('dashboard.products.color') }}</label>
+                        <select name="color" id="color" class="form-control @error('color') is-invalid @enderror">
+                            @foreach(\App\Product::colors() as $color => $code)
+                            <option {{ $product->color == $color? 'selected': '' }} value="{{ $color }}" style="background:{{ $code }}"></option>
                             @endforeach
                         </select>
-                        @error('stores')
+                        @error('color')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="status">{{ __('dashboard.products.status') }}</label>
+                        <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
+                            <option value="">None</option>
+                            @foreach(\App\Product::status() as $key => $value)
+                            <option {{ $product->status == $key? 'selected':'' }} value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                        @error('status')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
@@ -146,6 +158,17 @@
                         <input type="number" value="{{ $product->stores->first()->pivot->quantity }}"
                             class="form-control @error('quantity') is-invalid @enderror" min="1" id="quantity" name="quantity">
                         @error('quantity')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="stores">{{ __('dashboard.products.stores') }}</label>
+                        <select name="stores" id="stores" class="form-control @error('stores') is-invalid @enderror">
+                            @foreach($stores as $store)
+                            <option {{ $product->stores->first()->id == $store->id? 'selected':'' }} value="{{ $store->id }}">{{ $store->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('stores')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

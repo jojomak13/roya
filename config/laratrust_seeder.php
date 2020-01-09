@@ -11,7 +11,8 @@ return [
             'orders' => 'c,r,u,d',
             'dashboard' => 'r',
             'permissions' => 'r',
-            'slideshow' => 'c,r,u,d'
+            'slideshow' => 'c,r,u,d',
+            'offers' => 'c,r,u,d'
         ],
         'supplier' => [],
         'casher' => [],

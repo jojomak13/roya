@@ -54,7 +54,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        // dd($request->all());
         $product = Product::create($this->formValidate());
         
         $product->upload($request->images);
@@ -152,6 +153,8 @@ class ProductController extends Controller
             'weight' => 'required',
             'stores' => 'required',
             'quantity' => 'required',
+            'status' => '',
+            'color' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
 

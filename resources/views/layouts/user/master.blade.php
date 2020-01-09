@@ -8,8 +8,15 @@
     <meta name="description" content="{{ __('user.info.description') }}">
     <title>@yield('title',  __('user.title.home') )  - {{ config('app.name') }}</title>
     <link rel="favicon" href="{{ asset('./favicon.icon') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    @else
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    @endif
     <link rel="stylesheet" href="{{ asset('user/css/main.css') }}">
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+    <link rel="stylesheet" href="{{ asset('user/css/rtl.css') }}">
+    @endif
 </head>
 
 <body>

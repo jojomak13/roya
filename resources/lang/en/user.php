@@ -7,6 +7,17 @@ return [
     'title' => [
         'home' => 'Home'
     ],
+    'header' => [
+        'myAccount' => 'My Account',
+        'wishlist' => 'Wishlist',
+        'mycart' => 'My Cart',
+        'login' => 'Login',
+        'all' => 'All',
+        'home' => 'Home',
+        'search' => 'Search'
+    ],
+    'categories' => 'Categories',
     'newProducts' => 'New products',
-    'specialOffer' => 'Special Offer'
+    'specialOffer' => 'Special Offer',
+    'currency' => 'EGP'
 ];

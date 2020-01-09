@@ -28,5 +28,7 @@ Route::group($middlewares, function(){
 
 		Route::resource('slideshow', 'SlideShowController');
 
+		Route::resource('offers', 'OfferController');
+
 	});
 });

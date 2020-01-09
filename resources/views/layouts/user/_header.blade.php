@@ -2,10 +2,13 @@
     <div class="container">
         <div class="top-nav d-flex justify-content-end">
             <ul>
-                <li><a href="#" title="My Account"><i class="fa fa-user"></i> My Account</a></li>
-                <li><a href="#" title="Wishlist"><i class="fa fa-heart"></i> Wishlist</a></li>
-                <li><a href="#" title="My Cart"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
-                <li><a href="{{ route('login') }}" title="Login"><i class="fa fa-lock"></i> Login</a></li>
+            @if(auth()->user())
+                <li><a href="#" title="@lang('user.header.myAccount')"><i class="fa fa-user"></i> @lang('user.header.myAccount')</a></li>
+            @else
+                <li><a href="{{ route('login') }}" title="@lang('user.header.login')"><i class="fa fa-lock"></i> @lang('user.header.login')</a></li>
+            @endif
+                <li><a href="#" title="@lang('user.header.wishlist')"><i class="fa fa-heart"></i> @lang('user.header.wishlist')</a></li>
+                <li><a href="#" title="@lang('user.header.mycart')"><i class="fa fa-shopping-cart"></i> @lang('user.header.mycart')</a></li>
             </ul>
         </div>
         <div class="middle-nav d-flex justify-content-between">
@@ -15,10 +18,10 @@
             <div class="search d-none d-lg-block">
                 <div class="form-inline">
                     <select name="search">
-                        <option value="d" selected>All</option>
+                        <option value="d" selected>@lang('user.header.all')</option>
                         <option value="dd">Eelectronics</option>
                     </select>
-                    <input type="text" placeholder="Search...">
+                    <input type="text" placeholder="@lang('user.header.search')...">
                     <button><i class="fa fa-search"></i></button>
                 </div>
             </div>
