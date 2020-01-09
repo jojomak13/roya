@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LaratrustSeeder::class);
         $this->call(UsersTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
         $this->call(StoreTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
     }
