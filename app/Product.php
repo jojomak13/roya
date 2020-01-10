@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = ['name_en', 'name_ar', 'barcode', 'buy_price', 'sell_price', 'weight', 'description_en', 'description_ar', 'user_id', 'category_id', 'status', 'color', 'discount', 'offer_id'];
-    protected $append = ['handled_status', 'price'];
+    protected $append = ['handled_status', 'price', 'url'];
+    protected $with = ['category'];
 
     public function images()
     {
@@ -43,6 +44,11 @@ class Product extends Model
     public function getPriceAttribute()
     {
         return $this->sell_price - (($this->discount * $this->sell_price) / 100);
+    }
+
+    public function getUrlAttribute()
+    {
+        return route('product', [$this->id, \Str::slug($this->{lang('name')})]);
     }
 
     public static function search($request)

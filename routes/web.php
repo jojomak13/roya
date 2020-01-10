@@ -19,6 +19,8 @@ $middlewares = [
 Route::group($middlewares, function(){
 	Route::get('/', 'HomeController@index')->name('home');
 
+	Route::get('/product/{id}-{slug}', 'HomeController@show')->name('product');
+
 	Auth::routes();
 });
 

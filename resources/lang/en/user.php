@@ -21,4 +21,14 @@ return [
     'specialOffer' => 'Special Offer',
     'currency' => 'EGP',
     'offer' => 'Up To',
+    'available' => 'Availablity',
+    'inStock' => 'In stock',
+    'outOfStock' => 'Out of stock',
+    'wishlist' => [
+        'name' => 'Wishlist',
+        'title' => 'add to wishlist'
+    ],
+    'color' => 'Color',
+    'addtocart' => 'Add to cart',
+    'relatedProducts' => 'Related Products',
 ];

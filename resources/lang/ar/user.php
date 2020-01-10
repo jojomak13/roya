@@ -20,5 +20,15 @@ return [
     'newProducts' => 'المنتجات الجديدة',
     'specialOffer' => 'عروض مميزة',
     'currency' => 'ج.م',
-    'offer' => 'خصم يصل الى'
+    'offer' => 'خصم يصل الى',
+    'available' => 'حالة المنتج',
+    'inStock' => 'فى المتجر',
+    'outOfStock' => 'نفذت الكمية',
+    'wishlist' => [
+        'name' => 'قائمة المفضلة',
+        'title' => 'أضف الى قائمة المفضلة'
+    ],
+    'color' => 'اللون',
+    'addtocart' => 'أضف الى العربة',
+    'relatedProducts' => 'المنتجات المقترحة',
 ];

@@ -141,7 +141,8 @@ $("#brands").owlCarousel({
 // Start Single product
 let product = $("#product").owlCarousel({
 	items: 1,
-	dots: false
+	dots: false,
+	lazyLoad: true
 });
 // Edit Single product
 

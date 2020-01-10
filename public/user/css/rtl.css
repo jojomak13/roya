@@ -10,6 +10,10 @@ body {
     direction: ltr;
 }
 
+.no-js .owl-carousel, .owl-carousel.owl-loaded {
+    direction: ltr;
+}
+
 .justify-content-end {
     -webkit-box-pack: start !important;
     -ms-flex-pack: start !important;
@@ -42,4 +46,20 @@ body {
 .product-card .stars {
     text-align: right;
     direction: ltr;
+}
+
+.breadcrumb {
+    text-align: right;
+}
+
+.breadcrumb ul li::after {
+    content: "\f104"
+}
+
+.single-product {
+    text-align: right;
+}
+
+.single-product .info {
+    direction: rtl;
 }

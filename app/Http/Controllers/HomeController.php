@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,6 @@ class HomeController extends Controller
             $el->with(['firstImage', 'category'])->take(4);
         }])->get();
 
-        
         return view('user.index', compact(
             'slideshows',
             'categories',
@@ -31,5 +31,13 @@ class HomeController extends Controller
             'hotProducts',
             'offers'
         ));
+    }
+
+    public function show($id)
+    {
+        $product = Product::with('images')->findOrFail($id);
+        $relatedProducts = Product::with('firstImage')->where('category_id', $product->category->id)->get()->shuffle();
+        
+        return view('user.product', compact('product', 'relatedProducts'));
     }
 }

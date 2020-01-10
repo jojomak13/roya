@@ -84,7 +84,7 @@
                             <div class="product-card active">
                                 <div class="card-head">
                                     <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
-                                    <h4><a href="#">{{ $product->{lang('name')} }}</a></h4>
+                                    <h4><a href="{{ $product->url }}">{{  $product->{lang('name')} }}</a></h4>
                                     @if($product->status)
                                     <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
                                     @endif
@@ -138,7 +138,7 @@
                             <div class="product-card">
                                 <div class="card-head">
                                     <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
-                                    <h4><a href="#">{{ $product->{lang('name')} }}</a></h4>
+                                    <h4><a href="{{ $product->url }}">{{  $product->{lang('name')}  }}</a></h4>
                                     @if($product->status)
                                     <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
                                     @endif
@@ -200,7 +200,7 @@
                             <div class="product-card">
                                 <div class="card-head">
                                     <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
-                                    <h4><a href="#">{{ $product->{lang('name')} }}</a></h4>
+                                    <h4><a href="{{  $product->url }}">{{ $product->{lang('name')} }}</a></h4>
                                     @if($product->status)
                                     <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
                                     @endif
