@@ -36,5 +36,12 @@ return [
     'blog' => [
         'by' => 'By',
         'readmore' => 'Read More'
-    ]
+    ],
+    'footer' => [
+        'contactus' => 'Contact Us',
+        'siteMap' => 'Site Map',
+        'latestProducts' => 'Latest Products',
+        'copyright' => 'Copyright&copy; 2019 all right received by'
+    ],
+    'latestCats' => 'Latest Categories'
 ];

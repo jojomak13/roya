@@ -5,15 +5,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <h4>Contant Us</h4>
+                <h4>@lang('user.footer.contactus')</h4>
                 <ul>
-                    <li><i class="fa fa-map-marker"></i> 10th of ramadan</li>
-                    <li><i class="fa fa-phone"></i> +201245646</li>
-                    <li><i class="fa fa-envelope"></i> services@roya.com</li>
+                    <li><i class="fa fa-map-marker"></i> @lang('app.address')</li>
+                    <li><i class="fa fa-phone"></i> @lang('app.phone')</li>
+                    <li><i class="fa fa-envelope"></i> @lang('app.mail')</li>
                 </ul>
             </div>
             <div class="col-lg-4 site-map">
-                <h4>Site Map</h4>
+                <h4>@lang('user.footer.siteMap')</h4>
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Shop</a></li>
@@ -23,20 +23,18 @@
                 </ul>
             </div>
             <div class="col-lg-4 latest-blogs">
-                <h4>Top Catgeories</h4>
+                <h4>@lang('user.footer.latestProducts')</h4>
                 <ul>
-                    <li><a href="#">Eelectronics (75)<a></li>
-                    <li><a href="#">Clothes (20)<a></li>
-                    <li><a href="#">Furniture (50)<a></li>
-                    <li><a href="#">Toys (50)<a></li>
-                    <li><a href="#">Tools (50)<a></li>
+                    @foreach($products as $product)
+                    <li><a href="{{ $product->url }}">{{ $product->{lang('name')} }}<a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>
     </div>
     <div class="copyright">
         <div class="container">
-            <p>Copyright&copy; 2019 all right received by <a href="#">Roya</a></p>
+            <p>@lang('user.footer.copyright') <a href="{{ route('home') }}">Roya</a></p>
         </div>
     </div>
 </footer>

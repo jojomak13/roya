@@ -67,3 +67,7 @@ body {
 .item.blog .card-body {
     text-align: right;
 }
+
+footer {
+    text-align: right;
+}

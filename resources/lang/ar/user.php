@@ -36,5 +36,11 @@ return [
     'blog' => [
         'by' => '',
         'readmore' => 'أقرا المزيد'
-    ]
+    ],'footer' => [
+        'contactus' => 'تواصل معنا',
+        'siteMap' => 'خريطة الموقع',
+        'latestProducts' => 'أحدث المنتجات',
+        'copyright' => 'حقوق الطبع والنشر&copy; 2019 محفوظة من قبل'
+    ],
+    'latestCats' => 'أحدث الأقسام'
 ];
