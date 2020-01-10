@@ -57,11 +57,20 @@
                     </li>
                     @endif
 
-                    @if(auth()->user()->can('read_products'))
+                    @if(auth()->user()->can('read_offers'))
                     <li class="nav-item">
                         <a href="{{ route('admin.offers.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-strikethrough"></i>
                             <p>{{ __('dashboard.offers.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(auth()->user()->can('read_blogs'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.blogs.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-bold"></i>
+                            <p>{{ __('dashboard.blogs.title') }}</p>
                         </a>
                     </li>
                     @endif
@@ -74,6 +83,7 @@
                         </a>
                     </li>
                     @endif
+
                     @if(auth()->user()->can('read_categories'))
                     <li class="nav-item">
                         <a href="{{ route('admin.categories.index') }}" class="nav-link">

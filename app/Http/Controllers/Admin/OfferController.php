@@ -66,7 +66,8 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        //
+        $products = $offer->products;
+        return view('admin.offers.show', compact('offer', 'products'));
     }
 
     /**

@@ -63,3 +63,7 @@ body {
 .single-product .info {
     direction: rtl;
 }
+
+.item.blog .card-body {
+    text-align: right;
+}

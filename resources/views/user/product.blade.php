@@ -1,5 +1,7 @@
 @extends('layouts.user.master')
 
+
+@section('title', $product->{lang('name')})
 @section('content')
 <!-- Start breadcrumb -->
 <div class="breadcrumb">

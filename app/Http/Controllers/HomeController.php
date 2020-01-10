@@ -24,19 +24,22 @@ class HomeController extends Controller
             $el->with(['firstImage', 'category'])->take(4);
         }])->get();
 
+        $latestBlogs = \App\Blog::latest()->take(5)->get();
+
         return view('user.index', compact(
             'slideshows',
             'categories',
             'newProducts',
             'hotProducts',
-            'offers'
+            'offers',
+            'latestBlogs'
         ));
     }
 
     public function show($id)
     {
         $product = Product::with('images')->findOrFail($id);
-        $relatedProducts = Product::with('firstImage')->where('category_id', $product->category->id)->get()->shuffle();
+        $relatedProducts = Product::with('firstImage')->where('category_id', $product->category->id)->take(10)->inRandomOrder()->get();
         
         return view('user.product', compact('product', 'relatedProducts'));
     }

@@ -12,7 +12,8 @@ return [
             'dashboard' => 'r',
             'permissions' => 'r',
             'slideshow' => 'c,r,u,d',
-            'offers' => 'c,r,u,d'
+            'offers' => 'c,r,u,d',
+            'blogs' => 'c,r,u,d',
         ],
         'supplier' => [],
         'casher' => [],

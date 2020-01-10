@@ -90,7 +90,6 @@ $(".best-seller .prev").click(function() {
 
 // Start Latest Blogs
 let latestBlogs = $("#latest-blogs").owlCarousel({
-	loop: true,
 	margin: 10,
 	responsiveClass: true,
 	lazyLoad: true,

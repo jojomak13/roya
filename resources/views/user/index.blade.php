@@ -388,37 +388,31 @@
     <section class="latest-blogs">
         <div class="container">
             <div class="section-head d-flex justify-content-between">
-                <h3>Latest Blogs</h3>
+                <h3>@lang('user.latestBlogs')</h3>
                 <div class="carousel-control d-flex align-self-center">
                     <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
                     <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
             <div id="latest-blogs" class="owl-carousel owl-theme">
+                @foreach($latestBlogs as $blog)
                 <div class="item card blog">
                     <div class="card-body">
                         <div class="image">
-                            <img class="owl-lazy" data-src="{{ asset('user/images/blog-2.jpg') }}" alt="article title"
-                                title="article title">
+                            <img class="owl-lazy" data-src="{{ url('storage/'.$blog->image) }}" alt="{{ $blog->{lang('title')} }}"
+                                title="{{ $blog->{lang('title')} }}">
                         </div>
-                        <h3 class="title"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                        <p clas="title">By <a href="#" class="author">Joseph</a> | 21 March 2019</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, nulla.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <h3 class="title"><a href="{{ $blog->url }}">{{ $blog->{lang('title')} }}</a></h3>
+                    <p clas="title">
+                        <span>
+                            <span>@lang('user.blog.by')</span>
+                            <a href="#" class="author">{{ $blog->user->first_name }}</a>
+                        </span>
+                        | {{ $blog->created_at->toFormattedDateString() }}</p>
+                        <a href="{{ $blog->url }}" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
-                <div class="item card blog">
-                    <div class="card-body">
-                        <div class="image">
-                            <img class="owl-lazy" data-src="{{ asset('user/images/blog-1.jpg') }}" alt="article title"
-                                title="article title">
-                        </div>
-                        <h3 class="title"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                        <p clas="title">By <a href="#" class="author">Joseph</a> | 21 March 2019</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, nulla.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

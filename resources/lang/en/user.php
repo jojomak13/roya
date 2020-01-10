@@ -5,7 +5,8 @@ return [
         'description' => 'roya book store is your place to find all students tools from books, pens and more'
     ],
     'title' => [
-        'home' => 'Home'
+        'home' => 'Home',
+        'cart' => 'Shopping Cart'
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -31,4 +32,9 @@ return [
     'color' => 'Color',
     'addtocart' => 'Add to cart',
     'relatedProducts' => 'Related Products',
+    'latestBlogs' => 'Latest Blogs',
+    'blog' => [
+        'by' => 'By',
+        'readmore' => 'Read More'
+    ]
 ];
