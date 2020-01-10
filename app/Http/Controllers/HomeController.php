@@ -25,6 +25,7 @@ class HomeController extends Controller
         }])->get();
 
         $latestBlogs = \App\Blog::latest()->take(5)->get();
+        $latestCats = \App\Category::where('parent_id', '!=', 0)->latest()->take(5)->get();
 
         return view('user.index', compact(
             'slideshows',
@@ -32,7 +33,8 @@ class HomeController extends Controller
             'newProducts',
             'hotProducts',
             'offers',
-            'latestBlogs'
+            'latestBlogs',
+            'latestCats'
         ));
     }
 

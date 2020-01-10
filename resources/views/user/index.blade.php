@@ -262,15 +262,13 @@
                 </div>
                 <div class="tags">
                     <div class="section-head">
-                        <h3>Products Tags</h3>
+                        <h3>@lang('user.latestCats')</h3>
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <span class="tag"><a href="">Phone</a></span>
-                            <span class="tag"><a href="">Vest</a></span>
-                            <span class="tag"><a href="">T-Shirt</a></span>
-                            <span class="tag"><a href="">SmartPhones</a></span>
-                            <span class="tag"><a href="">Toys</a></span>
+                            @foreach($latestCats as $cat)
+                            <span class="tag"><a href="">{{ $cat->{lang('name')} }}</a></span>
+                            @endforeach
                         </div>
                     </div>
                 </div>
