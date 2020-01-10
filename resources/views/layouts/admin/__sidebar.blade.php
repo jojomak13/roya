@@ -92,6 +92,16 @@
                         </a>
                     </li>
                     @endif
+
+                    @if(auth()->user()->can('read_brands'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.brands.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-building"></i>
+                            <p>{{ __('dashboard.brands.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
+
                     @if(auth()->user()->can('read_users'))
                     <li class="nav-item">
                         <a href="{{ route('admin.users.index') }}" class="nav-link">
@@ -100,6 +110,7 @@
                         </a>
                     </li>
                     @endif
+
                     <li class="nav-item has-treeview">
                         <a href="javascript:void(0)" class="nav-link">
                             <i class="nav-icon fa fa-sitemap"></i>

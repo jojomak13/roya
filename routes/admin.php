@@ -32,5 +32,7 @@ Route::group($middlewares, function(){
 
 		Route::resource('blogs', 'BlogController');
 
+		Route::resource('brands', 'BrandController');
+
 	});
 });

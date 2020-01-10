@@ -29,6 +29,8 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('offer_id')->nullable();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id');
+            $table->unsignedInteger('brand_id');
+            $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('offer_id')->references('id')->on('offers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');

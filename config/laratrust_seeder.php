@@ -14,6 +14,7 @@ return [
             'slideshow' => 'c,r,u,d',
             'offers' => 'c,r,u,d',
             'blogs' => 'c,r,u,d',
+            'brands' => 'c,r,u,d',
         ],
         'supplier' => [],
         'casher' => [],
