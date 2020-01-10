@@ -132,6 +132,18 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="brand">{{ __('dashboard.products.brand') }}</label>
+                        <select name="brand_id" id="brand" class="form-control @error('brand') is-invalid @enderror">
+                            <option value="">@lang('dashboard.products.select_brand')</option>
+                            @foreach($brands as $brand)
+                            <option value="{{ $brand->id }}">{{ $brand->{lang('name')} }}</option>
+                            @endforeach
+                        </select>
+                        @error('brand')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="weight">{{ __('dashboard.products.weight') }}</label>
                         <input type="number" step="any" value="{{ old('weight') }}"
                             class="form-control @error('weight') is-invalid @enderror" min="1" id="weight" name="weight">

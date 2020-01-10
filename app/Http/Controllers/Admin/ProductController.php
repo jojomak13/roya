@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Brand;
 use App\Offer;
 use App\Store;
 use App\Product;
@@ -45,8 +46,9 @@ class ProductController extends Controller
         $users = User::whereRoleIs('supplier')->get();
         $stores = Store::all();
         $offers = Offer::all();
+        $brands = Brand::all();
 
-        return view('admin.products.create', compact('categories', 'users', 'stores', 'offers'));
+        return view('admin.products.create', compact('categories', 'users', 'stores', 'offers', 'brands'));
     }
 
     /**
@@ -99,8 +101,9 @@ class ProductController extends Controller
         $users = User::whereRoleIs('supplier')->get();
         $stores = Store::all();
         $offers = Offer::all();
+        $brands = Brand::all();
 
-        return view('admin.products.edit', compact('product', 'categories', 'users', 'stores', 'offers'));
+        return view('admin.products.edit', compact('product', 'categories', 'users', 'stores', 'offers', 'brands'));
     }
 
     /**
@@ -159,6 +162,7 @@ class ProductController extends Controller
             'stores' => 'required',
             'quantity' => 'required',
             'status' => '',
+            'brand_id' => 'required',
             'color' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
