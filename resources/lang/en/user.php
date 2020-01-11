@@ -55,5 +55,6 @@ return [
         'login' => 'Login',
         'register' => 'Register',
         'voted_message' => 'Voted Successfully'
-    ]
+    ],
+    'topRated' => 'Top Rated'
 ];

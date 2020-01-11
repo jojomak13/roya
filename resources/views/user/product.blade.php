@@ -83,71 +83,22 @@
                             <p>@lang('user.reviews.overall')</p>
                         </div>
                         <div class="reviews">
+                            @foreach($productRates as $key => $value)
                             <div class="product-review">
                                 <div class="stars">
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
+                                    @for ($i = 0; $i < $key; $i++)
+                                        <i class="fa fa-star active"></i>
+                                    @endfor
+                                    @for ($i = 5 - $key; $i > 0; $i--)
+                                        <i class="fa fa-star-o"></i>
+                                    @endfor
                                 </div>
                                 <div class="votes-progress">
-                                    <div></div>
+                                    <div style="width: {{ $value . '%' }}"></div>
                                 </div>
-                                <span>15</span>
+                                <span>{{ $value }}</span>
                             </div>
-                            <div class="product-review">
-                                <div class="stars">
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <div class="votes-progress">
-                                    <div></div>
-                                </div>
-                                <span>15</span>
-                            </div>
-                            <div class="product-review">
-                                <div class="stars">
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <div class="votes-progress">
-                                    <div></div>
-                                </div>
-                                <span>15</span>
-                            </div>
-                            <div class="product-review">
-                                <div class="stars">
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <div class="votes-progress">
-                                    <div></div>
-                                </div>
-                                <span>15</span>
-                            </div>
-                            <div class="product-review">
-                                <div class="stars">
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <div class="votes-progress">
-                                    <div style="width:5%"></div>
-                                </div>
-                                <span>15</span>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-lg-6">

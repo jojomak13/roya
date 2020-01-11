@@ -272,7 +272,7 @@
             <div class="col-lg-9">
                 <section class="best-seller new-products">
                     <div class="section-head d-flex justify-content-between">
-                        <h3>Best Seller</h3>
+                        <h3>@lang('user.topRated')</h3>
                         <div class="carousel-control d-flex align-self-center">
                             <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
                             <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
@@ -281,92 +281,41 @@
 
                     <div class="row">
                         <div id="best-seller" class="owl-carousel owl-theme">
+                            @foreach($topRated as $product)
                             <div class="item">
                                 <div class="product-card">
                                     <div class="card-head">
-                                        <p class="category"><a href="#">Audio Speakers</a></p>
-                                        <h4><a href="#">Wireless Audio System</a></h4>
+                                        <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
+                                        <h4><a href="{{ $product->url }}">{{  $product->{lang('name')}  }}</a></h4>
+                                        @if($product->status)
+                                        <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
+                                        @endif
                                     </div>
                                     <div class="image">
-                                        <img class="img-fluid owl-lazy" data-src="{{ asset('user/images/p-1.jpg') }}" alt="product name"
-                                            title="product name">
+                                        <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
+                                            title="{{ $product->{lang('name')} }}">
                                     </div>
                                     <div class="info d-flex justify-content-between">
                                         <p class="price">
-                                            <span class="text-danger">$1,999.00</span>
-                                            <del>$2,999.00</del>
+                                            <span>@money($product->price) <span>@lang('user.currency')</span></span>
+                                            @if($product->discount)
+                                            <del>@money($product->sell_price)</del>
+                                            @endif
                                         </p>
                                         <div class="d-flex align-self-center">
-                                            <a href="#" title="add to cart" class="cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
+                                            <a href="#" title="add to cart" class="cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="stars">
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
+                                        @foreach($product->product_rate as $rate)
+                                            {!! $rate !!}
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="product-card">
-                                    <div class="card-head">
-                                        <p class="category"><a href="#">Audio Speakers</a></p>
-                                        <h4><a href="#">Wireless Audio System</a></h4>
-                                    </div>
-                                    <div class="image">
-                                        <img class="img-fluid owl-lazy" data-src="{{ asset('user/images/p-2.jpg') }}" alt="product name"
-                                            title="product name">
-                                    </div>
-                                    <div class="info d-flex justify-content-between">
-                                        <p class="price">
-                                            <span>$1,999.00</span>
-                                        </p>
-                                        <div class=" d-flex align-self-center">
-                                            <a href="#" title="add to cart" class="cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star"><i class="fa fa-star"></i></span>
-                                        <span class="star"><i class="fa fa-star"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="product-card">
-                                    <div class="card-head">
-                                        <p class="category"><a href="#">Audio Speakers</a></p>
-                                        <h4><a href="#">Wireless Audio System</a></h4>
-                                    </div>
-                                    <div class="image">
-                                        <img class="img-fluid owl-lazy" data-src="{{ asset('user/images/p-3.jpg') }}" alt="product name"
-                                            title="product name">
-                                    </div>
-                                    <div class="info d-flex justify-content-between">
-                                        <p class="price">
-                                            <span class="text-danger">$1,999.00</span>
-                                            <del>$2,999.00</del>
-                                        </p>
-                                        <div class="d-flex align-self-center">
-                                            <a href="#" title="add to cart" class="cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                        <span class="star checked"><i class="fa fa-star"></i></span>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </section>

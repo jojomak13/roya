@@ -27,6 +27,11 @@ class HomeController extends Controller
         $latestBlogs = \App\Blog::latest()->take(5)->get();
         $latestCats = \App\Category::where('parent_id', '!=', 0)->latest()->take(5)->get();
 
+        $products = \App\Product::all();
+        $topRated = $products->sortByDesc(function($product){
+            return $product->total_rate;
+        })->take(5);
+
         return view('user.index', compact(
             'slideshows',
             'categories',
@@ -34,7 +39,8 @@ class HomeController extends Controller
             'hotProducts',
             'offers',
             'latestBlogs',
-            'latestCats'
+            'latestCats',
+            'topRated'
         ));
     }
 
@@ -43,7 +49,9 @@ class HomeController extends Controller
         $product = Product::with('images')->findOrFail($id);
         $relatedProducts = Product::with('firstImage')->where('category_id', $product->category->id)->take(10)->inRandomOrder()->get();
 
-        return view('user.product', compact('product', 'relatedProducts'));
+        $productRates = \App\Review::productRates($id);
+        
+        return view('user.product', compact('product', 'relatedProducts', 'productRates'));
     }
 
     public function review(Request $request, Product $product)

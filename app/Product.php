@@ -100,9 +100,7 @@ class Product extends Model
             $uploadedImage = $image->store('products/'.$this->id);
             $this->images()->create(['url' => $uploadedImage]);
             
-            \Image::make('storage/'.$uploadedImage)->resize(300, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save();
+            \Image::make('storage/'.$uploadedImage)->resize(250, 230)->save();
         }
     }
 
