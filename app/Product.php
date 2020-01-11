@@ -9,6 +9,8 @@ class Product extends Model
 {
     protected $fillable = ['name_en', 'name_ar', 'barcode', 'buy_price', 'sell_price', 'weight', 'description_en', 'description_ar', 'user_id', 'category_id', 'status', 'color', 'discount', 'offer_id', 'brand_id'];
     protected $append = ['handled_status', 'price', 'url'];
+    protected $appends = ['total_rate', 'product_rate'];
+
     protected $with = ['category'];
 
     public function images()
@@ -24,6 +26,32 @@ class Product extends Model
     public function stores()
     {
         return $this->belongsToMany(Store::class)->withPivot(['quantity'])->withTimeStamps();
+    }
+
+    public function votes()
+    {
+        return $this->belongsToMany(User::class)
+            ->using('App\Review')
+            ->select('users.id', 'first_name', 'last_name')
+            ->withPivot(['stars', 'feedback'])
+            ->withTimeStamps();
+    }
+
+    public function getTotalRateAttribute()
+    {
+        return $this->votes->count() ? ($this->votes()->sum('stars') / ($this->votes()->count() * 5)) * 5 : 0;
+    }
+
+    public function getProductRateAttribute()
+    {
+        $res = [];
+        for ($i = 5 - floor($this->total_rate); $i > 0; $i--)
+            $res[] = '<i class="fa fa-star"></i>';
+            
+        for($i = 1; $i <= floor($this->total_rate); $i++)
+            $res[] = '<i class="fa fa-star active"></i>';
+    
+        return ($res);
     }
 
     public function user()

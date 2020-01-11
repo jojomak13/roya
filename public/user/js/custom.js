@@ -1,3 +1,12 @@
+// Start Sweet Alert
+window.toast = Swal.mixin({
+	toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 2000
+})
+// End Sweet Alert
+
 // Start Slideshow
 let slideshow = $("#slideshow").owlCarousel({
 	items: 1,

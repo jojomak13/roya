@@ -16,6 +16,7 @@
 <!-- End breadcrumb -->
 
 <main class="single-product">
+    {{-- Start Product Details --}}
     <div class="container">
         <div class="row">
             <div class="col-lg-5">
@@ -27,15 +28,13 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-7 product-details">
                 <p><a href="#" class="product-category" title="{{ $product->category->{lang('name')} }}">{{  $product->category->{lang('name')} }}</a></p>
                 <h1 class="product-title">{{ $product->{lang('name')} }}</h1>
                 <div class="product-review">
-                    <span><i class="fa fa-star active"></i></span>
-                    <span><i class="fa fa-star active"></i></span>
-                    <span><i class="fa fa-star active"></i></span>
-                    <span><i class="fa fa-star"></i></span>
-                    <span><i class="fa fa-star"></i></span>
+                @foreach($product->product_rate as $rate)
+                    {!! $rate !!}
+                @endforeach
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                     <p class="availablity">@lang('user.available'):
@@ -70,7 +69,153 @@
             </div>
         </div>
     </div>
+    {{-- End Product Details --}}
 
+    {{-- Start User Reviews --}}
+    <div class="container">
+        <div class="card reviews">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h5 class="title">{{ __('user.reviews.basedon', ['number' => $product->votes->count()]) }}</h5>
+                        <div class="head">
+                            <h4>{{ $product->total_rate }}</h4>
+                            <p>@lang('user.reviews.overall')</p>
+                        </div>
+                        <div class="reviews">
+                            <div class="product-review">
+                                <div class="stars">
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                </div>
+                                <div class="votes-progress">
+                                    <div></div>
+                                </div>
+                                <span>15</span>
+                            </div>
+                            <div class="product-review">
+                                <div class="stars">
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <div class="votes-progress">
+                                    <div></div>
+                                </div>
+                                <span>15</span>
+                            </div>
+                            <div class="product-review">
+                                <div class="stars">
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <div class="votes-progress">
+                                    <div></div>
+                                </div>
+                                <span>15</span>
+                            </div>
+                            <div class="product-review">
+                                <div class="stars">
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <div class="votes-progress">
+                                    <div></div>
+                                </div>
+                                <span>15</span>
+                            </div>
+                            <div class="product-review">
+                                <div class="stars">
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <div class="votes-progress">
+                                    <div style="width:5%"></div>
+                                </div>
+                                <span>15</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5>@lang('user.reviews.newReview')</h5>
+                        @guest
+                        <div class="message-not-logged">
+                            <p>@lang('user.reviews.notAuth')</p>
+                            <a href="{{ route('login') }}" class="btn btn-primary">@lang('user.reviews.login')</a>
+                            <a href="{{ route('register') }}" class="btn btn-success">@lang('user.reviews.register')</a>
+                        </div>
+                        @endguest
+                        @auth
+                        <form id="needs-validation" novalidate action="{{ route('product.review', $product->id) }}" method="POST" class="add-review" autocomplete="off">
+                            @csrf
+                            <div class="form-group">
+                                <label for="review">@lang('user.reviews.rate')</label>
+                                <select name="stars" id="review" class="form-control @error('review') is-invalid @enderror" required>
+                                    <option value="5">5</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1</option>
+                                </select>
+                                @error('review')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="feedback">@lang('user.reviews.feedback')</label>
+                                <textarea dir="auto" name="feedback" id="feedback" class="form-control @error('feedback') is-invalid @enderror" required></textarea>
+                                @error('feedback')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg btn-primary">@lang('user.reviews.submit')</button>
+                            </div>
+                        </form>
+                        @endauth
+                    </div>
+                    <div class="col-lg-12">
+                        <ul class="user-reviews">
+                            @foreach($product->votes as $vote)
+                            <li>
+                                <div class="info">
+                                    <strong>{{ $vote->first_name . ' ' . $vote->last_name }}</strong> - {{ $vote->pivot->created_at->diffForHumans() }}
+                                </div>
+                                <p>{{ $vote->pivot->feedback }}</p>
+                                <div class="product-review">
+                                @foreach($vote->pivot->user_review as $review)
+                                    {!! $review !!}
+                                @endforeach
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- End User Reviews --}}
+    
+    {{-- Start Related Products --}}
     <div class="related-products mt-5">
         <div class="container">
             <div class="section-head d-flex justify-content-between">
@@ -109,11 +254,9 @@
                             </div>
                         </div>
                         <div class="stars">
-                            <span class="star"><i class="fa fa-star"></i></span>
-                            <span class="star checked"><i class="fa fa-star"></i></span>
-                            <span class="star checked"><i class="fa fa-star"></i></span>
-                            <span class="star checked"><i class="fa fa-star"></i></span>
-                            <span class="star checked"><i class="fa fa-star"></i></span>
+                            @foreach($product->product_rate as $rate)
+                            {!! $rate !!}
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -121,5 +264,7 @@
             </div>
         </div>
     </div>
+    {{-- End Related Products --}}
+
 </main>
 @endsection

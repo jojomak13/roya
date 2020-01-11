@@ -107,11 +107,9 @@
                                     </div>
                                 </div>
                                 <div class="stars">
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    @foreach($product->product_rate as $rate)
+                                        {!! $rate !!}
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -161,11 +159,9 @@
                                     </div>
                                 </div>
                                 <div class="stars">
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    @foreach($product->product_rate as $rate)
+                                        {!! $rate !!}
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -223,11 +219,9 @@
                                     </div>
                                 </div>
                                 <div class="stars">
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
-                                    <span class="star checked"><i class="fa fa-star"></i></span>
+                                    @foreach($product->product_rate as $rate)
+                                        {!! $rate !!}
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

@@ -166,7 +166,7 @@ class ProductController extends Controller
             'color' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
-
+        
         if(!$product) $roles['images'] = 'required';
 
         return request()->validate($roles);

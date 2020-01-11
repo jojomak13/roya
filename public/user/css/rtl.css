@@ -60,12 +60,25 @@ body {
     text-align: right;
 }
 
+.single-product .product-details .product-review {
+    direction: ltr;
+}
+
 .single-product .info {
     direction: rtl;
 }
 
 .item.blog .card-body {
     text-align: right;
+}
+
+.single-product .product-review .votes-progress {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.single-product .card.reviews .user-reviews li .info strong {
+    float: right;
 }
 
 footer {

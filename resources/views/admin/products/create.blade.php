@@ -133,13 +133,13 @@
                     </div>
                     <div class="form-group">
                         <label for="brand">{{ __('dashboard.products.brand') }}</label>
-                        <select name="brand_id" id="brand" class="form-control @error('brand') is-invalid @enderror">
+                        <select name="brand_id" id="brand" class="form-control @error('brand_id') is-invalid @enderror">
                             <option value="">@lang('dashboard.products.select_brand')</option>
                             @foreach($brands as $brand)
                             <option value="{{ $brand->id }}">{{ $brand->{lang('name')} }}</option>
                             @endforeach
                         </select>
-                        @error('brand')
+                        @error('brand_id')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

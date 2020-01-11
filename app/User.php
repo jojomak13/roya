@@ -83,4 +83,9 @@ class User extends Authenticatable
                 ->orWhere('last_name', 'like', '%' . $request->search . '%')
                 ->paginate(10);
     }
+
+    public function review()
+    {
+        return $this->belongsToMany(Product::class)->withPivot(['stars', 'feedback'])->withTimeStamps();
+    }
 }

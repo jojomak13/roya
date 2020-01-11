@@ -21,6 +21,8 @@ Route::group($middlewares, function(){
 	
 	Route::get('/product/{id}-{slug}', 'HomeController@show')->name('product');
 
+	Route::post('/review/{product}', 'HomeController@review')->name('product.review');
+
 	Route::get('/cart', 'CartController@index')->name('cart.index');
 	Route::post('/cart', 'CartController@store')->name('cart.store');
 

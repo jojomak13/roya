@@ -22,6 +22,7 @@
 <body>
     @include('layouts.user._header')
     @include('layouts.user._navbar')
+    @include('layouts.user._messages')
 
     @yield('content')
 
@@ -32,6 +33,7 @@
     <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('user/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('user/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('user/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('user/js/custom.js') }}"></script>
 </body>
 

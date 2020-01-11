@@ -43,5 +43,17 @@ return [
         'latestProducts' => 'Latest Products',
         'copyright' => 'Copyright&copy; 2019 all right received by'
     ],
-    'latestCats' => 'Latest Categories'
+    'latestCats' => 'Latest Categories',
+    'reviews' => [
+        'basedon' => 'Based on :number reviews',
+        'overall' => 'overall',
+        'newReview' => 'Add your review',
+        'rate' => 'Your Rate',
+        'feedback' => 'Your Feedback',
+        'submit' => 'Submit',
+        'notAuth' => 'You need to login first to review this product.',
+        'login' => 'Login',
+        'register' => 'Register',
+        'voted_message' => 'Voted Successfully'
+    ]
 ];

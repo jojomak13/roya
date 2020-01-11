@@ -42,7 +42,25 @@ class HomeController extends Controller
     {
         $product = Product::with('images')->findOrFail($id);
         $relatedProducts = Product::with('firstImage')->where('category_id', $product->category->id)->take(10)->inRandomOrder()->get();
-        
+
         return view('user.product', compact('product', 'relatedProducts'));
+    }
+
+    public function review(Request $request, Product $product)
+    {
+        $roles = $request->validate([
+            'stars' => 'required|integer|min:1|max:5',
+            'feedback' => 'required|min:10'
+        ], [], [
+            'stars' => __('user.reviews.rate'),
+            'feedback' => __('user.reviews.feedback')
+        ]);
+        
+        $product->votes()->syncWithoutDetaching([
+            auth()->user()->id => $roles
+        ]);
+        
+        session()->flash('success', __('user.reviews.voted_message'));
+        return redirect()->back();
     }
 }
