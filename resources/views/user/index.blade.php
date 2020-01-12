@@ -350,7 +350,7 @@
                             <a href="#" class="author">{{ $blog->user->first_name }}</a>
                         </span>
                         | {{ $blog->created_at->toFormattedDateString() }}</p>
-                        <a href="{{ $blog->url }}" class="btn btn-primary">Read More</a>
+                        <a href="{{ $blog->url }}" class="btn btn-primary">@lang('user.readmore')</a>
                     </div>
                 </div>
                 @endforeach

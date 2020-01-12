@@ -5,10 +5,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('/') }}">@lang('user.header.home') <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('home') }}">@lang('user.header.home') <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Clothing</a>
+                        <a class="nav-link" href="{{ route('blog.index') }}">@lang('user.title.blog')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Eelectronics</a>

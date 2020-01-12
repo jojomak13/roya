@@ -23,6 +23,9 @@ Route::group($middlewares, function(){
 
 	Route::post('/review/{product}', 'HomeController@review')->name('product.review');
 
+	Route::get('/blog', 'BlogController@index')->name('blog.index');
+	Route::get('/blog/{blog}-{slug}', 'BlogController@show')->name('blog.show');
+
 	Route::get('/cart', 'CartController@index')->name('cart.index');
 	Route::post('/cart', 'CartController@store')->name('cart.store');
 

@@ -12,6 +12,7 @@ return [
         'forgetpass' => 'Forget Password',
         'resetpass' => 'Reset Password',
         'verifyEmail' => 'Verify Your Email Address',
+        'blog' => 'Blog',
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -86,5 +87,6 @@ return [
         'sendAgain' => 'Send Again',
     ],
     'user_created' => 'Your account created successfully',
-    'verifyEmailSent' => 'A fresh verification link has been sent to your email address.'
+    'verifyEmailSent' => 'A fresh verification link has been sent to your email address.',
+    'readmore' => 'Read More',
 ];

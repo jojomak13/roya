@@ -8,7 +8,7 @@ class Blog extends Model
 {
     protected $fillable = ['title_en', 'title_ar', 'content_en', 'content_ar', 'image', 'user_id'];
     protected $with = ['user'];
-    protected $append = ['url'];
+    protected $appends = ['url'];
 
     public function user()
     {
@@ -37,6 +37,6 @@ class Blog extends Model
 
     public function getUrlAttribute()
     {
-        return url('blog/'.$this->id . '-' . \Str::slug($this->{lang('title')}));
+        return route('blog.show', [$this->id, \Str::slug($this->{lang('title')})]);
     }
 }
