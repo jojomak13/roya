@@ -6,7 +6,9 @@ return [
     ],
     'title' => [
         'home' => 'Home',
-        'cart' => 'Shopping Cart'
+        'cart' => 'Shopping Cart',
+        'login' => 'Login',
+        'register' => 'Register',  
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -56,5 +58,13 @@ return [
         'register' => 'Register',
         'voted_message' => 'Voted Successfully'
     ],
-    'topRated' => 'Top Rated'
+    'topRated' => 'Top Rated',
+    'auth' => [
+        'email' => 'Email',
+        'password' => 'Password',
+        'takeCare' => 'Fill your info carefully',
+        'remember' => 'Remember Me',
+        'forget' => 'Forgot Your Password?',
+        'noAccount' => 'Don\'t have account yet?'
+    ]
 ];

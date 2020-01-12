@@ -43,6 +43,10 @@ body {
     left: 5px;
 }
 
+.product-card .info {
+    direction: rtl;
+}
+
 .product-card .stars {
     text-align: right;
     direction: ltr;
@@ -79,6 +83,10 @@ body {
 
 .single-product .card.reviews .user-reviews li .info strong {
     float: right;
+}
+
+.auth .card {
+    text-align: right;
 }
 
 footer {
