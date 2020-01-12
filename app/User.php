@@ -9,7 +9,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use LaratrustUserTrait;
     use Notifiable;
@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'address', 'image', 'age', 'gender', 'api_token'
+        'first_name', 'last_name', 'email', 'password', 'address', 'image', 'age', 'gender', 'news', 'api_token'
     ];
 
     /**

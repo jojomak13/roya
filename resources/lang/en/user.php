@@ -10,7 +10,8 @@ return [
         'login' => 'Login',
         'register' => 'Register',  
         'forgetpass' => 'Forget Password',
-        'resetpass' => 'Reset Password'
+        'resetpass' => 'Reset Password',
+        'verifyEmail' => 'Verify Your Email Address',
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -62,14 +63,28 @@ return [
     ],
     'topRated' => 'Top Rated',
     'auth' => [
+        'firstName' => 'First Name',
+        'lastName' => 'Last Name',
         'email' => 'Email',
         'password' => 'Password',
         'confirmPassowrd' => 'Confirm Password',
+        'age' => 'Age',
+        'address' => 'Address',
+        'gender' => 'Gender',
+        'male' => 'Male',
+        'female' => 'Female',
         'takeCare' => 'Fill your info carefully',
         'userControl' => 'Everything is under control',
         'remember' => 'Remember Me',
         'forget' => 'Forgot Your Password?',
         'noAccount' => 'Don\'t have account yet?',
+        'haveAccount' => 'Already have account? ',
+        'joinNews' => 'Join dialy news',
         'reset' => 'Reset',
-    ]
+        'checkMailFirst' => 'Before proceeding, please check your email for a verification link.',
+        'dontGetEmail' => 'If you did not receive the email',
+        'sendAgain' => 'Send Again',
+    ],
+    'user_created' => 'Your account created successfully',
+    'verifyEmailSent' => 'A fresh verification link has been sent to your email address.'
 ];

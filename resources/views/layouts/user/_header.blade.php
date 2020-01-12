@@ -3,7 +3,7 @@
         <div class="top-nav d-flex justify-content-end">
             <ul>
             @if(auth()->user())
-                <li><a href="#" title="@lang('user.header.myAccount')"><i class="fa fa-user"></i> @lang('user.header.myAccount')</a></li>
+                <li><a href="{{ route('profile') }}" title="@lang('user.header.myAccount')"><i class="fa fa-user"></i> @lang('user.header.myAccount')</a></li>
             @else
                 <li><a href="{{ route('login') }}" title="@lang('user.header.login')"><i class="fa fa-lock"></i> @lang('user.header.login')</a></li>
             @endif

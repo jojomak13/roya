@@ -53,11 +53,10 @@ class RegisterController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
-            'group' => 'required',
             'address' => 'required',
-            'image' => 'image',
-            'age' => 'required|integer|min:15|max:100',
-            'gender' => 'required'
+            'age' => 'required|integer|min:16|max:100',
+            'gender' => 'required',
+            'news' => ''
         ]);
     }
 
@@ -69,6 +68,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        session()->flash('success', __('user.user_created'));
+
+        $data['password'] = bCrypt($data['password']);
         return User::create($data)->attachRole('user');
     }
 

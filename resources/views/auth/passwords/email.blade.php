@@ -1,5 +1,7 @@
 @extends('layouts.auth.master')
 
+@section('title', __('user.title.forgetpass'))
+
 @section('content')
 <main class="auth">
     <div class="container">

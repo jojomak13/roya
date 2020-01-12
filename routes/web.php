@@ -26,6 +26,8 @@ Route::group($middlewares, function(){
 	Route::get('/cart', 'CartController@index')->name('cart.index');
 	Route::post('/cart', 'CartController@store')->name('cart.store');
 
-	Auth::routes();
+	Route::get('/profile', 'ProfileController@index')->name('profile');
+
+	Auth::routes(['verify' => true]);
 });
 

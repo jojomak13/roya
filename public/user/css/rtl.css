@@ -89,6 +89,11 @@ body {
     text-align: right;
 }
 
+.auth .card .form-check-input {
+    position: static;
+    margin-left: 0;
+}
+
 footer {
     text-align: right;
 }
