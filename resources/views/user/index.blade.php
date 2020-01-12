@@ -238,22 +238,6 @@
         <div class="row">
 
             <div class="col-lg-3">
-                <div class="news-letter">
-                    <div class="section-head">
-                        <h3>News Letter</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="mb-2 text-muted">Sign Up for Our Newsletter!</p>
-                            <form>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Enter Your Email" class="form-control">
-                                </div>
-                                <button type="submit" class="pull-right btn btn-primary">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
                 <div class="tags">
                     <div class="section-head">
                         <h3>@lang('user.latestCats')</h3>
