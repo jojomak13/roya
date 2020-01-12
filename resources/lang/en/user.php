@@ -9,6 +9,8 @@ return [
         'cart' => 'Shopping Cart',
         'login' => 'Login',
         'register' => 'Register',  
+        'forgetpass' => 'Forget Password',
+        'resetpass' => 'Reset Password'
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -62,9 +64,12 @@ return [
     'auth' => [
         'email' => 'Email',
         'password' => 'Password',
+        'confirmPassowrd' => 'Confirm Password',
         'takeCare' => 'Fill your info carefully',
+        'userControl' => 'Everything is under control',
         'remember' => 'Remember Me',
         'forget' => 'Forgot Your Password?',
-        'noAccount' => 'Don\'t have account yet?'
+        'noAccount' => 'Don\'t have account yet?',
+        'reset' => 'Reset',
     ]
 ];

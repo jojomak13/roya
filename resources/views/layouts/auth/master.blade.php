@@ -21,7 +21,7 @@
 
 <body class="auth">
     @include('layouts.auth._header')
-    @include('layouts.user._messages')
+    @include('layouts.auth._messages')
 
     @yield('content')
 
