@@ -13,6 +13,7 @@ return [
         'resetpass' => 'Reset Password',
         'verifyEmail' => 'Verify Your Email Address',
         'blog' => 'Blog',
+        'shop' => 'Shop',
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -89,4 +90,19 @@ return [
     'user_created' => 'Your account created successfully',
     'verifyEmailSent' => 'A fresh verification link has been sent to your email address.',
     'readmore' => 'Read More',
+    'shopby' => 'Shop By',
+    'brand' => 'Brand',
+    'color' => 'Color',
+    'sort' => [
+        'title' => 'Sort By',
+        'desc' => 'Newest',
+        'asc' => 'Oldest',
+        'lowToHight' => 'Lowest Price',
+        'highToLow' => 'Highest Price',
+        'grid' => 'Grid',
+        'list' => 'List',
+        'selectSort' => 'Select Sort'
+    ],
+    'next' => 'Next',
+    'prev' => 'Previous',
 ];

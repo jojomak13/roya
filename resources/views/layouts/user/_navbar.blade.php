@@ -8,16 +8,10 @@
                         <a class="nav-link" href="{{ route('home') }}">@lang('user.header.home') <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shop') }}">@lang('user.title.shop')</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('blog.index') }}">@lang('user.title.blog')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Eelectronics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Watches</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Phones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Shoes</a>

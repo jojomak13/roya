@@ -15,9 +15,9 @@
             <div class="col-lg-4 site-map">
                 <h4>@lang('user.footer.siteMap')</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="{{ route('home') }}">@lang('user.title.home')</a></li>
+                    <li><a href="{{ route('shop') }}">@lang('user.title.shop')</a></li>
+                    <li><a href="{{ route('blog.index') }}">@lang('user.title.blog')</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>

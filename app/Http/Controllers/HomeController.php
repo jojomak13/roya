@@ -18,8 +18,14 @@ class HomeController extends Controller
 
         $slideshows = \App\SlideShow::latest()->get();
         $categories = \App\Category::parent()->with('childrens')->get();
-        $newProducts = \App\Product::latest()->with(['firstImage', 'category'])->take(10)->get();
-        $hotProducts = \App\Product::latest()->where('status', 'hot')->with(['firstImage', 'category'])->take(10)->get();
+        $newProducts = \App\Product::latest()
+            ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price')
+            ->with(['firstImage', 'category'])->take(10)->get();
+
+        $hotProducts = \App\Product::latest()
+            ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price')
+            ->where('status', 'hot')->with(['firstImage', 'category'])->take(10)->get();
+
         $offers = \App\Offer::latest()->with(['products' => function($el){
             $el->with(['firstImage', 'category'])->take(4);
         }])->get();
@@ -27,7 +33,8 @@ class HomeController extends Controller
         $latestBlogs = \App\Blog::latest()->take(5)->get();
         $latestCats = \App\Category::where('parent_id', '!=', 0)->latest()->take(5)->get();
 
-        $products = \App\Product::all();
+        $products = \App\Product::select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price')->get();
+
         $topRated = $products->sortByDesc(function($product){
             return $product->total_rate;
         })->take(5);

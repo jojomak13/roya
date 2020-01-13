@@ -19,8 +19,9 @@ $middlewares = [
 Route::group($middlewares, function(){
 	Route::get('/', 'HomeController@index')->name('home');
 	
-	Route::get('/product/{id}-{slug}', 'HomeController@show')->name('product');
+	Route::get('/shop', 'ShopController@index')->name('shop');
 
+	Route::get('/product/{id}-{slug}', 'HomeController@show')->name('product');
 	Route::post('/review/{product}', 'HomeController@review')->name('product.review');
 
 	Route::get('/blog', 'BlogController@index')->name('blog.index');

@@ -29,11 +29,19 @@
     @include('layouts.user._footer')
 
     <!-- ============================= -->
+    <script>
+        const baseData = {
+            url: '{{ url('/') }}',
+            lang: '{{ LaravelLocalization::getCurrentLocale() }}',
+            currency: '@lang("user.currency")',
+        }
+    </script>
     <script src="{{ asset('user/js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('user/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('user/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('user/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('user/js/sweetalert.min.js') }}"></script>
+    @yield('script')
     <script src="{{ asset('user/js/custom.js') }}"></script>
 </body>
 

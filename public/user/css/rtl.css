@@ -97,3 +97,21 @@ body {
 footer {
     text-align: right;
 }
+
+.shop .shop-by {
+    text-align: right;
+}
+
+.shop .search-bar .sort,
+.shop .search-bar .sort select {
+    color: #757575;
+}
+
+.shop .search-bar .sort label {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+.shop .product-card.horizontal {
+    text-align: right;
+}
