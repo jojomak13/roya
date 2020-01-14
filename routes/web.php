@@ -31,6 +31,7 @@ Route::group($middlewares, function(){
 	Route::post('/cart', 'CartController@store')->name('cart.store');
 
 	Route::get('/profile', 'ProfileController@index')->name('profile');
+	Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 
 	Auth::routes(['verify' => true]);
 });

@@ -115,3 +115,20 @@ footer {
 .shop .product-card.horizontal {
     text-align: right;
 }
+
+.profile-page {
+    text-align: right;
+}
+
+.profile-page .image .tag {
+    right: 20px;
+    left: initial;
+}
+
+.profile-page .user-info {
+    text-align: right;
+}
+
+.dropdown-menu {
+    text-align: right;
+}

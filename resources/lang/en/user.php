@@ -14,6 +14,9 @@ return [
         'verifyEmail' => 'Verify Your Email Address',
         'blog' => 'Blog',
         'shop' => 'Shop',
+        'profile' => 'Profile',
+        'editProfile' => 'Edit Profile',
+        'logout' => 'Logout'
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -105,4 +108,19 @@ return [
     ],
     'next' => 'Next',
     'prev' => 'Previous',
+    'logined' => 'Welcome Back :name',
+    'profile' => [
+        'editProfile' => 'Edit Profile',
+        'phone' => 'Mobile Phone',
+        'memberFrom' => 'Member from',
+        'lastLogin' => 'Last Login',
+        'subscribeNews' => 'News Subscriber',
+        'address' => 'Address',
+        'subscribed' => 'Subscribed',
+        'unSubscribed' => 'Un Subscribed',
+        'verified' => 'verified',
+        'unVerified' => 'Un Verified',
+        'orders' => 'Orders',
+        'wishlist' => 'Wishlist'
+    ]
 ];

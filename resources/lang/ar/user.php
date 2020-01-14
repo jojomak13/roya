@@ -14,6 +14,7 @@ return [
         'verifyEmail' => 'أثبات صحة البريد الألكترونى',
         'blog' => 'المدونة',
         'shop' => 'المتجر',
+        'profile' => 'الحساب الشخصى'
     ],
     'header' => [
         'myAccount' => 'حسابى',
@@ -23,6 +24,8 @@ return [
         'all' => 'الكل',
         'home' => 'الرئيسية',
         'search' => 'بحث',
+        'editProfile' => 'تعديل الحساب',
+        'logout' => 'تسجيل الخروج'
     ],
     'categories' => 'الأقسام',
     'newProducts' => 'المنتجات الجديدة',
@@ -102,5 +105,20 @@ return [
         'selectSort' => 'أختر الترتيب'
     ],
     'prev' => 'السابق',
-    'next' => 'التالى'
+    'next' => 'التالى',
+    'logined' => 'مرحبا بعودتك :name',
+    'profile' => [
+        'editProfile' => 'تعديل الحساب',
+        'phone' => 'رقم الهاتف',
+        'memberFrom' => 'عضو منذ',
+        'lastLogin' => 'أخر تسجيل دخول',
+        'subscribeNews' => 'مشترك بالأخبار',
+        'address' => 'العنوان',
+        'subscribed' => 'مشترك',
+        'unSubscribed' => 'غير مشترك',
+        'verified' => 'حساب مفعل',
+        'unVerified' => 'غير مفعل',
+        'orders' => 'الطلبات',
+        'wishlist' => 'قائمة المفضلة'
+    ]
 ];

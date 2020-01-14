@@ -2,17 +2,13 @@
     <div class="container">
         <div class="top-nav d-flex justify-content-between">
             <ul>
-                @if(auth()->user())
-                <li><a href="{{ route('profile') }}" title="@lang('user.header.myAccount')"><i class="fa fa-user"></i> @lang('user.header.myAccount')</a></li>
-                @else
+                @guest
                 <li><a href="{{ route('login') }}" title="@lang('user.header.login')"><i class="fa fa-lock"></i> @lang('user.header.login')</a></li>
-                @endif
+                @endguest
                 <li><a href="#" title="@lang('user.header.wishlist')"><i class="fa fa-heart"></i> @lang('user.header.wishlist')</a></li>
                 <li><a href="{{ route('cart.index') }}" title="@lang('user.header.mycart')"><i class="fa fa-shopping-cart"></i> @lang('user.header.mycart')</a></li>
-            </ul>
-            <ul>
                 <li>
-                    <div class="language dropdown">
+                    <div class="nav-dropdown dropdown">
                         <button class="dropdown-toggle" type="button" id="language" data-toggle="dropdown" aria-haspopup="true">
                             <i class="fa fa-globe"></i> {{ LaravelLocalization::getCurrentLocaleName() }}
                         </button>
@@ -24,6 +20,24 @@
                     </div>
                 </li>
             </ul>
+            @auth
+            <ul>
+                <li>
+                    <div class="nav-dropdown dropdown">
+                        <button class="dropdown-toggle" title="@lang('user.header.myAccount')" type="button" id="profile" data-toggle="dropdown" aria-haspopup="true">
+                            <i class="fa fa-user"></i> {{ auth()->user()->first_name }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="profile">
+                            <a href="{{ route('profile') }}" class="dropdown-item">@lang('user.header.myAccount')</a>
+                            <a href="{{ route('profile.edit') }}" class="dropdown-item">@lang('user.header.editProfile')</a>
+                            <a href="javascript:void(0)" class="dropdown-item" onclick="this.children[0].submit()">@lang('user.header.logout')
+                                <form action="{{ route('logout') }}" method="POST">@csrf</form>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            @endauth
         </div>
         <div class="middle-nav d-flex justify-content-between">
             <div class="image">
