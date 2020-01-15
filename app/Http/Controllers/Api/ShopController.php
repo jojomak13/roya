@@ -11,9 +11,12 @@ class ShopController extends Controller
 
     public function index(Request $request)
     {
-        $colors = $request->input('colors') ?? [];
-
         return $this->search();    
+    }
+
+    public function show(Request $request, $id)
+    {
+        return $this->searchWith($id);    
     }
 
     private function search()
@@ -47,6 +50,46 @@ class ShopController extends Controller
         else
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
+                ->with(['firstImage', 'category'])
+                ->paginate(9);
+    }
+
+
+    private function searchWith($cat_id)
+    {
+        $sortType = $this->sortType();
+        $colors = request('colors');
+        $brands = request('brands');
+
+        if($colors && $brands)
+            return Product::orderBy(...$sortType)
+                ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
+                ->where('category_id', $cat_id)
+                ->whereIn('color', $colors)
+                ->whereIn('brand_id', $brands)
+                ->with(['firstImage', 'category'])
+                ->paginate(9);
+
+        else if($colors)
+            return Product::orderBy(...$sortType)
+                ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
+                ->where('category_id', $cat_id)
+                ->whereIn('color', $colors)
+                ->with(['firstImage', 'category'])
+                ->paginate(9);
+
+        else if($brands)
+            return Product::orderBy(...$sortType)
+                ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
+                ->where('category_id', $cat_id)
+                ->whereIn('brand_id', $brands)
+                ->with(['firstImage', 'category'])
+                ->paginate(9);
+
+        else
+            return Product::orderBy(...$sortType)
+                ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
+                ->where('category_id',  $cat_id)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
     }

@@ -8,7 +8,7 @@
     <div class="container">
         <ul>
             <li><a href="{{ route('home') }}" title="@lang('user.title.home')">@lang('user.title.home')</a></li>
-            <li><a href="#" title="@lang('user.title.profile')">@lang('user.title.profile')</a></li>
+            <li><a href="{{ route('profile') }}" title="@lang('user.title.profile')">@lang('user.title.profile')</a></li>
             <li>{{ $user->fullName() }}</li>
         </ul>
     </div>
@@ -152,7 +152,7 @@
                             <img src="${baseData.url}/storage/${ product.first_image.url }" class="img-fluid" alt="${product[lang('name')]}" title="${product[lang('name')]}">
                         </div>
                         <div class="col-7">
-                            <span><a href="#">${product.category[lang('name')]}</a></span>
+                            <span><a href="${ product.category.url }">${product.category[lang('name')]}</a></span>
                             <h5><a href="${product.url}">${product[lang('name')]}</a></h5>
                             <div class="product-review">
                                 ${product.product_rate.join(' ')}

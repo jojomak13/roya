@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = ['name_en', 'name_ar', 'parent_id'];
-    protected $append = ['children_count'];
+    protected $appends = ['children_count', 'url'];
 
     public function getChildrenCountAttribute()
     {
@@ -32,5 +32,10 @@ class Category extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function geturlAttribute()
+    {
+        return route('shop.show', [$this->id, \Str::slug($this->{lang('name')})]);
     }
 }

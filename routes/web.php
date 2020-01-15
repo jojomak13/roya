@@ -20,6 +20,7 @@ Route::group($middlewares, function(){
 	Route::get('/', 'HomeController@index')->name('home');
 	
 	Route::get('/shop', 'ShopController@index')->name('shop');
+	Route::get('/shop/{category}-{slug}', 'ShopController@show')->name('shop.show');
 
 	Route::get('/product/{id}-{slug}', 'HomeController@show')->name('product');
 	Route::post('/review/{product}', 'HomeController@review')->name('product.review');

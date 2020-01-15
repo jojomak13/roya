@@ -1,6 +1,6 @@
 @extends('layouts.user.master')
 
-@section('title', __('user.title.shop'))
+@section('title', $category->{lang('name')})
 
 @section('content')
 <!-- Start breadcrumb -->
@@ -8,7 +8,8 @@
     <div class="container">
         <ul>
             <li><a href="{{ route('home') }}" title="@lang('user.title.home')">@lang('user.title.home')</a></li>
-            <li>@lang('user.title.shop')</li>
+            <li><a href="{{ route('shop') }}" title="@lang('user.title.shop')">@lang('user.title.shop')</a></li>
+            <li>{{ $category->{lang('name')} }}</li>
         </ul>
     </div>
 </div>
@@ -35,7 +36,7 @@
                                     </a>
                                     <ul class="category-dropdown-items">
                                     @foreach($parent->childrens as $child)
-                                        <li><a href="#">{{ $child->{lang('name')} }}</a></li>
+                                        <li><a href="{{ $child->url }}">{{ $child->{lang('name')} }}</a></li>
                                     @endforeach
                                     </ul>
                                 </li>
@@ -179,6 +180,7 @@
 @section('script')
 <script>
     const addToCart = '{{ __('user.addtocart') }}'
+    const category = {{ $category->id }}
 </script>
 <script src="{{ asset('user/js/shop.js') }}"></script>
 @endsection

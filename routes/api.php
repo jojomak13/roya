@@ -26,4 +26,5 @@ Route::get('categories', 'Api\CategoryController@index');
 Route::get('products/{category}', 'Api\ProductController@index');
 Route::get('product/{product}', 'Api\ProductController@show');
 
-Route::get('shop', 'Api\ShopController@index');
+Route::get('/shop', 'Api\ShopController@index');
+Route::get('/shop/{id}', 'Api\ShopController@show');

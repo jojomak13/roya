@@ -23,7 +23,7 @@
                                     </a>
                                     <ul class="category-dropdown-items">
                                     @foreach($parent->childrens as $child)
-                                        <li><a href="#">{{ $child->{lang('name')} }}</a></li>
+                                        <li><a href="{{ $child->url }}">{{ $child->{lang('name')} }}</a></li>
                                     @endforeach
                                     </ul>
                                 </li>
@@ -83,7 +83,7 @@
                         <div class="item">
                             <div class="product-card active">
                                 <div class="card-head">
-                                    <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
+                                    <p class="category"><a href="{{ $product->category->url }}">{{ $product->category->{lang('name')} }}</a></p>
                                     <h4><a href="{{ $product->url }}">{{  $product->{lang('name')} }}</a></h4>
                                     @if($product->status)
                                     <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
@@ -135,7 +135,7 @@
                         <div class="item">
                             <div class="product-card">
                                 <div class="card-head">
-                                    <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
+                                    <p class="category"><a href="{{ $product->category->url }}">{{ $product->category->{lang('name')} }}</a></p>
                                     <h4><a href="{{ $product->url }}">{{  $product->{lang('name')}  }}</a></h4>
                                     @if($product->status)
                                     <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
@@ -195,7 +195,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product-card">
                                 <div class="card-head">
-                                    <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
+                                    <p class="category"><a href="{{ $product->category->url }}">{{ $product->category->{lang('name')} }}</a></p>
                                     <h4><a href="{{  $product->url }}">{{ $product->{lang('name')} }}</a></h4>
                                     @if($product->status)
                                     <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>
@@ -245,7 +245,7 @@
                     <div class="card">
                         <div class="card-body">
                             @foreach($latestCats as $cat)
-                            <span class="tag"><a href="">{{ $cat->{lang('name')} }}</a></span>
+                            <span class="tag"><a href="{{ $cat->url }}">{{ $cat->{lang('name')} }}</a></span>
                             @endforeach
                         </div>
                     </div>
@@ -269,7 +269,7 @@
                             <div class="item">
                                 <div class="product-card">
                                     <div class="card-head">
-                                        <p class="category"><a href="#">{{ $product->category->{lang('name')} }}</a></p>
+                                        <p class="category"><a href="{{ $product->category->url }}">{{ $product->category->{lang('name')} }}</a></p>
                                         <h4><a href="{{ $product->url }}">{{  $product->{lang('name')}  }}</a></h4>
                                         @if($product->status)
                                         <span class="tag bg-{{ $product->handled_status[1] }}">{{  $product->handled_status[0]   }}</span>

@@ -24,7 +24,9 @@ return [
         'login' => 'Login',
         'all' => 'All',
         'home' => 'Home',
-        'search' => 'Search'
+        'search' => 'Search',
+        'editProfile' => 'Edit Profile',
+        'logout' => 'Logout'
     ],
     'categories' => 'Categories',
     'newProducts' => 'New products',
