@@ -33,6 +33,8 @@ Route::group($middlewares, function(){
 	Route::get('/profile', 'ProfileController@index')->name('profile');
 	Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 
+	Route::get('/wishlist', 'WishlistController@show');
+
 	Auth::routes(['verify' => true]);
 });
 

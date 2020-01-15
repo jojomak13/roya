@@ -60,17 +60,6 @@ $('input[name="colors[]"]').on('change', function(){
     call()
 })
 
-function lang(attribute){
-    return attribute + '_' +  baseData.lang;
-}
-
-function money(number){
-    return number.toLocaleString({
-        style: 'currency',
-        currency: 'EGP'
-    })
-}
-
 function gridView(product) {
     return `
     <div class="col-lg-4 col-md-6">

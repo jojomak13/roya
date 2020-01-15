@@ -194,3 +194,15 @@ window.addEventListener("load", function() {
 		});
 	}
 });
+
+
+function lang(attribute){
+    return attribute + '_' +  baseData.lang;
+}
+
+function money(number){
+    return number.toLocaleString({
+        style: 'currency',
+        currency: 'EGP'
+    })
+}

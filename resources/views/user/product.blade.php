@@ -44,7 +44,7 @@
                         <span class="text-success">@lang('user.inStock')</span>
                     @endif
                     </p>
-                    <a href="#" title="@lang('user.wishlist.title')" class="wishlist"><i class="fa fa-heart"></i> @lang('user.wishlist.name')</a>
+                    <a href="javasrcipt:void(0)" id="addToWishlist" data-id="{{ $product->id }}" title="@lang('user.wishlist.title')" class="wishlist"><i class="fa fa-heart"></i> @lang('user.wishlist.name')</a>
                 </div>
                 <p class="caret"></p>
                 <div class="info">
@@ -218,4 +218,26 @@
     {{-- End Related Products --}}
 
 </main>
+@endsection
+
+
+@section('script')
+<script src="{{ asset('user/js/wishlist.js') }}"></script>
+<script>
+window.onload = function(){
+    let wishlistBtn = document.getElementById('addToWishlist');
+
+    if(wishlist.has(wishlistBtn.getAttribute('data-id'))){
+        wishlistBtn.classList.add('active')
+    }
+}
+
+$('#addToWishlist').on('click', function(){
+    if(wishlist.toggle($(this).data('id')) === 'add'){
+        $(this).addClass('active');
+    } else {
+        $(this).removeClass('active');
+    }
+})
+</script>
 @endsection
