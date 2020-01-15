@@ -89,7 +89,8 @@ body {
     text-align: right;
 }
 
-.auth .card .form-check-input {
+.auth .card .form-check-input,
+.edit-profile-page .form-check-input {
     position: static;
     margin-left: 0;
 }
@@ -131,4 +132,12 @@ footer {
 
 .dropdown-menu {
     text-align: right;
+}
+
+.edit-profile-page .card {
+    text-align: right;
+}
+
+.custom-file-label {
+    padding: .375rem 5.75rem;
 }

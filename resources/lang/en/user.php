@@ -16,7 +16,6 @@ return [
         'shop' => 'Shop',
         'profile' => 'Profile',
         'editProfile' => 'Edit Profile',
-        'logout' => 'Logout'
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -75,6 +74,7 @@ return [
         'confirmPassowrd' => 'Confirm Password',
         'age' => 'Age',
         'address' => 'Address',
+        'phone' => 'Phone Number',
         'gender' => 'Gender',
         'male' => 'Male',
         'female' => 'Female',
@@ -89,6 +89,9 @@ return [
         'checkMailFirst' => 'Before proceeding, please check your email for a verification link.',
         'dontGetEmail' => 'If you did not receive the email',
         'sendAgain' => 'Send Again',
+        'update' => 'Update',
+        'chooseImage' => 'Choose Image',
+        'editSuccess' => 'User details updated successfully'
     ],
     'user_created' => 'Your account created successfully',
     'verifyEmailSent' => 'A fresh verification link has been sent to your email address.',
@@ -121,6 +124,6 @@ return [
         'verified' => 'verified',
         'unVerified' => 'Un Verified',
         'orders' => 'Orders',
-        'wishlist' => 'Wishlist'
+        'wishlist' => 'Wishlist',
     ]
 ];

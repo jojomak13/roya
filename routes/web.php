@@ -32,6 +32,7 @@ Route::group($middlewares, function(){
 
 	Route::get('/profile', 'ProfileController@index')->name('profile');
 	Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+	Route::post('/profile/update', 'ProfileController@update')->name('profile.update');
 
 	Route::get('/wishlist', 'WishlistController@show');
 
