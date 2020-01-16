@@ -1898,8 +1898,8 @@ __webpack_require__.r(__webpack_exports__);
     addToCart: function addToCart(product) {
       this.cart.push({
         productId: product.id,
-        price: product.sell_price,
-        totalPrice: !product.stores[0].pivot.quantity ? 0 : product.sell_price,
+        price: product.price,
+        totalPrice: !product.stores[0].pivot.quantity ? 0 : product.price,
         quantity: !product.stores[0].pivot.quantity ? 0 : 1
       });
     },
@@ -16565,7 +16565,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(product.sell_price))]),
+                    _c("td", [_vm._v(_vm._s(product.price))]),
                     _vm._v(" "),
                     _c("td", [
                       _c(

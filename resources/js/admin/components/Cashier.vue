@@ -31,7 +31,7 @@
                             <td>{{ index+1 }}</td>
                             <td>{{ product.name_ar }}</td>
                             <td><input type="number" :p-id="product.id" @change="updateQuantity" :disabled="!product.stores[0].pivot.quantity" value="1" min="1" :max="product.stores[0].pivot.quantity" class="form-control"></td>
-                            <td>{{ product.sell_price }}</td>
+                            <td>{{ product.price }}</td>
                             <td><button class="btn btn-danger" @click="deleteProduct(index)" :p-id="product.id"><i class="fa fa-trash"></i></button></td>
                         </tr>
                     </tbody>
@@ -57,8 +57,8 @@
             addToCart(product){
                 this.cart.push({
                     productId: product.id,
-                    price: product.sell_price,
-                    totalPrice: !product.stores[0].pivot.quantity? 0 : product.sell_price, 
+                    price: product.price,
+                    totalPrice: !product.stores[0].pivot.quantity? 0 : product.price, 
                     quantity: !product.stores[0].pivot.quantity? 0 : 1
                 })
             },

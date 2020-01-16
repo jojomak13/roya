@@ -86,7 +86,7 @@ class Product extends Model
     public static function boot()
     {
         parent::boot();
-        static::saving(function($product)
+        static::creating(function($product)
         {
             $facotry = Factory::create();
             $product->barcode = $facotry->unique()->isbn10; 
