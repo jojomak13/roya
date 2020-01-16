@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Brand;
 use App\Product;
+use App\Category;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider

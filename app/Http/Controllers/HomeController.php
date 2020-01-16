@@ -78,4 +78,17 @@ class HomeController extends Controller
         session()->flash('success', __('user.reviews.voted_message'));
         return redirect()->back();
     }
+
+    public function search(Request $request)
+    {
+        $products = Product::select('id', 'name_en', 'name_ar', 'status')
+            ->with('firstImage')
+            ->Where('name_en', 'like', '%' . $request->search . '%')
+            ->orWhere('name_ar', 'like', '%' . $request->search . '%')
+            ->take(5)
+            ->get();
+
+        return $products;
+    }
+
 }

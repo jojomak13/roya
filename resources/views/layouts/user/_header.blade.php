@@ -45,11 +45,12 @@
             </div>
             <div class="search d-none d-lg-block">
                 <div class="form-inline">
-                    <select name="search">
-                        <option value="d" selected>@lang('user.header.all')</option>
-                        <option value="dd">Eelectronics</option>
-                    </select>
-                    <input type="text" placeholder="@lang('user.header.search')...">
+                    <div class="search-bar">
+                        <input id="search" autocomplete="off" type="text" name="search" placeholder="@lang('user.header.search')..." autofocus>
+                        <div id="result" class="result">
+                            <ul></ul>
+                        </div>
+                    </div>
                     <button><i class="fa fa-search"></i></button>
                 </div>
             </div>

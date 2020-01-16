@@ -8,6 +8,42 @@ window.toast = Swal.mixin({
 })
 // End Sweet Alert
 
+// Start Search bar
+let searchResult = $('#result');
+
+$('#search').on('input', function(e){
+    e.preventDefault();
+    if($(this).val() == "")
+		searchResult.removeClass('active')
+		
+    else {    
+    $.ajax({
+        url: `${baseData.url}/${baseData.lang}/search`,
+        method: 'POST',
+        data: $(this).serialize(),
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success(res){
+            let result = '';
+
+            res.forEach(el => {
+                result += `
+                <li class="d-flex align-items-center">
+                    <img class="img-fluid" src="${ baseData.url }/storage/${ el.first_image.url }" alt="${ el[lang('name')] }" title="${ el[lang('name')] }">
+                    <span><a href="${ el.url }">${ el[lang('name')] }</a></span>
+                </li>
+                `
+            })
+
+            searchResult.addClass('active');
+            searchResult.children('ul').html(result);
+        }
+    })
+    }
+})
+// End Search bar
+
 // Start Slideshow
 let slideshow = $("#slideshow").owlCarousel({
 	items: 1,

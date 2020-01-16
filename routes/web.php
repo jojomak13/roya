@@ -18,6 +18,8 @@ $middlewares = [
 
 Route::group($middlewares, function(){
 	Route::get('/', 'HomeController@index')->name('home');
+
+	Route::post('/search', 'HomeController@search')->name('search');
 	
 	Route::get('/shop', 'ShopController@index')->name('shop');
 	Route::get('/shop/{category}-{slug}', 'ShopController@show')->name('shop.show');
