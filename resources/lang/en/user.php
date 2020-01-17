@@ -134,6 +134,7 @@ return [
         'quantity' => 'Quantity',
         'totalPrice' => 'Total Price',
         'checkout' => 'Proceed To Checkout',
+        'delete' => 'delete from cart',
         'coupon' => 'Apply Coupon',
         'emptyCart' => 'No products in the cart yet',
         'addSuccess' => 'Added to cart Successsfully',

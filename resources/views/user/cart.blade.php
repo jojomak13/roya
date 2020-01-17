@@ -25,7 +25,7 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th></th>
+                        <th class="d-none d-sm-table"></th>
                         <th>@lang('user.cart.product')</th>
                         <th>@lang('user.cart.price')</th>
                         <th>@lang('user.cart.quantity')</th>
@@ -36,7 +36,7 @@
                     @forelse (\App\Cart::items() as $product)
                     <tr>
                         <td class="delete">
-                            <a href="javascript:void(0)" onclick="this.children[1].submit()" title="delete product">
+                            <a href="javascript:void(0)" onclick="this.children[1].submit()" title="@lang('user.cart.delete')">
                                 <i class="fa fa-close"></i>
                                 <form method="POST" action="{{ route('cart.delete', $product['id']) }}">
                                     @csrf
@@ -44,7 +44,7 @@
                                 </form>
                             </a>
                         </td>
-                        <td class="image">
+                        <td class="image d-none d-sm-block">
                             <div class="image">
                                 <img src="{{ url('storage/'.$product['image']) }}" alt="{{ $product[lang('name')] }}" title="{{ $product[lang('name')] }}">
                             </div>
@@ -56,13 +56,12 @@
                         </td>
                         <td>{{ $product['price'] }} @lang('user.currency')</td>
                         <td>
-                            <form action="{{ route('cart.update', $product['id']) }}" method="POST">
+                            <form class="form-inline" action="{{ route('cart.update', $product['id']) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <input type="number" min="1" name="qty" value="{{ $product['quantity'] }}" class="form-control">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">@lang('user.auth.update')</button>
                             </form>
-                            {{-- <input type="number" min="1" value="{{ $product['quantity'] }}" class="form-control"> --}}
                         </td>
                         <td>@money($product['price'] * $product['quantity']) @lang('user.currency')</td>
                     </tr>

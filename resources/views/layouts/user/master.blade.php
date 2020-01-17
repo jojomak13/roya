@@ -41,9 +41,9 @@
     <script src="{{ asset('user/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('user/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('user/js/sweetalert.min.js') }}"></script>
+    @yield('script')
     <script src="{{ asset('user/js/custom.js') }}"></script>
     @include('layouts.user._messages')
-    @yield('script')
 </body>
 
 </html>
