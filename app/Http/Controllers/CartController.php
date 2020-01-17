@@ -37,9 +37,24 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $product = product::where('id', $request->product_id)->with('firstImage')->first();
-        
+        $quantity = $request->quantity ?: 1;
+
         if($product && $product->status != 'outOfStock'){
-            Cart::add($product, 1);
+
+            $maxQuantity = $product->stores->first()->pivot->quantity;
+
+            if(Cart::has($product->id)){
+
+                if($maxQuantity < Cart::get($product->id)['quantity'] + $quantity){
+                    return response()->json(['status' => true, 'message' => __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
+                } 
+                
+            } else {
+                if($maxQuantity < $quantity)
+                    return response()->json(['status' => true, 'message' => __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
+            }
+
+            Cart::add($product, $quantity);
             return response()->json(['status' => true, 'message' => __('user.cart.addSuccess')]);
             
         }  else if($product && $product->status == 'outOfStock') {

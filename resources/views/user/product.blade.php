@@ -63,8 +63,12 @@
                     </select>
                 </div>
                 <div class="addtocart-btn">
-                    <input type="number" min="1" value="1">
-                    <button type="submit"><i class="fa fa-shopping-cart"></i> @lang('user.addtocart')</button>
+                    <form id="addtocart">
+                        @csrf
+                        <input type="number" min="1" name="quantity" value="1">
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <button type="submit"><i class="fa fa-shopping-cart"></i> @lang('user.addtocart')</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -238,6 +242,23 @@ $('#addToWishlist').on('click', function(){
     } else {
         $(this).removeClass('active');
     }
+})
+
+$('#addtocart').on('submit', function(e){
+    e.preventDefault();
+
+	$.post({
+		url: `${baseData.url}/${baseData.lang}/cart`,
+		data: $(this).serialize(),
+		success(res){
+			if(res.status){
+				toast.fire({
+					icon: 'info',
+					title: res.message
+				})
+			}
+		}
+	})
 })
 </script>
 @endsection

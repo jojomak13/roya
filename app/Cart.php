@@ -93,6 +93,16 @@ class Cart
         return 0;
     }
 
+    public static function get($id)
+    {
+        return static::init()->items[$id];
+    } 
+
+    public static function has($id)
+    {
+        return array_key_exists($id, static::init()->items);
+    }
+
     public static function items()
     {
         return static::init()->items;
@@ -113,8 +123,4 @@ class Cart
         return session()->forget('cart');
     }
 
-    public static function serialize()
-    {
-        return serialize(session()->get('cart'));
-    }
 }
