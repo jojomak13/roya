@@ -86,7 +86,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="image text-center">
-                        <img class="img-fluid" id="preview" src="{{ $user->image() }}" alt="{{ $user->fullName() }}">
+                        <img class="img-fluid" id="preview" src="{{ $user->imageUrl() }}" alt="{{ $user->fullName() }}">
                     </div>
                     <div class="form-group mt-3">
                         <label for="image">{{ __('dashboard.users.image') }}</label>

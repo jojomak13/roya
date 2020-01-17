@@ -57,22 +57,27 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return ucfirst($this->first_name . ' ' . $this->last_name);
     }
-
-    public static function upload($request, $user = null)
+ 
+    public function uploadImage($imageName = 'image')
     {
-        if($user)
-            \Storage::delete($user->image);
+        if(request()->has('image')){
+            request()->validate(['image' => 'image']);
 
-        $image = $request->image->store('users');
+            \Storage::delete($this->image);
 
-        Image::make('storage/'.$image)->resize(300, null, function ($constraint) {
+            $uploadedImage = request()->image->store('users/');
+
+            \Image::make('storage/'.$uploadedImage)->resize(350, null, function ($constraint) {
                 $constraint->aspectRatio();
-        })->save();
+            })->save();
 
-        return $image;
+            $this->update(['image' => $uploadedImage]);
+        }
+
+        return $this;
     }
 
-    public function image()
+    public function imageUrl()
     {
         return $this->image ? url('storage/'.$this->image) : asset('admin/images/avatar.png'); 
     }

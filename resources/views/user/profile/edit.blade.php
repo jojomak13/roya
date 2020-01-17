@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="image text-center">
-                                <img src="{{ $user->image() }}" class="img-fluid" alt="profile image" title="profile image">
+                                <img src="{{ $user->imageUrl() }}" class="img-fluid" alt="{{ $user->fullName() }}" title="{{ $user->fullName() }}">
                             </div>
                             <div class="mt-2 custom-file">
                                 <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="image">

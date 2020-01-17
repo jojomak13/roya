@@ -26,7 +26,7 @@
             <div class="col-lg-5">
                 <div class="card image">
                     <div class="card-body text-center">
-                        <img class="img-fluid" src="{{ $user->image() }}" alt="{{ $user->fullName() }}" title="{{ $user->fullName() }}">
+                        <img class="img-fluid" src="{{ $user->imageUrl() }}" alt="{{ $user->fullName() }}" title="{{ $user->fullName() }}">
                         @if($user->email_verified_at)
                         <span class="tag"><i class="fa fa-check"></i> @lang('user.profile.verified')</span>
                         @else

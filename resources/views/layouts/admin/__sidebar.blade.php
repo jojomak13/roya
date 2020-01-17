@@ -13,7 +13,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{ auth()->user()->image() }}" class="img-circle elevation-2"
+                    <img src="{{ auth()->user()->imageUrl() }}" class="img-circle elevation-2"
                         alt="{{ auth()->user()->fullName() }}">
                 </div>
                 <div class="info">

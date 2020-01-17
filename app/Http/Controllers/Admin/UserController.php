@@ -51,7 +51,10 @@ class UserController extends Controller
         $data = $this->validateForm();
         $data['password'] = bCrypt($data['password']);
 
-        User::create($data)->attachRole($request->group);
+
+        $user = User::create($data)
+            ->uploadImage()
+            ->attachRole($request->group);
 
         session()->flash('success', __('dashboard.users.create_success'));
         return redirect()->route('admin.users.index');
@@ -97,7 +100,9 @@ class UserController extends Controller
             $data['password'] = bCrypt($data['password']);
 
         $user->update($data);
-        $user->syncRoles([$data['group']]);
+
+        $user->uploadImage()
+            ->syncRoles([$data['group']]);
 
         session()->flash('success', __('dashboard.users.edit_success'));
         return redirect()->route('admin.users.index');
@@ -127,7 +132,7 @@ class UserController extends Controller
             'password' => 'confirmed',
             'group' => 'required',
             'address' => 'required',
-            'image' => 'image',
+            // 'image' => 'image',
             'age' => 'required|integer|min:15|max:100',
             'gender' => 'required'
         ];
@@ -139,8 +144,8 @@ class UserController extends Controller
         
         $roles = request()->validate($roles);
 
-        if(request()->has('image'))
-            $roles['image'] = User::upload(request(), $user);
+        // if(request()->has('image'))
+        //     $roles['image'] = User::upload(request(), $user);
 
         return $roles;
     }
