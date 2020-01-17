@@ -101,7 +101,7 @@
                                         @endif
                                     </p>
                                     <div class="d-flex align-self-center">
-                                        <a href="javascript:void(0)" title="@lang('user.addtocart')" data-id="{{ $product->id }}" class="addToCartBtn cart">
+                                        <a href="javascript:void(0)" title="@lang('user.addtocart')" onclick="addtocart({{ $product->id }})" class="cart">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
                                     </div>
@@ -153,7 +153,7 @@
                                         @endif
                                     </p>
                                     <div class="d-flex align-self-center">
-                                        <a href="javascript:void(0)" data-id="{{ $product->id }}" title="@lang('user.addtocart')" class="addToCartBtn cart">
+                                        <a href="javascript:void(0)" title="@lang('user.addtocart')" onclick="addtocart({{ $product->id }})" class="cart">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
                                     </div>
@@ -213,7 +213,7 @@
                                         @endif
                                     </p>
                                     <div class="d-flex align-self-center">
-                                        <a href="javascript:void(0)" data-id="{{ $product->id }}" title="@lang('user.addtocart')" class="addToCartBtn cart">
+                                        <a href="javascript:void(0)" onclick="addtocart({{ $product->id }})" title="@lang('user.addtocart')" class="cart">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
                                     </div>
@@ -287,7 +287,7 @@
                                             @endif
                                         </p>
                                         <div class="d-flex align-self-center">
-                                            <a href="javascript:void(0)" data-id="{{ $product->id }}" title="@lang('user.addtocart')" class="addToCartBtn cart">
+                                            <a href="javascript:void(0)" onclick="addtocart({{ $product->id }})" title="@lang('user.addtocart')" class="cart">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
                                         </div>

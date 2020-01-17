@@ -45,10 +45,11 @@ $('#search').on('input', function(e){
 // End Search bar
 
 // Start Add to cart button
-$('.addToCartBtn').on('click', function(){
+function addtocart(id)
+{
 	$.post({
 		url: `${baseData.url}/${baseData.lang}/cart`,
-		data: {product_id: $(this).data('id')},
+		data: {product_id: id},
 		headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -61,7 +62,7 @@ $('.addToCartBtn').on('click', function(){
 			}
 		}
 	})
-})
+}
 // End Add to cart button
 
 // Start Slideshow
