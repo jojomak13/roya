@@ -32,6 +32,8 @@ Route::group($middlewares, function(){
 
 	Route::get('/cart', 'CartController@index')->name('cart.index');
 	Route::post('/cart', 'CartController@store')->name('cart.store');
+	Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
+	Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.delete');
 
 	Route::get('/profile', 'ProfileController@index')->name('profile');
 	Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');

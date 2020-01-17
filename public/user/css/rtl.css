@@ -141,3 +141,7 @@ footer {
 .custom-file-label {
     padding: .375rem 5.75rem;
 }
+
+.cart-page .table {
+    text-align: right;
+}

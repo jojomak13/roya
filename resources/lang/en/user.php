@@ -127,5 +127,19 @@ return [
         'unVerified' => 'Un Verified',
         'orders' => 'Orders',
         'wishlist' => 'Wishlist',
+    ],
+    'cart' => [
+        'product' => 'Product',
+        'price' => 'Price',
+        'quantity' => 'Quantity',
+        'totalPrice' => 'Total Price',
+        'checkout' => 'Proceed To Checkout',
+        'coupon' => 'Apply Coupon',
+        'emptyCart' => 'No products in the cart yet',
+        'addSuccess' => 'Added to cart Successsfully',
+        'updated' => 'Your product quantity updated',
+        'removed' => 'Product deleted from cart successfully',
+        'outOfQuantity' => 'There is no enough quantity at most :quantity',
+        'outOfStock' => 'This product is out of stock at this time',
     ]
 ];

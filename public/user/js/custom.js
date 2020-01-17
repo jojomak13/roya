@@ -44,6 +44,26 @@ $('#search').on('input', function(e){
 })
 // End Search bar
 
+// Start Add to cart button
+$('.addToCartBtn').on('click', function(){
+	$.post({
+		url: `${baseData.url}/${baseData.lang}/cart`,
+		data: {product_id: $(this).data('id')},
+		headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+		success(res){
+			if(res.status){
+				toast.fire({
+					icon: 'info',
+					title: res.message
+				})
+			}
+		}
+	})
+})
+// End Add to cart button
+
 // Start Slideshow
 let slideshow = $("#slideshow").owlCarousel({
 	items: 1,

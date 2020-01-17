@@ -101,7 +101,7 @@
                                         @endif
                                     </p>
                                     <div class="d-flex align-self-center">
-                                        <a href="#" title="add to cart" class="cart">
+                                        <a href="javascript:void(0)" title="@lang('user.addtocart')" data-id="{{ $product->id }}" class="addToCartBtn cart">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
                                     </div>
@@ -153,7 +153,7 @@
                                         @endif
                                     </p>
                                     <div class="d-flex align-self-center">
-                                        <a href="#" title="add to cart" class="cart">
+                                        <a href="javascript:void(0)" data-id="{{ $product->id }}" title="@lang('user.addtocart')" class="addToCartBtn cart">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
                                     </div>
@@ -213,7 +213,7 @@
                                         @endif
                                     </p>
                                     <div class="d-flex align-self-center">
-                                        <a href="#" title="add to cart" class="cart">
+                                        <a href="javascript:void(0)" data-id="{{ $product->id }}" title="@lang('user.addtocart')" class="addToCartBtn cart">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
                                     </div>
@@ -287,7 +287,7 @@
                                             @endif
                                         </p>
                                         <div class="d-flex align-self-center">
-                                            <a href="#" title="add to cart" class="cart">
+                                            <a href="javascript:void(0)" data-id="{{ $product->id }}" title="@lang('user.addtocart')" class="addToCartBtn cart">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
                                         </div>

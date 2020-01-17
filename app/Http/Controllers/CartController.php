@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -34,7 +36,17 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        $product = product::where('id', $request->product_id)->with('firstImage')->first();
         
+        if($product && $product->status != 'outOfStock'){
+            Cart::add($product, 1);
+            return response()->json(['status' => true, 'message' => __('user.cart.addSuccess')]);
+            
+        }  else if($product && $product->status == 'outOfStock') {
+            return response()->json(['status' => true, 'message' => __('user.cart.outOfStock')]);
+        }
+
+        return response()->json(['status' => false]);
     }
 
     /**
@@ -66,9 +78,22 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, Product $product)
+    {   
+        $roles = $request->validate(['qty' => 'required|integer']);
+        $maxQuantity = $product->stores->first()->pivot->quantity;
+
+        if($maxQuantity < $request->qty){
+            session()->flash('warning', __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])); 
+
+        } else {
+            
+            Cart::update($product, $roles['qty']);
+            session()->flash('success', __('user.cart.updated'));
+        }
+
+
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -77,8 +102,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        Cart::delete($product->id);
+
+        session()->flash('success', __('user.cart.removed'));
+        return redirect()->route('cart.index');
     }
 }

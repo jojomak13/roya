@@ -79,7 +79,7 @@ function gridView(product) {
                     ${product.discount? `<del>${ money(product.sell_price) }</del>` : '' }
                 </p>
                 <div class="d-flex align-self-center">
-                    <a href="#" title="add to cart" class="cart">
+                    <a href="javascript:void(0)" data-id="${ product.id }" title="${ addToCart }" class="addToCartBtn cart">
                         <i class="fa fa-shopping-cart"></i>
                     </a>
                 </div>
@@ -119,7 +119,7 @@ function listView(product) {
                         ${product.product_rate.join(' ')}
                     </div>
                     <div class="mt-2">
-                        <a href="#" title="add to cart" class="btn btn-primary cart">
+                        <a href="javascript:void(0)" data-id="${ product.id }" title="${ addToCart }" class="addToCartBtn btn btn-primary cart">
                             <i class="fa fa-shopping-cart"></i>
                             <span>${ addToCart }</span>
                         </a>

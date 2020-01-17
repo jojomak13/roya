@@ -41,12 +41,12 @@
         </div>
         <div class="middle-nav d-flex justify-content-between">
             <div class="image">
-                <img src="{{ asset('user/images/logo.png') }}" class="img-fluid" alt="logo" title="logo">
+                <img src="{{ asset('user/images/logo.png') }}" class="img-fluid" alt="@lang('app.name')" title="@lang('app.name')">
             </div>
             <div class="search d-none d-lg-block">
                 <div class="form-inline">
                     <div class="search-bar">
-                        <input id="search" autocomplete="off" type="text" name="search" placeholder="@lang('user.header.search')..." autofocus>
+                        <input id="search" autocomplete="off" type="text" name="search" placeholder="@lang('user.header.search')...">
                         <div id="result" class="result">
                             <ul></ul>
                         </div>
@@ -58,7 +58,7 @@
                 <div>
                     <a class="btn" href="{{ route('cart.index') }}">
                         <i class="fa fa-shopping-cart"></i>
-                        <span class="badge badge-primary">15</span>
+                        <span class="badge badge-primary">{{ \App\Cart::totalItems() }}</span>
                     </a>
                 </div>
                 <button class="d-lg-none navbar-toggler" type="button" data-toggle="collapse"

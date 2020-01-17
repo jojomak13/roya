@@ -20,88 +20,69 @@
         <div class="header">
             <h1>@lang('user.title.cart')</h1>
         </div>
-        
-        <table class="table cart-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="delete">
-                        <a href="#" title="delete product"><i class="fa fa-close"></i></a>
-                    </td>
-                    <td class="image">
-                        <div class="image">
-                            <img src="{{ asset('user/images/p-2.jpg') }}" alt="product name" title="product name">
-                        </div>
-                    </td>
-                    <td class="name">
-                        <div class="d-flex align-self-center">
-                            <a href="#" title="product name">Ultra Wireless S50 Headphones S50 with Bluetooth</a>
-                        </div>
-                    </td>
-                    <td>$1,999.00</td>
-                    <td><input type="number" min="1" value="1" class="form-control"></td>
-                    <td>$1,999.00</td>
-                </tr>
-                <tr>
-                    <td class="delete">
-                        <a href="#" title="delete product"><i class="fa fa-close"></i></a>
-                    </td>
-                    <td class="image">
-                        <div class="image">
-                            <img src="{{ asset('user/images/p-1.jpg') }}" alt="product name" title="product name">
-                        </div>
-                    </td>
-                    <td class="name">
-                        <div class="d-flex align-self-center">
-                            <a href="#" title="product name">Ultra Wireless S50 Headphones S50 with Bluetooth</a>
-                        </div>
-                    </td>
-                    <td>$1,999.00</td>
-                    <td><input type="number" min="1" value="1" class="form-control"></td>
-                    <td>$1,999.00</td>
-                </tr>
-                <tr>
-                    <td class="delete">
-                        <a href="#" title="delete product"><i class="fa fa-close"></i></a>
-                    </td>
-                    <td class="image">
-                        <div class="image">
-                            <img src="{{ asset('user/images/p-3.jpg') }}" alt="product name" title="product name">
-                        </div>
-                    </td>
-                    <td class="name">
-                        <div class="d-flex align-self-center">
-                            <a href="#" title="product name">Ultra Wireless S50 Headphones S50 with Bluetooth</a>
-                        </div>
-                    </td>
-                    <td>$1,999.00</td>
-                    <td><input type="number" min="1" value="1" class="form-control"></td>
-                    <td>$1,999.00</td>
-                </tr>
-                <tr class="total">
-                    <td colspan="2"></td>
-                    <td colspan="3">Total Price</td>
-                    <td colspan="1">$1,999.00</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table cart-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>@lang('user.cart.product')</th>
+                        <th>@lang('user.cart.price')</th>
+                        <th>@lang('user.cart.quantity')</th>
+                        <th>@lang('user.cart.totalPrice')</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse (\App\Cart::items() as $product)
+                    <tr>
+                        <td class="delete">
+                            <a href="javascript:void(0)" onclick="this.children[1].submit()" title="delete product">
+                                <i class="fa fa-close"></i>
+                                <form method="POST" action="{{ route('cart.delete', $product['id']) }}">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            </a>
+                        </td>
+                        <td class="image">
+                            <div class="image">
+                                <img src="{{ url('storage/'.$product['image']) }}" alt="{{ $product[lang('name')] }}" title="{{ $product[lang('name')] }}">
+                            </div>
+                        </td>
+                        <td class="name">
+                            <div class="d-flex align-self-center">
+                                <a href="javascript:void(0)" title="{{ $product[lang('name')] }}">{{ $product[lang('name')] }}</a>
+                            </div>
+                        </td>
+                        <td>{{ $product['price'] }} @lang('user.currency')</td>
+                        <td>
+                            <form action="{{ route('cart.update', $product['id']) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <input type="number" min="1" name="qty" value="{{ $product['quantity'] }}" class="form-control">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                            {{-- <input type="number" min="1" value="{{ $product['quantity'] }}" class="form-control"> --}}
+                        </td>
+                        <td>@money($product['price'] * $product['quantity']) @lang('user.currency')</td>
+                    </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6">@lang('user.cart.emptyCart')</td>
+                        </tr>
+                    @endforelse
+                    <tr class="total">
+                        <td colspan="2"></td>
+                        <td colspan="3">@lang('user.cart.totalPrice')</td>
+                        <td colspan="1">@money(\App\Cart::totalPrice()) @lang('user.currency')</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <div class="d-flex justify-content-between">
-            <div class="form-inline coupon">
-                <input type="text" class="form-control">
-                <button class="btn btn-primary btn-lg">Apply Coupon</button>
-            </div>
+        <div class="d-flex justify-content-end">
             <div class="form-group">
-                <button class="btn btn-primary btn-lg">Proceed To Checkout</button>
+                <button class="btn btn-primary btn-lg">@lang('user.cart.checkout')</button>
             </div>
         </div>
     </div>
