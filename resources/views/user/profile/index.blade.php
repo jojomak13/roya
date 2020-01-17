@@ -139,9 +139,10 @@
 <script src="{{ asset('user/js/wishlist.js') }}"></script>
 
 <script>
-    let view = document.getElementById('view');
+let view = document.getElementById('view');
+if(wishlist.list().length){
     $.ajax({
-        url: baseData.url + '/wishlist',
+        url: baseData.url + '/wishlist/show',
         method: 'GET',
         data: {products: wishlist.list()},
         success(res){
@@ -164,5 +165,6 @@
             
         } 
     })
+}
 </script>
 @endsection

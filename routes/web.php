@@ -39,7 +39,8 @@ Route::group($middlewares, function(){
 	Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 	Route::post('/profile/update', 'ProfileController@update')->name('profile.update');
 
-	Route::get('/wishlist', 'WishlistController@show');
+	Route::get('/wishlist', 'WishlistController@index')->name('wishlist.index');
+	Route::get('/wishlist/show', 'WishlistController@show')->name('wishlist.show');
 
 	Auth::routes(['verify' => true]);
 });

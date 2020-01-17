@@ -16,6 +16,7 @@ return [
         'shop' => 'المتجر',
         'profile' => 'الحساب الشخصى',
         'editProfile' => 'تعديل الحساب',
+        'wishlist' => 'قائمة المفضلة',
     ],
     'header' => [
         'myAccount' => 'حسابى',

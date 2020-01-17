@@ -16,6 +16,7 @@ return [
         'shop' => 'Shop',
         'profile' => 'Profile',
         'editProfile' => 'Edit Profile',
+        'wishlist' => 'Wishlist'
     ],
     'header' => [
         'myAccount' => 'My Account',

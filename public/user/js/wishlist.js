@@ -58,7 +58,7 @@ class Wishlist
     }
 
     list(){
-        return this.products;
+        return this.products || [];
     }
 }
 
