@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Jobs\VerifyEmail;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -52,6 +53,11 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->api_token = Str::random(60);
         $this->save();
     }
+    
+    // public function sendEmailVerificationNotification()
+    // {
+    //     VerifyEmail::dispatch($this);
+    // }
     
     public function fullName()
     {

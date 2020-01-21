@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $tale->boolean('news')->default(false);
+            $table->boolean('news')->default(false);
             $table->rememberToken();
             $table->timestamp('last_login')->default(Carbon::now()->toDateTimeString());
             $table->string('api_token', 60)->unique()->nullable();
