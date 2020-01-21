@@ -18,16 +18,7 @@ class CartController extends Controller
         return view('user.cart');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -64,28 +55,7 @@ class CartController extends Controller
         return response()->json(['status' => false]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -111,6 +81,7 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -123,5 +94,11 @@ class CartController extends Controller
 
         session()->flash('success', __('user.cart.removed'));
         return redirect()->route('cart.index');
+    }
+
+
+    public function checkout()
+    {
+        return view('user.checkout');
     }
 }

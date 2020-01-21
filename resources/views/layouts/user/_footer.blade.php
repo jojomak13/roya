@@ -34,7 +34,7 @@
     </div>
     <div class="copyright">
         <div class="container">
-            <p>@lang('user.footer.copyright') <a href="{{ route('home') }}">Roya</a></p>
+            <p><i class="fa fa-code"></i> with <i class="fa fa-heart"></i> By <a href="#">Joseph Makram</a></p>
         </div>
     </div>
 </footer>

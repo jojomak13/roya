@@ -17,6 +17,7 @@ return [
         'profile' => 'الحساب الشخصى',
         'editProfile' => 'تعديل الحساب',
         'wishlist' => 'قائمة المفضلة',
+        'checkout' => 'الدفع',
     ],
     'header' => [
         'myAccount' => 'حسابى',
@@ -80,6 +81,9 @@ return [
         'gender' => 'النوع',
         'male' => 'رجل',
         'female' => 'أنثى',
+        'country' => 'الدولة',
+        'city' => 'المدينة',
+        'postalCode' => 'الرقم البريدى',
         'takeCare' => 'أملأ البيانات بحذر',
         'remember' => 'تذكرنى',
         'forget' => 'نسيت كلمة المرور؟',
@@ -141,5 +145,17 @@ return [
         'removed' => 'تم حذف المنتج من العربة بنجاح',
         'outOfQuantity' => 'لا يوجد كمية كافية من هذا المنتج اقصى كمية :quantity',
         'outOfStock' => 'لقد نفذت الكمية من هذا المنتج حاليا',
+    ],
+    'checkout' => [
+        'billDetails' => 'بيانات الدفع',
+        'shipDetails' => 'بيانات الشحنة',
+        'total' => 'السعر الكلى',
+        'product' => 'المنتج',
+        'subtotal' => 'المجموع',
+        'shipping' => 'الشحن',
+        'placeOrder' => 'أنهاء الطلب',
+        'agree' => 'موافق على',
+        'conditions' => 'الشروط وسياسة البيانات',
+        'required' => 'مطلوب'
     ]
 ];

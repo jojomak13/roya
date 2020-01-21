@@ -16,7 +16,8 @@ return [
         'shop' => 'Shop',
         'profile' => 'Profile',
         'editProfile' => 'Edit Profile',
-        'wishlist' => 'Wishlist'
+        'wishlist' => 'Wishlist',
+        'checkout' => 'checkout',
     ],
     'header' => [
         'myAccount' => 'My Account',
@@ -81,6 +82,9 @@ return [
         'gender' => 'Gender',
         'male' => 'Male',
         'female' => 'Female',
+        'country' => 'Country',
+        'city' => 'City',
+        'postalCode' => 'Postcode / ZIP',
         'takeCare' => 'Fill your info carefully',
         'userControl' => 'Everything is under control',
         'remember' => 'Remember Me',
@@ -143,5 +147,17 @@ return [
         'removed' => 'Product deleted from cart successfully',
         'outOfQuantity' => 'There is no enough quantity at most :quantity',
         'outOfStock' => 'This product is out of stock at this time',
+    ],
+    'checkout' => [
+        'billDetails' => 'Billing Details',
+        'shipdetails' => 'Shipping Details',
+        'total' => 'Total',
+        'product' => 'Product',
+        'subtotal' => 'SubTotal',
+        'shipping' => 'Shipping',
+        'placeOrder' => 'Place Order',
+        'agree' => 'I’ve read and accept the',
+        'conditions' => 'terms & conditions',
+        'required' => 'required'
     ]
 ];
