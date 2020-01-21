@@ -28,3 +28,6 @@ Route::get('product/{product}', 'Api\ProductController@show');
 
 Route::get('/shop', 'Api\ShopController@index');
 Route::get('/shop/{id}', 'Api\ShopController@show');
+
+// Home controller
+Route::get('/home', 'Api\HomeController@index');
