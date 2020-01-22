@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['checkout']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -99,6 +105,7 @@ class CartController extends Controller
 
     public function checkout()
     {
-        return view('user.checkout');
+        $user = auth()->user();
+        return view('user.checkout', compact('user'));
     }
 }
