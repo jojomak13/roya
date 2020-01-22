@@ -24,7 +24,7 @@
             @csrf
             <div class="row">
 
-                <div class="col-5">
+                <div class="col-lg-5 col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="image text-center">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 
-                <div class="col-7">
+                <div class="col-lg-7 col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">

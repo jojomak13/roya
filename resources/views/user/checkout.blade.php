@@ -27,25 +27,25 @@
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
-                            <label for="first-name">@lang('user.auth.firstName') <abbr title="@lang('user.checkout.required')">*</abbr></label>
-                            <input type="text" class="form-control" id="first-name" required>
-                            <div class="invalid-feedback">
-                                First Name is required
-                            </div>
+                            <label for="first_name">@lang('user.auth.firstName') <abbr title="@lang('user.checkout.required')">*</abbr></label>
+                            <input type="text" name="first_name" value="{{ $user->first_name }}" class="form-control @error('first_name') is-invalid @enderror" id="first_name" required>
+                            @error('first_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-6 form-group">
-                            <label for="last-name">@lang('user.auth.lastName') <abbr title="@lang('user.checkout.required')">*</abbr></label>
-                            <input type="text" class="form-control" id="last-name" required>
-                            <div class="invalid-feedback">
-                                Last Name is required
-                            </div>
+                            <label for="last_name">@lang('user.auth.lastName') <abbr title="@lang('user.checkout.required')">*</abbr></label>
+                            <input type="text" name="last_name" value="{{ $user->last_name }}" class="form-control @error('last_name') is-invalid @enderror" id="last_name" required>
+                            @error('last_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-12 form-group">
                             <label for="email">@lang('user.auth.email') <abbr title="@lang('user.checkout.required')">*</abbr></label>
-                            <input type="email" class="form-control" id="email" required>
-                            <div class="invalid-feedback">
-                                Email is required
-                            </div>
+                            <input disabled type="email" name="email" value="{{ $user->email }}" class="form-control @error('email') is-invalid @enderror" id="email" required>
+                            @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-6 form-group">
                             <label for="country">@lang('user.auth.country') <abbr title="@lang('user.checkout.required')">*</abbr></label>
@@ -56,10 +56,10 @@
                         </div>
                         <div class="col-6 form-group">
                             <label for="phone">@lang('user.auth.phone') <abbr title="@lang('user.checkout.required')">*</abbr></label>
-                            <input type="number" class="form-control" id="phone" required>
-                            <div class="invalid-feedback">
-                                Phone is required
-                            </div>
+                            <input type="text" name="phone" value="{{ $user->phone }}" class="form-control @error('phone') is-invalid @enderror" id="phone" required>
+                            @error('phone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-6 form-group">
                             <label for="city">@lang('user.auth.city') <abbr title="@lang('user.checkout.required')">*</abbr></label>
@@ -103,29 +103,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach(\App\Cart::items() as $product)
                                     <tr>
-                                        <td>Lenovo y50 - 64GB</td>
-                                        <td>x1</td>
-                                        <td>$120,45</td>
+                                        <td>{{ $product[lang('name')] }}</td>
+                                        <td>x{{ $product['quantity'] }}</td>
+                                        <td>@money($product['price'] * $product['quantity']) @lang('user.currency')</td>
                                     </tr>
-                                    <tr>
-                                        <td>Ultra Wireless S50 Headphones...</td>
-                                        <td>x5</td>
-                                        <td>$1,225,45</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lenovo y50 - 64GB</td>
-                                        <td>x1</td>
-                                        <td>$120,45</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lenovo y50 - 64GB</td>
-                                        <td>x1</td>
-                                        <td>$120,45</td>
-                                    </tr>
+                                    @endforeach
                                     <tr class="calc">
                                         <td colspan="2">@lang('user.checkout.subtotal')</td>
-                                        <td>$2,512,45</td>
+                                        <td>@money(\App\Cart::totalPrice()) @lang('user.currency')</td>
                                     </tr>
                                     <tr class="calc">
                                         <td colspan="2">@lang('user.checkout.shipping')</td>
