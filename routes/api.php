@@ -17,17 +17,20 @@ Route::middleware('auth:api')->get('/users', function (Request $request) {
     return \App\User::all();
 });
 
-Route::post('login', 'Api\UserController@login');
+Route::post('login', 'UserController@login');
 
-Route::post('register', 'Api\UserController@register');
+Route::post('register', 'UserController@register');
 
-Route::get('categories', 'Api\CategoryController@index');
+Route::get('categories', 'CategoryController@index');
 
-Route::get('products/{category}', 'Api\ProductController@index');
-Route::get('product/{product}', 'Api\ProductController@show');
+Route::get('products/{category}', 'ProductController@index');
+Route::get('product/{product}', 'ProductController@show');
 
-Route::get('/shop', 'Api\ShopController@index');
-Route::get('/shop/{id}', 'Api\ShopController@show');
+Route::get('/shop', 'ShopController@index');
+Route::get('/shop/{id}', 'ShopController@show');
 
 // Home controller
-Route::get('/home', 'Api\HomeController@index');
+Route::get('/home', 'HomeController@index');
+
+// Main Search
+Route::post('/search', 'HomeController@search');

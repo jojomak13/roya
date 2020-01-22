@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,18 @@ class HomeController extends Controller
             'offers' => $offers,
             'latestBlogs' => $latestBlogs
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        $products = Product::select('id', 'name_en', 'name_ar', 'status')
+        ->with('firstImage')
+        ->Where('name_en', 'like', '%' . $request->search . '%')
+        ->orWhere('name_ar', 'like', '%' . $request->search . '%')
+        ->take(5)
+        ->get();
+
+        return response()->json(['products' => $products]);
     }
 
 }
