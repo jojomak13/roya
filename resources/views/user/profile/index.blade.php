@@ -93,34 +93,38 @@
                     <h3>@lang('user.profile.orders')</h3>
                 </div>
                 <div class="accordion" id="orders">
+                    @foreach($user->orders as $order)
                     <div class="card mb-2">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    12, March 2019
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#order_{{ $order->id }}" aria-expanded="true" aria-controls="order_1">
+                                    {{ $order->created_at->toFormattedDateString() }}
                                 </button>
                             </h2>
-                            <span><strong>Total:</strong> $1250,00</span>
+                            <span><strong>@money($order->total_price)</strong> @lang('user.currency')</span>
                         </div>
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#orders">
+                        <div id="order_{{ $order->id }}" class="collapse" data-parent="#orders">
                             <div class="card-body">
                                 <table class="table">
                                     <thead>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th>Total Price</th>
+                                        <th>@lang('user.cart.product')</th>
+                                        <th>@lang('user.cart.price')</th>
+                                        <th>@lang('user.cart.totalPrice')</th>
                                     </thead>
                                     <tbody>
+                                        @foreach($order->products as $product)
                                         <tr>
-                                            <td>Wireless Audio System</td>
-                                            <td>$250x4</td>
-                                            <td>$1000</td>
+                                            <td>{{ $product->{lang('name')} }}</td>
+                                            <td>{{ $product->pivot->quantity }}x{{ $product->price }}</td>
+                                            <td>{{ $product->pivot->total_price }}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
             <!-- End Orders -->
