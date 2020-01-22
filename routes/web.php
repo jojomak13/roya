@@ -40,7 +40,8 @@ Route::group($middlewares, function(){
 	Route::post('/cart', 'CartController@store')->name('cart.store');
 	Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
 	Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.delete');
-	Route::post('/checkout', 'CartController@checkout')->name('cart.checkout');
+	Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
+	Route::post('/procced', 'CartController@procced')->name('cart.procced');
 
 	// Profile
 	Route::get('/profile', 'ProfileController@index')->name('profile');

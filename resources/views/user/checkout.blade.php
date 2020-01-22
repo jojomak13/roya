@@ -19,7 +19,8 @@
             <h1>@lang('user.title.checkout')</h1>
         </div>
 
-        <form id="needs-validation" class="needs-validation" novalidate>
+        <form id="needs-validation" action="{{ route('cart.procced') }}" method="POST" class="needs-validation" novalidate>
+            @csrf
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-head">
@@ -132,9 +133,6 @@
                     <div class="col-12 form-group mt-3 form-check">
                         <input type="checkbox" class="form-check-input" name="agree" id="agree" required>
                         <label class="form-check-label" for="agree">@lang('user.checkout.agree') <a href="#">@lang('user.checkout.conditions') *</a></label>
-                        <div class="invalid-feedback">
-                            You must agree before submitting.
-                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-lg">@lang('user.checkout.placeOrder')</button>

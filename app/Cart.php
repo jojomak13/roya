@@ -123,4 +123,18 @@ class Cart
         return session()->forget('cart');
     }
 
+    public static function handleProducts()
+    {
+        $products = [];
+
+        foreach(static::items() as $key => $value){
+            $products[$key] = [
+                'quantity' => $value['quantity'],
+                'total_price' => $value['quantity'] * $value['price'] 
+            ];
+        }
+
+        return $products;
+    }
+
 }

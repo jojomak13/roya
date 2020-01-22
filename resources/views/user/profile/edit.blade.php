@@ -99,7 +99,7 @@
                                     <select class="form-control @error('country_id') is-invalid @enderror" id="country" name="country_id">
                                         <option value="">@lang('user.profile.select_country')</option>
                                         @foreach($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->{lang('name')} }}</option>
+                                        <option {{ $country->id == $user->country->id? 'selected':'' }} value="{{ $country->id }}">{{ $country->{lang('name')} }}</option>
                                         @endforeach
                                     </select>
                                     @error('country_id')

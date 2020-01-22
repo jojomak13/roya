@@ -81,10 +81,7 @@
 
         <div class="d-flex justify-content-end">
             <div class="form-group">
-                <form action="{{ route('cart.checkout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-primary btn-lg">@lang('user.cart.checkout')</button>
-                </form>
+                <a href="{{ route('cart.checkout') }}" class="btn text-white btn-primary btn-lg">@lang('user.cart.checkout')</a>
             </div>
         </div>
     </div>

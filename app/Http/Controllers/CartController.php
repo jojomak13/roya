@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Order;
 use App\Country;
 use App\Product;
 use Illuminate\Http\Request;
@@ -116,15 +117,30 @@ class CartController extends Controller
     public function procced(Request $request)
     {
         $request->validate(['agree' => 'required']);
+        $user = auth()->user();
+        
+        $this->updateUser($user);         
 
-        $this->updateUser();         
+        $handledProducts = Cart::handleProducts();
 
+        $order = Order::create([
+            'user_id' => $user->id,
+            'total_price' => Cart::totalPrice(),
+            'status' => 'payment_pending'
+        ]);
+        
+        $order->products()->sync($handledProducts);
+            
+        Product::updateQuantity($handledProducts);
+        
+        Cart::clear();
+        
+        session()->flash('success', __('user.cart.order_created'));
+        return redirect()->route('home');
     }
 
-    private function updateUser()
+    private function updateUser($user)
     {
-        $user = auth()->user();
-
         $user->update(request()->validate([
             'first_name' => 'required',
             'last_name' => 'required',

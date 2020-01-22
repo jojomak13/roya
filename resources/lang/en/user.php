@@ -149,6 +149,7 @@ return [
         'removed' => 'Product deleted from cart successfully',
         'outOfQuantity' => 'There is no enough quantity at most :quantity',
         'outOfStock' => 'This product is out of stock at this time',
+        'order_created' => 'Order created successfully'
     ],
     'checkout' => [
         'billDetails' => 'Billing Details',

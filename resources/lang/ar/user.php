@@ -147,6 +147,7 @@ return [
         'removed' => 'تم حذف المنتج من العربة بنجاح',
         'outOfQuantity' => 'لا يوجد كمية كافية من هذا المنتج اقصى كمية :quantity',
         'outOfStock' => 'لقد نفذت الكمية من هذا المنتج حاليا',
+        'order_created' => 'تم الطلب بنجاح',
     ],
     'checkout' => [
         'billDetails' => 'بيانات الدفع',
