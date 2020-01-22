@@ -71,6 +71,12 @@
                                 <span class="subscriber-tag un-subscribed">@lang('user.profile.unSubscribed')</span>
                                 @endif
                             </li>
+                            @if($user->country)
+                            <li>
+                                <span><i class="fa fa-globe"></i> @lang('user.profile.country')</span>:
+                                <span>{{ $user->country->{lang('name')} }}</span>
+                            </li>
+                            @endif
                             <li>
                                 <span><i class="fa fa-map-marker"></i> @lang('user.profile.address')</span>:
                                 <span>{{ $user->address }}</span>

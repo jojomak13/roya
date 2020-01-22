@@ -132,6 +132,8 @@ return [
         'unVerified' => 'Un Verified',
         'orders' => 'Orders',
         'wishlist' => 'Wishlist',
+        'country' => 'Country',
+        'select_country' => 'Select Country',
     ],
     'cart' => [
         'product' => 'Product',

@@ -21,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'address', 'image', 'age', 'gender', 'news', 'api_token', 'phone'
+        'first_name', 'last_name', 'email', 'password', 'address', 'image', 'age', 'gender', 'news', 'api_token', 'phone', 'city', 'postal_code', 'country_id'
     ];
 
     /**
@@ -98,5 +98,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function review()
     {
         return $this->belongsToMany(Product::class)->withPivot(['stars', 'feedback'])->withTimeStamps();
+    }
+    
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }

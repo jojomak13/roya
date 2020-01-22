@@ -67,6 +67,13 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-6">
+                                    <label for="postal_code">@lang('user.auth.postalCode')</label>
+                                    <input type="number" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code" name="postal_code" value="{{ $user->postal_code }}">
+                                    @error('postal_code')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-12">
                                     <label for="email">@lang('user.auth.email')</label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $user->email }}" required>
                                     @error('email')
@@ -84,6 +91,25 @@
                                     <label for="password_confirmation">@lang('user.auth.confirmPassowrd')</label>
                                     <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation">
                                     @error('password_confirmation')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="country">@lang('user.auth.country')</label>
+                                    <select class="form-control @error('country_id') is-invalid @enderror" id="country" name="country_id">
+                                        <option value="">@lang('user.profile.select_country')</option>
+                                        @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->{lang('name')} }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('country_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="city">@lang('user.auth.city')</label>
+                                    <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ $user->city }}">
+                                    @error('city')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

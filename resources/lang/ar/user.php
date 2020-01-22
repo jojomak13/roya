@@ -129,7 +129,9 @@ return [
         'verified' => 'حساب مفعل',
         'unVerified' => 'غير مفعل',
         'orders' => 'الطلبات',
-        'wishlist' => 'قائمة المفضلة'
+        'wishlist' => 'قائمة المفضلة',
+        'country' => 'الدولة',
+        'select_country' => 'أختر الدولة',
     ],
     'cart' => [
         'product' => 'المنتج',

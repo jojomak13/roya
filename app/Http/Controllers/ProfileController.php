@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use App\Country;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -21,8 +22,9 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = auth()->user();
+        $countries = Country::all();
 
-        return view('user.profile.edit', compact('user'));
+        return view('user.profile.edit', compact('user', 'countries'));
     }
 
     public function update(Request $request)
@@ -35,7 +37,10 @@ class ProfileController extends Controller
             'email' => 'required|unique:users,email,'.$user->id,
             'address' => 'required',
             'phone' => 'required|string|min:11|max:13',
-            'news' => ''
+            'news' => '',
+            'city' => 'min:3|max:20|nullable',
+            'country_id' => 'integer|nullable',
+            'postal_code' => 'max:10|nullable'
         ];
 
         if(!empty($request->get('password')))
