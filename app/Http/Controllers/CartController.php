@@ -13,6 +13,7 @@ class CartController extends Controller
     public function __construct()
     {
         $this->middleware('verified')->only(['checkout']);
+        $this->middleware('cart')->only(['checkout']);
     }
 
     /**
@@ -111,4 +112,28 @@ class CartController extends Controller
 
         return view('user.checkout', compact('user', 'countries'));
     }
+
+    public function procced(Request $request)
+    {
+        $request->validate(['agree' => 'required']);
+
+        $this->updateUser();         
+
+    }
+
+    private function updateUser()
+    {
+        $user = auth()->user();
+
+        $user->update(request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|string|min:11|max:13',
+            'city' => 'min:3|max:20|nullable',
+            'country_id' => 'integer|nullable',
+            'postal_code' => 'max:10|nullable',
+        ]));
+    }
+
 }
