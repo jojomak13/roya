@@ -47,12 +47,17 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-6 form-group">
+                        <div class="form-group col-6">
                             <label for="country">@lang('user.auth.country') <abbr title="@lang('user.checkout.required')">*</abbr></label>
-                            <input type="text" class="form-control" id="country" required>
-                            <div class="invalid-feedback">
-                                Country is required
-                            </div>
+                            <select class="form-control @error('country_id') is-invalid @enderror" id="country" name="country_id">
+                                <option value="">@lang('user.profile.select_country')</option>
+                                @foreach($countries as $country)
+                                <option {{ $user->country->id == $country->id? 'selected':'' }} value="{{ $country->id }}">{{ $country->{lang('name')} }}</option>
+                                @endforeach
+                            </select>
+                            @error('country_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-6 form-group">
                             <label for="phone">@lang('user.auth.phone') <abbr title="@lang('user.checkout.required')">*</abbr></label>
@@ -63,27 +68,24 @@
                         </div>
                         <div class="col-6 form-group">
                             <label for="city">@lang('user.auth.city') <abbr title="@lang('user.checkout.required')">*</abbr></label>
-                            <input type="text" class="form-control" id="city" required>
-                            <div class="invalid-feedback">
-                                City is required
-                            </div>
+                            <input type="text" class="form-control" value="{{ $user->city }}" name="city" id="city" @error('city') is-invalid @enderror required>
+                            @error('city')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-6 form-group">
                             <label for="postalcode">@lang('user.auth.postalCode') <abbr title="@lang('user.checkout.required')">*</abbr></label>
-                            <input type="text" class="form-control" id="postalcode" required>
-                            <div class="invalid-feedback">
-                                Postcode is required
-                            </div>
+                            <input type="text" class="form-control" value="{{ $user->postal_code }}" name="postal_code" id="postalcode" @error('postal_code') is-invalid @enderror required>
+                            @error('postal_code')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-12 form-group">
                             <label for="address">@lang('user.auth.address') <abbr title="@lang('user.checkout.required')">*</abbr></label>
-                            <input type="text" class="form-control" id="address" placeholder="Street address" required>
-                            <div class="invalid-feedback">
-                                Address is required
-                            </div>   
-                        </div>
-                        <div class="form-group col-12">
-                            <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
+                            <textarea name="address" class="form-control @error('address') is-invalid @enderror" id="address" required>{{ $user->address }}</textarea>
+                            @error('address')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

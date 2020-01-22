@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Country;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class CartController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only(['checkout']);
+        $this->middleware('verified')->only(['checkout']);
     }
 
     /**
@@ -106,6 +107,8 @@ class CartController extends Controller
     public function checkout()
     {
         $user = auth()->user();
-        return view('user.checkout', compact('user'));
+        $countries = Country::all();
+
+        return view('user.checkout', compact('user', 'countries'));
     }
 }
