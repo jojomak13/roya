@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="{{ __('app.description') }}">
     <title>@yield('title',  __('user.title.home') ) - @lang('app.name')</title>
-    <link rel="favicon" href="{{ asset('./favicon.icon') }}">
+    <link rel="favicon" href="{{ asset('./favicon.ico') }}">
     @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     @else
