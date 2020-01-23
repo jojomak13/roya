@@ -70,7 +70,7 @@ class Product extends Model
 
     public function getPriceAttribute()
     {
-        return $this->sell_price - (($this->discount * $this->sell_price) / 100);
+        return round($this->sell_price - (($this->discount * $this->sell_price) / 100));
     }
 
     public function getUrlAttribute()
