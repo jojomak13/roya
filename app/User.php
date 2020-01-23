@@ -49,6 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'last_login'
     ];
 
+    protected $appends = [
+        'profile_image'
+    ];
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -89,6 +93,11 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     }
 
     public function imageUrl()
+    {
+        return $this->image ? url('storage/'.$this->image) : asset('admin/images/avatar.png'); 
+    }
+    
+    public function getprofileImageAttribute()
     {
         return $this->image ? url('storage/'.$this->image) : asset('admin/images/avatar.png'); 
     }

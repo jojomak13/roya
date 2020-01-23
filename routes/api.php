@@ -13,13 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/users', function (Request $request) {
-    return \App\User::all();
+// Auth Controller
+Route::prefix('auth')->group(function(){
+	Route::post('/self', 'AuthController@self');
+	Route::post('/login', 'AuthController@login');
+	Route::post('/register', 'AuthController@register');
+	Route::post('/logout', 'AuthController@logout');
 });
 
-Route::post('login', 'UserController@login');
+// Home controller
+Route::get('/home', 'HomeController@index');
 
-Route::post('register', 'UserController@register');
+// Main Search
+Route::post('/search', 'HomeController@search');
+
 
 Route::get('categories', 'CategoryController@index');
 
@@ -28,9 +35,3 @@ Route::get('product/{product}', 'ProductController@show');
 
 Route::get('/shop', 'ShopController@index');
 Route::get('/shop/{id}', 'ShopController@show');
-
-// Home controller
-Route::get('/home', 'HomeController@index');
-
-// Main Search
-Route::post('/search', 'HomeController@search');
