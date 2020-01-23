@@ -52,8 +52,7 @@ class LaratrustSeeder extends Seeder
                 'address' => 'Egypt, 10th of ramadan',
                 'age' => '15',
                 'gender' => 'male',
-                'password' => bcrypt('123456'),
-                'api_token' => bin2hex(openssl_random_pseudo_bytes(30))
+                'password' => bcrypt('123456')
             ]);
             $user->attachRole($role);
         }

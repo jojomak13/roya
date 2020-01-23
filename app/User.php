@@ -5,12 +5,13 @@ namespace App;
 use App\Jobs\VerifyEmail;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
     use LaratrustUserTrait;
     use Notifiable;
@@ -21,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'address', 'image', 'age', 'gender', 'news', 'api_token', 'phone', 'city', 'postal_code', 'country_id'
+        'first_name', 'last_name', 'email', 'password', 'address', 'image', 'age', 'gender', 'news', 'phone', 'city', 'postal_code', 'country_id'
     ];
 
     /**
@@ -48,10 +49,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_login'
     ];
 
-    public function generateToken()
+    public function getJWTIdentifier()
     {
-        $this->api_token = Str::random(60);
-        $this->save();
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
     
     // public function sendEmailVerificationNotification()
