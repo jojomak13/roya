@@ -1,0 +1,16 @@
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+$fa-font-path: ".webfonts";
+@import "~font-awesome";
+
+@import "libs/owlcarousel/owl.theme.default.min";
+@import "libs/owlcarousel/owl.carousel.min";
+
+// Variables
+@import "variables";
+
+// Includes
+@import "includes/theme";
+@import "includes/product";
+@import "includes/custom";

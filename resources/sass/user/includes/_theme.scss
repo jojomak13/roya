@@ -1,0 +1,27 @@
+// Button
+button.btn,
+a.btn {
+    border-radius: 0;
+    
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+// input
+input.form-control,
+textarea.form-control,
+select.form-control {
+    border-radius: 0;
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+// Card
+div.card {
+    border-radius: 0; 
+    border: 0;
+    box-shadow: 0 5px 10px rgba(0,0,0, .1);
+}
