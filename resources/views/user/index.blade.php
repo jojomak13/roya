@@ -37,8 +37,8 @@
                 <!-- Start Slideshow -->
                 <div class="col-lg-9 col-md-12">
                     <div class="slideshow">
-                        <button class="prev"><i class="fa fa-chevron-left"></i></button>
-                        <button class="next"><i class="fa fa-chevron-right"></i></button>
+                        <button aria-label="Left" class="prev"><i class="fa fa-chevron-left"></i></button>
+                        <button aria-label="Next" class="next"><i class="fa fa-chevron-right"></i></button>
                         <div id="slideshow" class="owl-carousel  owl-theme">
                         @foreach($slideshows as $slide)
                             <div class="item">
@@ -125,8 +125,8 @@
                     <div class="section-head d-flex justify-content-between">
                         <h2>{{ __('user.newProducts') }}</h2>
                         <div class="carousel-control d-flex align-self-center">
-                            <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
-                            <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
+                            <button aria-label="Left" class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
+                            <button aria-label="Next" class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
                         </div>
                     </div>
 
@@ -258,8 +258,8 @@
                     <div class="section-head d-flex justify-content-between">
                         <h2>@lang('user.topRated')</h2>
                         <div class="carousel-control d-flex align-self-center">
-                            <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
-                            <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
+                            <button aria-label="Left" class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
+                            <button aria-label="Next" class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
                         </div>
                     </div>
 
@@ -315,8 +315,8 @@
             <div class="section-head d-flex justify-content-between">
                 <h2>@lang('user.latestBlogs')</h2>
                 <div class="carousel-control d-flex align-self-center">
-                    <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
-                    <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
+                    <button aria-label="Left" class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
+                    <button aria-label="Next" class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
             <div id="latest-blogs" class="owl-carousel owl-theme">

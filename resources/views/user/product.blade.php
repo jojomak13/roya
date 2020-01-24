@@ -176,8 +176,8 @@
             <div class="section-head d-flex justify-content-between">
                 <h3>@lang('user.relatedProducts')</h3>
                 <div class="carousel-control d-flex align-self-center">
-                    <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
-                    <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
+                    <button aria-label="Left" class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
+                    <button aria-label="Next" class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
             <div id="related-products" class="owl-carousel owl-theme">
