@@ -11,10 +11,11 @@
     <meta name="tags" content="{{ __('app.tags') }}">
     <title>@yield('title',  __('user.title.home') ) - @lang('app.name')</title>
     <link rel="favicon" href="{{ asset('./favicon.ico') }}">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
-    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
     @else
-    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,400i,600" rel="stylesheet">
     @endif
     <link rel="stylesheet" href="{{ asset('user/css/main.css') }}">
     @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
