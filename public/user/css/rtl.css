@@ -1,0 +1,114 @@
+body {
+    font-family: 'Cairo', sans-serif;
+}
+
+.section-head h2,
+.cats.card,
+.product-card .card-head,
+.breadcrumb,
+.single-product,
+.item.blog .card-body,
+.auth .card,
+footer,
+.shop .shop-by,
+.shop .product-card.horizontal,
+.profile-page,
+.profile-page .user-info,
+.dropdown-menu,
+.edit-profile-page .card,
+.cart-page .table,
+.checkout-page {
+    text-align: right;
+}
+
+.section-head h3::after {
+    left: initial;
+    right: 0;
+}
+
+.carousel-control, .slideshow {
+    direction: ltr;
+}
+
+.no-js .owl-carousel, .owl-carousel.owl-loaded {
+    direction: ltr;
+}
+
+.justify-content-end {
+    -webkit-box-pack: start !important;
+    -ms-flex-pack: start !important;
+    justify-content: flex-start !important;
+}
+
+
+.head .cats ul li a i:last-child {
+    float: left;
+    transform: rotate(180deg);
+}
+
+.head .cats .card-header .card-title i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.product-card .tag {
+    right: auto;
+    left: 5px;
+}
+
+.product-card .info {
+    direction: rtl;
+}
+
+.product-card .stars {
+    text-align: right;
+    direction: ltr;
+}
+
+.breadcrumb ul li::after {
+    content: "\f104"
+}
+
+.single-product .product-details .product-review {
+    direction: ltr;
+}
+
+.single-product .info {
+    direction: rtl;
+}
+
+
+.single-product .product-review .votes-progress {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.single-product .card.reviews .user-reviews li .info strong {
+    float: right;
+}
+
+.auth .card .form-check-input,
+.edit-profile-page .form-check-input,
+.checkout-page .form-check-input {
+    position: static;
+    margin-left: 0;
+}
+
+.shop .search-bar .sort,
+.shop .search-bar .sort select {
+    color: #757575;
+}
+
+.shop .search-bar .sort label {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+.profile-page .image .tag {
+    right: 20px;
+    left: initial;
+}
+
+.custom-file-label {
+    padding: .375rem 5.75rem;
+}
