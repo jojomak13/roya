@@ -90,7 +90,7 @@
             <!-- Start Orders -->
             <div class="col-lg-8 mt-3 orders">
                 <div class="section-head">
-                    <h3>@lang('user.profile.orders')</h3>
+                    <h2>@lang('user.profile.orders')</h2>
                 </div>
                 <div class="accordion" id="orders">
                     @foreach($user->orders as $order)
@@ -132,7 +132,7 @@
             <!-- Start wishlist -->
             <div class="col-lg-4 mt-3">
                 <div class="section-head">
-                    <h3>@lang('user.profile.wishlist')</h3>
+                    <h2>@lang('user.profile.wishlist')</h2>
                 </div>
                 <div class="card wishlist">
                     <div class="card-body" id="view"></div>

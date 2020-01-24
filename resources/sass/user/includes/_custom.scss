@@ -47,12 +47,13 @@ body {
 	border-bottom: 1px solid $divider;
 	margin-bottom: 20px;
 
-	h3 {
+	h2 {
 		margin: 0;
 		padding: $padding 0;
 		color: $primaryText;
 		position: relative;
-
+		font-size: 1.75rem;
+		
 		&::after {
 			content: "";
 			position: absolute;
@@ -78,7 +79,7 @@ body {
 
 // Start breadcrumb
 .breadcrumb {
-	background-color: $accent;
+	// background-color: $accent;
 
 	ul {
 		list-style-type: none;

@@ -86,7 +86,7 @@
             <div class="col-lg-3">
                 <div class="shop-by">
                     <div class="section-head">
-                        <h3>@lang('user.shopby')</h3>
+                        <h2>@lang('user.shopby')</h2>
                     </div>
                     <div class="card">
                         <div class="card-body">

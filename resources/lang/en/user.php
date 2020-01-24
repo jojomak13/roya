@@ -150,7 +150,7 @@ return [
     ],
     'checkout' => [
         'billDetails' => 'Billing Details',
-        'shipdetails' => 'Shipping Details',
+        'shipDetails' => 'Shipping Details',
         'total' => 'Total',
         'product' => 'Product',
         'subtotal' => 'SubTotal',

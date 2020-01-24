@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-head">
-                        <h3>@lang('user.checkout.billDetails')</h3>
+                        <h2>@lang('user.checkout.billDetails')</h2>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="section-head">
-                        <h3>@lang('user.checkout.shipDetails')</h3>
+                        <h2>@lang('user.checkout.shipDetails')</h2>
                     </div>
                     <!-- Start Cart Details -->
                     <div class="card cart-details">

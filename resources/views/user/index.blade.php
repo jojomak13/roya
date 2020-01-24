@@ -76,7 +76,7 @@
             <div class="col-lg-3">
                 <section class="hot-deal">
                     <div class="section-head">
-                        <h3>{{ __('user.specialOffer') }}</h3>
+                        <h2>{{ __('user.specialOffer') }}</h2>
                     </div>
                     <div id="offers" class="owl-carousel owl-theme">
                     @foreach($hotProducts as $product)
@@ -123,7 +123,7 @@
             <div class="col-lg-9">
                 <section class="new-products">
                     <div class="section-head d-flex justify-content-between">
-                        <h3>{{ __('user.newProducts') }}</h3>
+                        <h2>{{ __('user.newProducts') }}</h2>
                         <div class="carousel-control d-flex align-self-center">
                             <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
                             <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
@@ -183,7 +183,7 @@
                     <img src="{{ url('storage/'.$offer->image) }}" class="img-fluid" alt="{{ $offer->{lang('name')} }}" title="{{ $offer->{lang('name')} }}">
                     <div class="mask">
                         <div class="content">
-                            <h3>{{ $offer->{lang('name')} }}</h3>
+                            <h2>{{ $offer->{lang('name')} }}</h2>
                             <h4>@lang('user.offer') <span class="text-warning">{{ $offer->max_discount }}%</span></h4>
                             <a href="#" class="btn btn-primary">Show More</a>
                         </div>
@@ -240,7 +240,7 @@
             <div class="col-lg-3">
                 <div class="tags">
                     <div class="section-head">
-                        <h3>@lang('user.latestCats')</h3>
+                        <h2>@lang('user.latestCats')</h2>
                     </div>
                     <div class="card">
                         <div class="card-body">
@@ -256,7 +256,7 @@
             <div class="col-lg-9">
                 <section class="best-seller new-products">
                     <div class="section-head d-flex justify-content-between">
-                        <h3>@lang('user.topRated')</h3>
+                        <h2>@lang('user.topRated')</h2>
                         <div class="carousel-control d-flex align-self-center">
                             <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
                             <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>
@@ -313,7 +313,7 @@
     <section class="latest-blogs">
         <div class="container">
             <div class="section-head d-flex justify-content-between">
-                <h3>@lang('user.latestBlogs')</h3>
+                <h2>@lang('user.latestBlogs')</h2>
                 <div class="carousel-control d-flex align-self-center">
                     <button class="prev btn btn-primary"><i class="fa fa-arrow-left"></i></button>
                     <button class="next btn btn-primary"><i class="fa fa-arrow-right"></i></button>

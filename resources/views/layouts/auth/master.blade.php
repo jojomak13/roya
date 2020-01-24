@@ -13,7 +13,7 @@
     @else
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     @endif
-    <link rel="stylesheet" href="{{ asset('user/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('user/css/app.css') }}">
     @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
     <link rel="stylesheet" href="{{ asset('user/css/rtl.css') }}">
     @endif

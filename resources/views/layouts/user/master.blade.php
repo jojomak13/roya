@@ -17,7 +17,7 @@
     @else
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,400i,600" rel="stylesheet">
     @endif
-    <link rel="stylesheet" href="{{ mix('user/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('user/css/app.css') }}">
     @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
     <link rel="stylesheet" href="{{ asset('user/css/rtl.css') }}">
     @endif
