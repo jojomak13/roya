@@ -13,6 +13,7 @@
     <link rel="favicon" href="{{ asset('./favicon.ico') }}">
     <meta property="og:title" content="@yield('title',  __('user.title.home') ) - @lang('app.name')">
     <meta property="og:description" content="@lang('app.description')">
+    <meta property="og:site_name" content="@lang('app.name')"> 
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:image" content="{{ asset('user/images/banner.jpeg') }}">
@@ -27,7 +28,7 @@
     @else
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,400i,600" rel="stylesheet">
     @endif
-    <link rel="stylesheet" href="{{ mix('user/css/app.css') }}">
+    <link rel="stylesheet" href="{{ url('user/css/app.css') }}">
     @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
     <link rel="stylesheet" href="{{ asset('user/css/rtl.css') }}">
     @endif
