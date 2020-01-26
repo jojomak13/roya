@@ -11,6 +11,16 @@
     <meta name="tags" content="{{ __('app.tags') }}">
     <title>@yield('title',  __('user.title.home') ) - @lang('app.name')</title>
     <link rel="favicon" href="{{ asset('./favicon.ico') }}">
+    <meta property="og:title" content="@yield('title',  __('user.title.home') ) - @lang('app.name')">
+    <meta property="og:description" content="@lang('app.description')">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:image" content="{{ asset('user/images/banner.jpeg') }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@roya">
+    <meta name="twitter:title" content="@yield('title',  __('user.title.home') ) - @lang('app.name')">
+    <meta name="twitter:description" content="@lang('app.description')">
+    <meta name="twitter:image" content="{{ asset('user/images/banner.jpeg') }}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
     <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
