@@ -36,8 +36,7 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $products = Product::select('id', 'name_en', 'name_ar', 'status')
-        ->with('firstImage')
+        $products = Product::with('firstImage')
         ->Where('name_en', 'like', '%' . $request->search . '%')
         ->orWhere('name_ar', 'like', '%' . $request->search . '%')
         ->take(5)

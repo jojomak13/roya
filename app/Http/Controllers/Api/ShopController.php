@@ -9,6 +9,30 @@ use App\Product;
 class ShopController extends Controller
 {
 
+    public function home()
+    {
+        $brands = \App\Brand::latest()->get();
+        $colors = \DB::table('products')->select('color')->distinct()->get();
+
+        return response()->json([
+            'brands' => $brands,
+            'colors' => $colors,
+            'products' => $this->search()
+        ]);
+    }
+
+    public function category(Request $request)
+    {
+        $brands = \App\Brand::latest()->get();
+        $colors = \DB::table('products')->select('color')->distinct()->get();
+
+        return response()->json([
+            'brands' => $brands,
+            'colors' => $colors,
+            'products' => $this->searchWith($request->category_id)
+        ]);
+    }
+
     public function index(Request $request)
     {
         return $this->search();    
