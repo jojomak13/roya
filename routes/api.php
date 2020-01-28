@@ -31,8 +31,10 @@ Route::post('/search', 'HomeController@search');
 Route::get('/shop/home', 'ShopController@home');
 Route::get('/shop/show', 'ShopController@category');
 
-// Single Product
+// Product Controller
 Route::get('product/{product}', 'ProductController@show');
+Route::post('product/{product}/review', 'ProductController@review');
+
 
 // Categories
 Route::get('categories', 'CategoryController@index');

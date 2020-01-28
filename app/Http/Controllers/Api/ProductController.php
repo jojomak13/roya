@@ -9,6 +9,12 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->only(['review']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,6 +41,23 @@ class ProductController extends Controller
             'rate' => $productRates,
 
         ]);
+    }
+
+    public function review(Request $request, Product $product)
+    {
+        $roles = $request->validate([
+            'stars' => 'required|integer|min:1|max:5',
+            'feedback' => 'required|min:10'
+        ], [], [
+            'stars' => __('user.reviews.rate'),
+            'feedback' => __('user.reviews.feedback')
+        ]);
+        
+        $product->votes()->syncWithoutDetaching([
+            auth()->user()->id => $roles
+        ]);
+
+        return response()->json(['status' => true, 'message' => __('user.reviews.voted_message')], 201);
     }
 
 }
