@@ -27,7 +27,14 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return $product->load('images');
+        $product->load('images');
+        $productRates = \App\Review::productRates($product->id);
+
+        return response()->json([
+            'product' => $product,
+            'rate' => $productRates,
+
+        ]);
     }
 
 }

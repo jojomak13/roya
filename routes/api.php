@@ -31,11 +31,14 @@ Route::post('/search', 'HomeController@search');
 Route::get('/shop/home', 'ShopController@home');
 Route::get('/shop/show', 'ShopController@category');
 
+// Single Product
+Route::get('product/{product}', 'ProductController@show');
 
+// Categories
 Route::get('categories', 'CategoryController@index');
 
+
 Route::get('products/{category}', 'ProductController@index');
-Route::get('product/{product}', 'ProductController@show');
 
 // For Front End only
 Route::get('/shop', 'ShopController@index');
