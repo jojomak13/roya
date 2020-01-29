@@ -48,7 +48,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($this->validateForm());
+        Category::create($this->validateForm())->uploadImage();
 
         session()->flash('success', __('dashboard.categories.create_success'));
         return redirect()->route('admin.categories.index');
@@ -88,7 +88,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->update($this->validateForm());
-
+        $category->uploadImage();
         
         session()->flash('success', __('dashboard.categories.edit_success'));
         return redirect()->route('admin.categories.index');
@@ -103,6 +103,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->childrens()->delete();
+        \Storage::delete($category->image);
         $category->delete();
 
         session()->flash('success', __('dashboard.categories.delete_success'));

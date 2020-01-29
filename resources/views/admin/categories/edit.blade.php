@@ -10,7 +10,7 @@
 @section('content')
 <section class="card">
     <div class="card-body">
-        <form autocomplete="off" action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+        <form autocomplete="off" action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="form-group">
@@ -26,6 +26,16 @@
                 @error('name_ar')
                 <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
+            </div>
+            <div class="form-group">
+                <label for="image">{{ __('dashboard.categories.image') }}</label>
+                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                @error('image')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <img src="{{ $category->category_image }}" class="img-thumbnail img-fluid">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">{{ __('dashboard.save') }}</button>

@@ -11,7 +11,7 @@
 @section('content')
 <section class="card">
     <div class="card-body">
-        <form autocomplete="off" action="{{ route('admin.categories.store') }}" method="POST">
+        <form autocomplete="off" action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name_en">{{ __('dashboard.categories.name_en') }}</label>
@@ -23,9 +23,16 @@
             </div>
             <div class="form-group">
                 <label for="name_ar">{{ __('dashboard.categories.name_ar') }}</label>
-                <input type="text" value="{{ old('name_ar') }}" autofocus
+                <input type="text" value="{{ old('name_ar') }}"
                     class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar">
                 @error('name_ar')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="image">{{ __('dashboard.categories.image') }}</label>
+                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                @error('image')
                 <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

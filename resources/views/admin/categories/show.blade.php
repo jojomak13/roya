@@ -25,6 +25,7 @@
             <tbody>
                 @forelse ($categories as $key => $category)
                 <tr>
+                    <th><img style="height:50px" src="{{ $category->category_image }}"></th>
                     <th>{{ $category->{lang('name')} }}</th>
                     <th>
                         <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>

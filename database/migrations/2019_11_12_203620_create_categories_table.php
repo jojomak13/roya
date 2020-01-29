@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name_en');
             $table->string('name_ar');
+            $table->string('image')->nullable();
             $table->unsignedInteger('parent_id')->default(0);
             $table->timestamps();
         });
