@@ -1,6 +1,6 @@
 # 💎 Roya
 ---
-**Roya** is an ecommerce website with custom build for bookstore
+**Roya** is an ecommerce website with custom build
 
 ### Technologies & Tools
 1. Laravel **v6.0**
