@@ -43,6 +43,43 @@ class AuthController extends Controller
         return response()->json(['message' => __('user.user_created')], 201);  
     }
 
+    public function update(Request $request)
+    {
+        try {
+            $user = auth()->userOrFail();
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error' => $e->getMessage()]);
+        }
+
+        $roles = [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:users,email,'.$user->id,
+            'address' => 'required',
+            'phone' => 'required|string|min:11|max:13',
+            'news' => '',
+            'city' => 'min:3|max:20|nullable',
+            'country_id' => 'integer|nullable',
+            'postal_code' => 'max:10|nullable'
+        ];
+
+        if(!empty($request->get('password')))
+            $roles['password'] = 'min:8|confirmed'; 
+        
+        $roles = $request->validate($roles);
+
+        if(array_key_exists('password', $roles)){
+            $roles['password'] = BCrypt($roles['password']);
+        }
+
+        $roles['news'] = $request->has('news')? true : false; 
+        
+        $user->uploadImage();
+        $user->update($roles);
+
+        return response()->json(['status' => true, 'message' => __('user.auth.editSuccess')]);
+    }
+
     public function self(){
         try {
             $user = auth()->userOrFail()->load('country');
