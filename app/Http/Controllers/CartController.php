@@ -7,6 +7,7 @@ use App\Order;
 use App\Country;
 use App\Product;
 use Illuminate\Http\Request;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class CartController extends Controller
 {
@@ -121,21 +122,34 @@ class CartController extends Controller
         
         $this->updateUser($user);         
 
-        $handledProducts = Cart::handleProducts();
-
-        $order = Order::create([
-            'user_id' => $user->id,
-            'total_price' => Cart::totalPrice(),
-            'status' => 'payment_pending'
+        $charge = Stripe::charges()->create([
+            'currency' => 'EGP',
+            'source' => $request->stripeToken,
+            'amount' => Cart::totalPrice(),
+            'description' => 'Order'
         ]);
-        
-        $order->products()->sync($handledProducts);
+
+        if($charge['id']){
+            $handledProducts = Cart::handleProducts();
+
+            $order = Order::create([
+                'user_id' => $user->id,
+                'total_price' => Cart::totalPrice(),
+                'status' => 'preparing'
+            ]);
             
-        Product::updateQuantity($handledProducts);
+            $order->products()->sync($handledProducts);
+                
+            Product::updateQuantity($handledProducts);
         
-        Cart::clear();
-        
-        session()->flash('success', __('user.cart.order_created'));
+            Cart::clear();
+
+            session()->flash('success', __('user.cart.order_created'));
+
+        } else {
+            session()->flash('warning', __('user.cart.order_failed'));
+        }
+
         return redirect()->route('home');
     }
 

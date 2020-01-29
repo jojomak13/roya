@@ -145,6 +145,7 @@ return [
         'outOfQuantity' => 'لا يوجد كمية كافية من هذا المنتج اقصى كمية :quantity',
         'outOfStock' => 'لقد نفذت الكمية من هذا المنتج حاليا',
         'order_created' => 'تم الطلب بنجاح',
+        'order_failed' => 'لقد حدث خطأ ما حاول مرة اخرى'
     ],
     'checkout' => [
         'billDetails' => 'بيانات الدفع',
