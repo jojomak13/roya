@@ -1884,11 +1884,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      search: '',
+      search: "",
       productsNumber: 0,
       products: [],
       cart: []
@@ -1904,7 +1923,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateQuantity: function updateQuantity(e) {
-      var productId = e.target.getAttribute('p-id');
+      var productId = e.target.getAttribute("p-id");
       var quantity = e.target.value;
       this.cart.map(function (el) {
         if (el.productId == productId) {
@@ -1922,11 +1941,11 @@ __webpack_require__.r(__webpack_exports__);
     save: function save() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://roya.test/ar/dashboard/orders', this.cart).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/dashboard/orders", this.cart).then(function (res) {
         _this.cart = [];
         _this.products = [];
         toast.fire({
-          icon: 'success',
+          icon: "success",
           title: "تم الطلب بنجاح"
         });
       });
@@ -1936,7 +1955,7 @@ __webpack_require__.r(__webpack_exports__);
     search: function search(data) {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://roya.test/ar/dashboard/products/".concat(data)).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/dashboard/products/".concat(data)).then(function (res) {
         if (res.data.status) {
           var isExist = _this2.products.some(function (el) {
             return el.barcode == res.data.product.barcode;
@@ -1949,7 +1968,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
 
-        _this2.search = '';
+        _this2.search = "";
       });
     }
   }
@@ -28733,16 +28752,20 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Cashier__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Cashier */ "./resources/js/admin/components/Cashier.vue");
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/admin/bootstrap.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Cashier__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Cashier */ "./resources/js/admin/components/Cashier.vue");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/admin/bootstrap.js");
 
 
 
+
+axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "".concat(baseData.url, "/").concat(baseData.lang);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   components: {
-    'app-cashier': _components_Cashier__WEBPACK_IMPORTED_MODULE_1__["default"]
+    "app-cashier": _components_Cashier__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  el: '#app'
+  el: "#app"
 });
 
 /***/ }),

@@ -36,6 +36,12 @@
 
         </div>
         <!-- ========================================================== -->
+        <script>
+            const baseData = {
+                url: "{{ url('/') }}",
+                lang: '{{ LaravelLocalization::getCurrentLocale() }}',
+            }
+        </script>
         <script src="{{ asset('admin/app.js') }}"></script>
         <script src="{{ asset('admin/js/sweatalert.min.js') }}"></script>
         @yield('script')

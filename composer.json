@@ -17,7 +17,8 @@
         "mcamara/laravel-localization": "^1.4",
         "milon/barcode": "^6.0",
         "santigarcor/laratrust": "5.2.*",
-        "tymon/jwt-auth": "1.0.0-rc.5"
+        "tymon/jwt-auth": "1.0.0-rc.5",
+        "cartalyst/stripe-laravel": "11.0.*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

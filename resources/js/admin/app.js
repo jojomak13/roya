@@ -1,11 +1,13 @@
-import Vue from 'vue';
-import Cashier from './components/Cashier';
-import './bootstrap';
+import Vue from "vue";
+import Axios from "axios";
+import Cashier from "./components/Cashier";
+import "./bootstrap";
 
+Axios.defaults.baseURL = `${baseData.url}/${baseData.lang}`;
 
 const app = new Vue({
     components: {
-        'app-cashier': Cashier
+        "app-cashier": Cashier
     },
-    el: '#app',
+    el: "#app"
 });

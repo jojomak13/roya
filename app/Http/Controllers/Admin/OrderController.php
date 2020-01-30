@@ -47,18 +47,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        
         $data = Order::handleOrder($request->all());
 
-        $order = Order::create([
+        Order::create([
             'status' => 'completed',
             'total_price' => $data['total_price'],
             'user_id' => auth()->user()->id
-        ]);
+
+        ])->createOrder($data['products']);
         
+
         Product::updateQuantity($data['products']);
-        
-        $order->products()->sync($data['products']);
 
         session()->flash('success', __('dashboard.orders.create_success'));
         return redirect()->route('admin.orders.index');

@@ -10,8 +10,8 @@ class Order extends Model
     
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot(['quantity', 'total_price'])->withTimeStamps();
-    }
+        return $this->hasMany(ProductsOrder::class, 'order_id', 'id');
+    } 
 
     public function getStatusAttribute($status)
     {
@@ -41,6 +41,20 @@ class Order extends Model
         }
 
         return ['products' => $products, 'total_price' => $sum];
+    }
+
+    public function createOrder($products)
+    {
+        foreach($products as $id => $productData){
+            $product = Product::findOrFail($id);
+
+           $this->products()->create([
+                'name_en'  => $product->name_en,
+                'name_ar'  => $product->name_ar,
+                'price'    => $product->price,
+                'quantity' => $productData['quantity']
+            ]);
+        }   
     }
 
 }
