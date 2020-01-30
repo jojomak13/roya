@@ -1,5 +1,5 @@
 body {
-    font-family: 'Cairo', sans-serif;
+    font-family: "Cairo", sans-serif;
 }
 
 .section-head h2,
@@ -26,11 +26,13 @@ footer,
     right: 0;
 }
 
-.carousel-control, .slideshow {
+.carousel-control,
+.slideshow {
     direction: ltr;
 }
 
-.no-js .owl-carousel, .owl-carousel.owl-loaded {
+.no-js .owl-carousel,
+.owl-carousel.owl-loaded {
     direction: ltr;
 }
 
@@ -39,7 +41,6 @@ footer,
     -ms-flex-pack: start !important;
     justify-content: flex-start !important;
 }
-
 
 .head .cats ul li a i:last-child {
     float: left;
@@ -66,7 +67,7 @@ footer,
 }
 
 .breadcrumb ul li::after {
-    content: "\f104"
+    content: "\f104";
 }
 
 .single-product .product-details .product-review {
@@ -76,7 +77,6 @@ footer,
 .single-product .info {
     direction: rtl;
 }
-
 
 .single-product .product-review .votes-progress {
     margin-left: auto;
@@ -110,5 +110,11 @@ footer,
 }
 
 .custom-file-label {
-    padding: .375rem 5.75rem;
+    padding: 0.375rem 5.75rem;
+}
+
+header {
+    background: #2980b9;
+    background: -webkit-linear-gradient(to left, #f5f3f3, #6dd5fa, #2980b9);
+    background: linear-gradient(to left, #f5f3f3, #6dd5fa, #2980b9);
 }

@@ -1,6 +1,6 @@
 <header>
-    <div class="container">
-        <div class="top-nav d-flex justify-content-between">
+    <div class="top-nav">
+        <div class="container d-flex justify-content-between">
             <ul>
                 @guest
                 <li><a href="{{ route('login') }}" title="@lang('user.header.login')"><i class="fa fa-lock"></i> @lang('user.header.login')</a></li>
@@ -38,7 +38,9 @@
             </ul>
             @endauth
         </div>
-        <div class="middle-nav d-flex justify-content-between">
+    </div>
+    <div class="container">
+        <div class="middle-nav d-flex justify-content-between align-items-center">
             <div class="image">
                 <img src="{{ asset('user/images/logo.png') }}" class="img-fluid" alt="@lang('app.name')" title="@lang('app.name')">
             </div>

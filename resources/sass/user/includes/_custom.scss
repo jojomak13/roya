@@ -114,11 +114,16 @@ body {
 
 // Start Header
 header {
-	background-color: $dark;
+	// background-color: $dark;
+	background: #2980B9;
+	background: -webkit-linear-gradient(to right, #f5f3f3, #6DD5FA, #2980B9);
+	background: linear-gradient(to right, #f5f3f3, #6DD5FA, #2980B9); 
+
 	padding: 0;
 
 	// Start Top Nav
 	.top-nav {
+		background-color: $light;
 		font-size: 0.9em;
 
 		ul {
@@ -263,7 +268,8 @@ header {
 
 // Start Navbar
 .bottom-nav nav {
-	background-color: $light;
+	// background-color: $light;
+	background-color: #2980B9;
 	padding: 0;
 
 	.navbar-nav li:first-child {
