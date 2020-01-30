@@ -110,7 +110,13 @@ class Product extends Model
         foreach($products as $id => $data){
             $product = static::findOrFail($id);
             $product->stores[0]->pivot->quantity -= $data['quantity'];
+
             $product->stores[0]->pivot->save();
+            
+            if(!$product->stores[0]->pivot->quantity){
+                $product->status = 'outOfStock';
+                $product->save();
+            }
         }
     }
 

@@ -115,8 +115,8 @@
                                         @foreach($order->products as $product)
                                         <tr>
                                             <td>{{ $product->{lang('name')} }}</td>
-                                            <td>{{ $product->pivot->quantity }}x{{ $product->price }}</td>
-                                            <td>{{ $product->pivot->total_price }}</td>
+                                            <td>{{ $product->quantity }}x @money($product->price)</td>
+                                            <td>@money($product->price * $product->quantity) @lang('user.currency')</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

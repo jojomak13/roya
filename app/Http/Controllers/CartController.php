@@ -136,10 +136,8 @@ class CartController extends Controller
                 'user_id' => $user->id,
                 'total_price' => Cart::totalPrice(),
                 'status' => 'preparing'
-            ]);
+            ])->createOrder($handledProducts);
             
-            $order->products()->sync($handledProducts);
-                
             Product::updateQuantity($handledProducts);
         
             Cart::clear();
