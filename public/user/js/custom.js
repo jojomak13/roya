@@ -60,6 +60,9 @@ function addtocart(id)
 					title: res.message
 				})
 			}
+		},
+		error(){
+			window.location = '/login';
 		}
 	})
 }

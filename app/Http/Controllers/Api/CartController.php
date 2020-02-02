@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Controller;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use App\Order;
 use App\Country;
 use App\Product;
-use Illuminate\Http\Request;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class CartController extends Controller
 {
-
+    
     public function __construct()
     {
-    
-        $this->middleware('verified');
+        $this->middleware('auth:api');
         $this->middleware('cart')->only(['checkout']);
     }
 
@@ -27,7 +27,7 @@ class CartController extends Controller
     {
         $cart = auth()->user()->cart;
 
-        return view('user.cart', compact('cart'));
+        return response()->json(['products' => $cart]);
     }
 
 
@@ -45,7 +45,7 @@ class CartController extends Controller
         $maxQuantity = $product->stores->first()->pivot->quantity;
 
         if($quantity > $maxQuantity){
-            return response()->json(['status' => true, 'message' => __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
+            return response()->json(['status' => false, 'message' => __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
         }
 
         auth()->user()->cart()->syncWithoutDetaching([$request->product_id => [
@@ -68,17 +68,15 @@ class CartController extends Controller
         $maxQuantity = $product->stores->first()->pivot->quantity;
 
         if($request->quantity > $maxQuantity){
-            session()->flash('success', __('user.cart.outOfQuantity', ['quantity' => $maxQuantity]));
+            return response()->json(['status' => false, 'message' =>  __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
             
         } else {
             auth()->user()->cart()->syncWithoutDetaching([$id => [
                 'quantity' => $request->quantity
             ]]);
             
-            session()->flash('success', __('user.cart.updated'));
+            return response()->json(['status' => true, 'message' => __('user.cart.updated')]);
         }
-
-        return redirect()->back();
     }
 
     /**
@@ -91,8 +89,7 @@ class CartController extends Controller
     {
         auth()->user()->cart()->detach($id);
 
-        session()->flash('info', __('user.cart.removed'));
-        return redirect()->back();
+        return response()->json(['status' => true, 'message' => __('user.cart.removed')]);
     }
 
     public function checkout()

@@ -34,10 +34,13 @@ Route::get('/shop/show', 'ShopController@category');
 Route::get('product/{product}', 'ProductController@show');
 Route::post('product/{product}/review', 'ProductController@review');
 
-
 // Categories
 Route::get('categories', 'CategoryController@index');
 
+// Cart Controller
+Route::resource('/cart', 'CartController');
+Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
+Route::post('/procced', 'CartController@procced')->name('cart.procced');
 
 Route::get('products/{category}', 'ProductController@index');
 
