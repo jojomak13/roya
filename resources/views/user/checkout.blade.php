@@ -106,24 +106,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach(\App\Cart::items() as $product)
+                                    @foreach($user->cart as $product)
                                     <tr>
-                                        <td>{{ $product[lang('name')] }}</td>
-                                        <td>x{{ $product['quantity'] }}</td>
-                                        <td>@money($product['price'] * $product['quantity']) @lang('user.currency')</td>
+                                        <td>{{ $product->{lang('name')} }}</td>
+                                        <td>x{{ $product->pivot->quantity }}</td>
+                                        <td>@money($product->price * $product->pivot->quantity) @lang('user.currency')</td>
                                     </tr>
                                     @endforeach
                                     <tr class="calc">
                                         <td colspan="2">@lang('user.checkout.subtotal')</td>
-                                        <td>@money(\App\Cart::totalPrice()) @lang('user.currency')</td>
+                                        <td>@money($user->totalPrice()) @lang('user.currency')</td>
                                     </tr>
                                     <tr class="calc">
                                         <td colspan="2">@lang('user.checkout.shipping')</td>
-                                        <td>$50</td>
+                                        <td>0 @lang('user.currency')</td>
                                     </tr>
                                     <tr class="calc">
                                         <td colspan="2">@lang('user.checkout.total')</td>
-                                        <td>$2,575,15</td>
+                                        <td>@money($user->totalPrice()) @lang('user.currency')</td>
                                     </tr>
                                 </tbody>
                             </table>

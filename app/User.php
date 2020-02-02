@@ -123,4 +123,52 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->hasMany(Order::class);
     }
+
+    public function cart()
+    {
+        return $this->belongsToMany(Product::class, 'cart')
+            ->with(['firstImage'])
+            ->withPivot(['quantity'])
+            ->withTimestamps();
+    }
+    
+    public function cartQuantity()
+    {
+        $quantity = 0;
+        foreach ($this->cart as $product) {
+            $quantity += $product->pivot->quantity;
+        }
+
+        return $quantity;
+    }
+
+    public function TotalPrice()
+    {
+        $totalPrice = 0;
+
+        foreach($this->cart as $product){
+            $totalPrice += $product->price * $product->pivot->quantity;
+        }
+
+        return $totalPrice;
+    }
+
+    public function handleProducts()
+    {
+        $products = [];
+
+        foreach($this->cart as $product){
+            $products[$product->id] = [
+                'quantity' => $product->pivot->quantity,
+                'total_price' => $product->pivot->quantity * $product->price 
+            ];
+        }
+
+        return $products;
+    }
+
+    public function emptyCart()
+    {
+        $this->cart()->detach();
+    } 
 }

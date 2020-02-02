@@ -16,7 +16,7 @@ class CheckCart
      */
     public function handle($request, Closure $next)
     {
-        if(!Cart::quantity()){
+        if(!auth()->user()->cart()->count()){
             return redirect()->back();
         }
         

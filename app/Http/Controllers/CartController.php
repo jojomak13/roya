@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Cart;
 use App\Order;
 use App\Country;
 use App\Product;
@@ -14,7 +13,8 @@ class CartController extends Controller
 
     public function __construct()
     {
-        $this->middleware('verified')->only(['checkout']);
+    
+        $this->middleware('verified');
         $this->middleware('cart')->only(['checkout']);
     }
 
@@ -25,10 +25,12 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('user.cart');
+        $cart = auth()->user()->cart;
+
+        return view('user.cart', compact('cart'));
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,35 +39,22 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $product = product::where('id', $request->product_id)->with('firstImage')->first();
+        $product = Product::find($request->product_id);
         $quantity = $request->quantity ?: 1;
+        
+        $maxQuantity = $product->stores->first()->pivot->quantity;
 
-        if($product && $product->status != 'outOfStock'){
-
-            $maxQuantity = $product->stores->first()->pivot->quantity;
-
-            if(Cart::has($product->id)){
-
-                if($maxQuantity < Cart::get($product->id)['quantity'] + $quantity){
-                    return response()->json(['status' => true, 'message' => __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
-                } 
-                
-            } else {
-                if($maxQuantity < $quantity)
-                    return response()->json(['status' => true, 'message' => __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
-            }
-
-            Cart::add($product, $quantity);
-            return response()->json(['status' => true, 'message' => __('user.cart.addSuccess')]);
-            
-        }  else if($product && $product->status == 'outOfStock') {
-            return response()->json(['status' => true, 'message' => __('user.cart.outOfStock')]);
+        if($quantity > $maxQuantity){
+            return response()->json(['status' => true, 'message' => __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
         }
 
-        return response()->json(['status' => false]);
+        auth()->user()->cart()->syncWithoutDetaching([$request->product_id => [
+            'quantity' => $quantity
+        ]]);
+
+        return response()->json(['status' => true, 'message' => __('user.cart.addSuccess')]);
     }
 
-    
     /**
      * Update the specified resource in storage.
      *
@@ -73,39 +62,38 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
-    {   
-        $roles = $request->validate(['qty' => 'required|integer']);
+    public function update(Request $request, $id)
+    {
+        $product = Product::find($id);
         $maxQuantity = $product->stores->first()->pivot->quantity;
 
-        if($maxQuantity < $request->qty){
-            session()->flash('warning', __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])); 
-
-        } else {
+        if($request->quantity > $maxQuantity){
+            session()->flash('success', __('user.cart.outOfQuantity', ['quantity' => $maxQuantity]));
             
-            Cart::update($product, $roles['qty']);
+        } else {
+            auth()->user()->cart()->syncWithoutDetaching([$id => [
+                'quantity' => $request->quantity
+            ]]);
+            
             session()->flash('success', __('user.cart.updated'));
         }
 
-
-        return redirect()->route('cart.index');
+        return redirect()->back();
     }
 
-    
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        Cart::delete($product->id);
+        auth()->user()->cart()->detach($id);
 
-        session()->flash('success', __('user.cart.removed'));
-        return redirect()->route('cart.index');
+        session()->flash('info', __('user.cart.removed'));
+        return redirect()->back();
     }
-
 
     public function checkout()
     {
@@ -125,22 +113,22 @@ class CartController extends Controller
         $charge = Stripe::charges()->create([
             'currency' => 'EGP',
             'source' => $request->stripeToken,
-            'amount' => Cart::totalPrice(),
+            'amount' => auth()->user()->totalPrice(),
             'description' => 'Order'
         ]);
 
         if($charge['id']){
-            $handledProducts = Cart::handleProducts();
+            $handledProducts = auth()->user()->handleProducts();
 
             $order = Order::create([
                 'user_id' => $user->id,
-                'total_price' => Cart::totalPrice(),
+                'total_price' => auth()->user()->totalPrice(),
                 'status' => 'preparing'
             ])->createOrder($handledProducts);
             
             Product::updateQuantity($handledProducts);
         
-            Cart::clear();
+            auth()->user()->emptyCart();
 
             session()->flash('success', __('user.cart.order_created'));
 
@@ -163,5 +151,4 @@ class CartController extends Controller
             'postal_code' => 'max:10|nullable',
         ]));
     }
-
 }

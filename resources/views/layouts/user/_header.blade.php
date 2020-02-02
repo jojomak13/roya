@@ -59,7 +59,7 @@
                 <div>
                     <a class="btn" href="{{ route('cart.index') }}">
                         <i class="fa fa-shopping-cart"></i>
-                        <span class="badge badge-primary">{{ \App\Cart::totalItems() }}</span>
+                        <span class="badge badge-primary">{{ auth()->user()->cartQuantity() }}</span>
                     </a>
                 </div>
                 <button class="d-lg-none navbar-toggler" type="button" data-toggle="collapse"

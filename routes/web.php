@@ -36,10 +36,11 @@ Route::group($middlewares, function(){
 	Route::get('/blog/{blog}-{slug}', 'BlogController@show')->name('blog.show');
 
 	// Cart & checkout
-	Route::get('/cart', 'CartController@index')->name('cart.index');
-	Route::post('/cart', 'CartController@store')->name('cart.store');
-	Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
-	Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.delete');
+	// Route::get('/cart', 'CartController@index')->name('cart.index');
+	// Route::post('/cart', 'CartController@store')->name('cart.store');
+	// Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
+	// Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.delete');
+	Route::resource('/cart', 'CartController');
 	Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
 	Route::post('/procced', 'CartController@procced')->name('cart.procced');
 

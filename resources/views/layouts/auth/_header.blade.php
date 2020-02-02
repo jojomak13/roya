@@ -1,6 +1,6 @@
 <header>
-    <div class="container">
-        <div class="top-nav d-flex justify-content-end">
+    <div class="top-nav">
+        <div class="container d-flex justify-content-end">
             <ul>
                 <li><a href="{{ route('home') }}" title="@lang('user.title.home')"><i class="fa fa-home"></i> @lang('user.title.home')</a></li>
             @if(auth()->user())

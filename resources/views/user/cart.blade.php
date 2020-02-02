@@ -33,12 +33,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse (\App\Cart::items() as $product)
+                    @forelse ($cart as $product)
                     <tr>
                         <td class="delete">
                             <a href="javascript:void(0)" onclick="this.children[1].submit()" title="@lang('user.cart.delete')">
                                 <i class="fa fa-close"></i>
-                                <form method="POST" action="{{ route('cart.delete', $product['id']) }}">
+                                <form method="POST" action="{{ route('cart.destroy', $product->id) }}">
                                     @csrf
                                     @method('delete')
                                 </form>
@@ -46,24 +46,24 @@
                         </td>
                         <td class="image d-none d-sm-block">
                             <div class="image">
-                                <img src="{{ url('storage/'.$product['image']) }}" alt="{{ $product[lang('name')] }}" title="{{ $product[lang('name')] }}">
+                                <img src="{{ url('storage/'.$product->firstImage->url) }}" alt="{{ $product->{lang('name')} }}" title="{{ $product->{lang('name')} }}">
                             </div>
                         </td>
                         <td class="name">
                             <div class="d-flex align-self-center">
-                                <a href="javascript:void(0)" title="{{ $product[lang('name')] }}">{{ $product[lang('name')] }}</a>
+                                <a href="{{ $product->url }}" title="{{ $product->{lang('name')} }}">{{ $product->{lang('name')} }}</a>
                             </div>
                         </td>
-                        <td>{{ $product['price'] }} @lang('user.currency')</td>
+                        <td>{{ $product->price }} @lang('user.currency')</td>
                         <td>
-                            <form class="form-inline" action="{{ route('cart.update', $product['id']) }}" method="POST">
+                            <form class="form-inline" action="{{ route('cart.update', $product->id) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <input type="number" min="1" name="qty" value="{{ $product['quantity'] }}" class="form-control">
+                                <input type="number" min="1" name="quantity" value="{{ $product->pivot->quantity }}" class="form-control">
                                 <button type="submit" class="btn btn-primary">@lang('user.auth.update')</button>
                             </form>
                         </td>
-                        <td>@money($product['price'] * $product['quantity']) @lang('user.currency')</td>
+                        <td>@money($product->price * $product->pivot->quantity) @lang('user.currency')</td>
                     </tr>
                     @empty
                         <tr>
@@ -73,7 +73,7 @@
                     <tr class="total">
                         <td colspan="2"></td>
                         <td colspan="3">@lang('user.cart.totalPrice')</td>
-                        <td colspan="1">@money(\App\Cart::totalPrice()) @lang('user.currency')</td>
+                        <td colspan="1">@money(auth()->user()->totalPrice()) @lang('user.currency')</td>
                     </tr>
                 </tbody>
             </table>
