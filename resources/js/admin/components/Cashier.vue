@@ -8,7 +8,7 @@
             <input autofocus type="text" v-model="search" id="product" class="form-control" />
           </div>
           <div class="form-group">
-            <button class="btn btn-success" @click="save">حفظ</button>
+            <button :disabled="cart.length == 0" class="btn btn-success" @click="save">حفظ</button>
           </div>
         </div>
       </div>

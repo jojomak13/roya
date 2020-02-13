@@ -16762,7 +16762,11 @@ var render = function() {
           _c("div", { staticClass: "form-group" }, [
             _c(
               "button",
-              { staticClass: "btn btn-success", on: { click: _vm.save } },
+              {
+                staticClass: "btn btn-success",
+                attrs: { disabled: _vm.cart.length == 0 },
+                on: { click: _vm.save }
+              },
               [_vm._v("حفظ")]
             )
           ])
