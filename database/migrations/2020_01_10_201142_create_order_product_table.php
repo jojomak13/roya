@@ -15,6 +15,7 @@ class CreateOrderProductTable extends Migration
     {
         Schema::create('order_product', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('barcode');
             $table->string('name_en');
             $table->string('name_ar');
             $table->smallInteger('quantity');

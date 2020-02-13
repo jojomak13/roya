@@ -3,17 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Faker\Factory;
 
 class Order extends Model
 {
     protected $guarded = [];
-    
+
+    public function user()
+    {
+        return $this->belongsTo(\App\User::class);
+    }
+
     public function products()
     {
         return $this->hasMany(ProductsOrder::class, 'order_id', 'id');
     } 
 
-    public function getStatusAttribute($status)
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function($product)
+        {
+            $facotry = Factory::create();
+            $product->barcode = $facotry->unique()->isbn10; 
+        });   
+    }
+
+    public function getOrderStatusAttribute()
     {
         return [
             'payment_pending' =>  __('dashboard.orders.payment_pending'),
@@ -21,7 +37,7 @@ class Order extends Model
             'shipping' =>  __('dashboard.orders.shipping'),
             'completed' =>  __('dashboard.orders.completed'),
             'error' =>  __('dashboard.orders.error'),
-        ][$status];
+        ][$this->status];
     }
 
     public static function handleOrder($request)
@@ -49,6 +65,7 @@ class Order extends Model
             $product = Product::findOrFail($id);
 
            $this->products()->create([
+                'barcode' => $product->barcode,
                 'name_en'  => $product->name_en,
                 'name_ar'  => $product->name_ar,
                 'price'    => $product->price,

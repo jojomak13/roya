@@ -71,7 +71,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order = $order->load(['products', 'user']);
+
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -82,7 +84,9 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $order = $order->load(['products', 'user']);
+        
+        return view('admin.orders.edit', compact('order'));
     }
 
     /**
@@ -94,7 +98,17 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+
+        if($order->status == 'preparing'){
+            $order->update([
+                'status' => 'shipping'
+            ]);   
+            
+        } else if($order->status == 'shipping'){
+            $order->update([
+                'status' => 'completed'
+            ]);   
+        }
     }
 
     /**

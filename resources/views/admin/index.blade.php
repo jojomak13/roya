@@ -2,204 +2,181 @@
 
 @section('title', __('dashboard.title'))
 
+@section('style')
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+@endsection
+
 @section('content')
-		<!-- Info boxes -->
 		<div class="row">
+			
 		  <div class="col-12 col-sm-6 col-md-3">
 			<div class="info-box">
-			  <span class="info-box-icon bg-info elevation-1"><i class="fa fa-gear"></i></span>
+			  <span class="info-box-icon bg-info elevation-1"><i class="fa fa-money"></i></span>
 
 			  <div class="info-box-content">
-				<span class="info-box-text">ترافیک Cpu</span>
+				<span class="info-box-text">@lang('dashboard.home.profit')</span>
 				<span class="info-box-number">
-				  10
-				  <small>%</small>
+					@money($totalProfit->profit)
+				  <small>@lang('dashboard.currency')</small>
 				</span>
 			  </div>
 			  <!-- /.info-box-content -->
 			</div>
 			<!-- /.info-box -->
 		  </div>
-		  <!-- /.col -->
+
 		  <div class="col-12 col-sm-6 col-md-3">
 			<div class="info-box mb-3">
-			  <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-google-plus"></i></span>
+			  <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-shopping-cart"></i></span>
 
 			  <div class="info-box-content">
-				<span class="info-box-text">لایک‌ها</span>
-				<span class="info-box-number">41,410</span>
+				<span class="info-box-text">@lang('dashboard.home.uncompleted_orders')</span>
+				<span class="info-box-number">{{ $uncompletedOrders->count() }}</span>
 			  </div>
 			  <!-- /.info-box-content -->
 			</div>
 			<!-- /.info-box -->
 		  </div>
-		  <!-- /.col -->
 
 		  <!-- fix for small devices only -->
 		  <div class="clearfix hidden-md-up"></div>
 
 		  <div class="col-12 col-sm-6 col-md-3">
 			<div class="info-box mb-3">
-			  <span class="info-box-icon bg-success elevation-1"><i class="fa fa-shopping-cart"></i></span>
+			  <span class="info-box-icon bg-success elevation-1"><i class="fa fa-tags"></i></span>
 
 			  <div class="info-box-content">
-				<span class="info-box-text">فروش</span>
-				<span class="info-box-number">760</span>
+				<span class="info-box-text">@lang('dashboard.home.productsCount')</span>
+				<span class="info-box-number">{{ $productsCount }}</span>
 			  </div>
 			  <!-- /.info-box-content -->
 			</div>
 			<!-- /.info-box -->
 		  </div>
-		  <!-- /.col -->
+
 		  <div class="col-12 col-sm-6 col-md-3">
 			<div class="info-box mb-3">
 			  <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-users"></i></span>
 
 			  <div class="info-box-content">
-				<span class="info-box-text">اعضای جدید</span>
-				<span class="info-box-number">2,000</span>
+				<span class="info-box-text">@lang('dashboard.home.usersCount')</span>
+				<span class="info-box-number">{{ $usersCount }}</span>
 			  </div>
 			  <!-- /.info-box-content -->
 			</div>
 			<!-- /.info-box -->
 		  </div>
-		  <!-- /.col -->
+
 		</div>
-		<!-- /.row -->
 
 		<div class="row">
 		  <div class="col-md-12">
 			<div class="card">
 			  <div class="card-header">
-				<h5 class="card-title">گزارش ماهیانه</h5>
-
-				<div class="card-tools">
-				  <button type="button" class="btn btn-tool" data-widget="collapse">
-					<i class="fa fa-minus"></i>
-				  </button>
-				  <div class="btn-group">
-					<button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-					  <i class="fa fa-wrench"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-left" role="menu">
-					  <a href="#" class="dropdown-item">منو اول</a>
-					  <a href="#" class="dropdown-item">منو دوم</a>
-					  <a href="#" class="dropdown-item">منو سوم</a>
-					  <a class="dropdown-divider"></a>
-					  <a href="#" class="dropdown-item">لینک</a>
-					</div>
-				  </div>
-				  <button type="button" class="btn btn-tool" data-widget="remove">
-					<i class="fa fa-times"></i>
-				  </button>
-				</div>
+				<h5 class="card-title">@lang('dashboard.home.profit')</h5>
 			  </div>
-			  <!-- /.card-header -->
 			  <div class="card-body">
-				<div class="row">
-				  <div class="col-md-8">
-					<p class="text-center">
-					  <strong>فروش ۱ دی ۱۳۹۷</strong>
-					</p>
-
-					<div class="chart">
-					  <!-- Sales Chart Canvas -->
-					  <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
-					</div>
-					<!-- /.chart-responsive -->
-				  </div>
-				  <!-- /.col -->
-				  <div class="col-md-4">
-					<p class="text-center">
-					  <strong>میزان پیشرفت اهداف</strong>
-					</p>
-
-					<div class="progress-group">
-					  محصولات اضافه شده به سبد خرید
-					  <span class="float-left"><b>160</b>/200</span>
-					  <div class="progress progress-sm">
-						<div class="progress-bar bg-primary" style="width: 80%"></div>
-					  </div>
-					</div>
-					<!-- /.progress-group -->
-
-					<div class="progress-group">
-					  خرید انجام شده
-					  <span class="float-left"><b>310</b>/400</span>
-					  <div class="progress progress-sm">
-						<div class="progress-bar bg-danger" style="width: 75%"></div>
-					  </div>
-					</div>
-
-					<!-- /.progress-group -->
-					<div class="progress-group">
-					  <span class="progress-text">بازدید صفحات ویژه</span>
-					  <span class="float-left"><b>480</b>/800</span>
-					  <div class="progress progress-sm">
-						<div class="progress-bar bg-success" style="width: 60%"></div>
-					  </div>
-					</div>
-
-					<!-- /.progress-group -->
-					<div class="progress-group">
-					  سوالات ارسالی
-					  <span class="float-left"><b>250</b>/500</span>
-					  <div class="progress progress-sm">
-						<div class="progress-bar bg-warning" style="width: 50%"></div>
-					  </div>
-					</div>
-					<!-- /.progress-group -->
-				  </div>
-				  <!-- /.col -->
+				<div class="chart">
+					<div id="mainChart" ></div>
 				</div>
-				<!-- /.row -->
 			  </div>
-			  <!-- ./card-body -->
-			  <div class="card-footer">
-				<div class="row">
-				  <div class="col-sm-3 col-6">
-					<div class="description-block border-right">
-					  <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 17%</span>
-					  <h5 class="description-header">تومان 35,210.43</h5>
-					  <span class="description-text">کل گردش حساب</span>
-					</div>
-					<!-- /.description-block -->
-				  </div>
-				  <!-- /.col -->
-				  <div class="col-sm-3 col-6">
-					<div class="description-block border-right">
-					  <span class="description-percentage text-warning"><i class="fa fa-caret-left"></i> 0%</span>
-					  <h5 class="description-header">تومان 10,390.90</h5>
-					  <span class="description-text">فروش کل</span>
-					</div>
-					<!-- /.description-block -->
-				  </div>
-				  <!-- /.col -->
-				  <div class="col-sm-3 col-6">
-					<div class="description-block border-right">
-					  <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 20%</span>
-					  <h5 class="description-header">تومان 24,813.53</h5>
-					  <span class="description-text">سود کل</span>
-					</div>
-					<!-- /.description-block -->
-				  </div>
-				  <!-- /.col -->
-				  <div class="col-sm-3 col-6">
-					<div class="description-block">
-					  <span class="description-percentage text-danger"><i class="fa fa-caret-down"></i> 18%</span>
-					  <h5 class="description-header">1200</h5>
-					  <span class="description-text">اهداف</span>
-					</div>
-					<!-- /.description-block -->
-				  </div>
-				</div>
-				<!-- /.row -->
-			  </div>
-			  <!-- /.card-footer -->
 			</div>
-			<!-- /.card -->
 		  </div>
-		  <!-- /.col -->
 		</div>
-		<!-- /.row -->
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h5 class="card-title">@lang('dashboard.home.uncompleted_orders')</h5>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>@lang('dashboard.home.status')</th>
+									<th>@lang('dashboard.home.total_price')</th>
+									<th>@lang('dashboard.home.created_at')</th>
+									<th>@lang('dashboard.control')</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($uncompletedOrders as $index => $order)
+								<tr>
+									<td>{{ $index + 1 }}</td>
+									<td>{{ $order->order_status }}</td>
+									<td>@money($order->total_price)</td>
+									<td>{{ $order->created_at->diffForHumans() }}</td>
+									<td>
+										<a href="{{ route('admin.orders.edit', $order->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+					<h5 class="card-title">@lang('dashboard.home.casher_orders')</h5>
+					</div>
+					<div class="card-body" style="direction: ltr">
+					<div class="chart">
+						<div id="cashierProfit"></div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+@endsection
+
+@section('script')
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script>
+	//  Start Main Profit
+	new Morris.Line({
+		element: "mainChart",
+		resize: true,
+        data: [
+			@foreach($profit as $profit)
+			{ ym: "{{ $profit->year }}-{{ $profit->month }}", value: {{ $profit->total_price }} },
+			@endforeach
+        ],
+        xkey: "ym",
+        ykeys: ["value"],
+		labels: ["Profit"],
+		lineColors: ["#17a2b8"],
+		pointFillColors: ['#28a745'],
+		formatter: function(x) { return x.tolocaleString() }
+	});
+	//  End Main Profit
+
+	// Start Cashier Profit
+	Morris.Donut({
+		element: 'cashierProfit',
+		resize: true,
+		data: [
+			@foreach($casher_profit as $profit)
+			{value: {{ $profit->orders }}, label: '{{ $profit->first_name }} {{ $profit->last_name }}', totalPrice: {{ $profit->total_price }} },
+			@endforeach
+		],
+		backgroundColor: '#ccc',
+		labelColor: '#060',
+		colors: [
+			'#0BA462',
+			'#39B580',
+			'#67C69D',
+			'#95D7BB'
+		],
+		formatter: function (x, data) { 
+			return `${x}`
+		}
+	});
+	// End Cashier Profit
+</script>
 @endsection

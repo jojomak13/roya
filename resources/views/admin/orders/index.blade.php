@@ -25,12 +25,21 @@
                 @forelse ($orders as $key => $order)
                 <tr>
                     <th>{{ $key+1 }}</th>
-                    <th>{{ $order->status }}</th>
+                    <th>{{ $order->order_status }}</th>
                     <th>@money($order->total_price)</th>
                     <th>{{ $order->created_at->diffForHumans() }}</th>
                     <th>
                         <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                        @if($order->status == 'shipping')
+                        @php 
+                            $data = DNS1D::getBarcodePNG($order->barcode, 'C39+')
+                            @endphp
+                        <button class="btn btn-success" onclick="printBarCode('{{ $data }}')"><i class="fa fa-print"></i></button>
+                        @endif
+                        
+                        @if($order->status != 'completed')
                         <a href="{{ route('admin.orders.edit', $order->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                        @endif
                         <a href="javascript:void(0)" class="delete-btn btn btn-danger">
                             <i class="fa fa-trash"></i>
                             <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
@@ -50,4 +59,8 @@
         {{ $orders->links() }}
     </div>
 </section>
+@endsection
+
+@section('script')
+<script src="{{ asset('admin/js/plugins/printjs/print.min.js') }}"></script>
 @endsection

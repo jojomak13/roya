@@ -112,9 +112,3 @@ footer,
 .custom-file-label {
     padding: 0.375rem 5.75rem;
 }
-
-header {
-    background: #2980b9;
-    background: -webkit-linear-gradient(to left, #f5f3f3, #6dd5fa, #2980b9);
-    background: linear-gradient(to left, #f5f3f3, #6dd5fa, #2980b9);
-}
