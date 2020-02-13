@@ -24,12 +24,14 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    
                     <li class="nav-item">
                         <a href="{{ route('admin.home') }}" class="nav-link">
                             <i class="nav-icon fa fa-dashboard"></i>
                             <p>{{ __('dashboard.title') }}</p>
                         </a>
                     </li>
+                    
                     @if(auth()->user()->can('read_orders'))
                     <li class="nav-item">
                         <a href="{{ route('admin.orders.index') }}" class="nav-link">
@@ -103,11 +105,28 @@
                     @endif
 
                     @if(auth()->user()->can('read_users'))
-                    <li class="nav-item">
-                        <a href="{{ route('admin.users.index') }}" class="nav-link">
+                    <li class="nav-item has-treeview">
+                        <a href="javascript:void(0)" class="nav-link">
                             <i class="nav-icon fa fa-users"></i>
-                            <p>{{ __('dashboard.users.title') }}</p>
+                            <p>
+                                {{ __('dashboard.users.title') }}
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.users.index') }}" class="nav-link">
+                                    <i class="text-primary fa fa-circle-o nav-icon"></i>
+                                    <p>{{ __('dashboard.workers') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.customers.index') }}" class="nav-link">
+                                    <i class="text-primary fa fa-circle-o nav-icon"></i>
+                                    <p>{{ __('dashboard.customers') }}</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     @endif
 
@@ -139,16 +158,6 @@
                         </ul>
                     </li>
 
-                    <li class="nav-header">تجريبى</li>
-                    <li class="nav-item">
-                        <a href="pages/calendar.html" class="nav-link">
-                            <i class="nav-icon fa fa-calendar"></i>
-                            <p>
-                                تقویم
-                                <span class="badge badge-info right">2</span>
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

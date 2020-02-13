@@ -15,6 +15,7 @@ Route::group($middlewares, function(){
 		Route::resource('roles', 'RoleController');
 
 		Route::resource('users', 'UserController');
+		Route::get('customers', 'UserController@customers')->name('customers.index');
 		
 		Route::resource('categories', 'CategoryController');
 

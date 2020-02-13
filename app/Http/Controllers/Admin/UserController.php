@@ -25,8 +25,20 @@ class UserController extends Controller
      */
     public function index()
     {   
-        $users = request()->has('search')? User::search(request()) : User::paginate(10); 
+        $users = request()->has('search')? 
+            User::search(request())->worker()->paginate(10) : 
+            User::worker()->paginate(10); 
+
         return view('admin.users.index', compact('users'));
+    }
+
+    public function customers()
+    {
+        $users = request()->has('search')? 
+            User::search(request())->whereRoleIs('user')->paginate(10) : 
+            User::whereRoleIs('user')->paginate(10); 
+
+        return view('admin.users.customers', compact('users'));
     }
 
     /**

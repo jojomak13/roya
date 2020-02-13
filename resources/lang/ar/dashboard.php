@@ -11,6 +11,8 @@ return [
 	'save' => 'حفظ',
 	'search' => 'بحث',
 	'currency' => 'ج.م',
+	'workers' => 'الموظفين',
+	'customers' => 'العملاء',
 
 	'home' => [
 		'usersCount' => 'عدد المستخدمين',

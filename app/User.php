@@ -102,11 +102,15 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->image ? url('storage/'.$this->image) : asset('admin/images/avatar.png'); 
     }
 
-    public static function search($request)
+    public function scopeWorker($query)
     {
-        return  static::where('first_name', 'like', '%' . $request->search . '%')
-                ->orWhere('last_name', 'like', '%' . $request->search . '%')
-                ->paginate(10);
+        return $query->wherePermissionIs('read_dashboard');
+    }
+
+    public function scopeSearch($query, $request)
+    {
+        return  $query->orWhere('first_name', 'like', '%' . $request->search . '%')
+                ->orWhere('last_name', 'like', '%' . $request->search . '%');
     }
 
     public function review()
