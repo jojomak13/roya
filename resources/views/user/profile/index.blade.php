@@ -160,7 +160,9 @@ if(wishlist.list().length){
                 view.innerHTML += (`
                     <div class="row product">
                         <div class="col-5">
-                            <img src="${baseData.url}/storage/${ product.first_image.url }" class="img-fluid" alt="${product[lang('name')]}" title="${product[lang('name')]}">
+                            <a href="${ product.url }" title="${product[lang('name')]}">
+                                <img src="${baseData.url}/storage/${ product.first_image.url }" class="img-fluid" alt="${product[lang('name')]}" title="${product[lang('name')]}">
+                            </a>
                         </div>
                         <div class="col-7">
                             <span><a href="${ product.category.url }">${product.category[lang('name')]}</a></span>

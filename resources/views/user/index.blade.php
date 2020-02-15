@@ -90,8 +90,10 @@
                                     @endif
                                 </div>
                                 <div class="image">
-                                    <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
-                                        title="{{ $product->{lang('name')} }}">
+                                    <a href="{{ $product->url }}" title="{{ $product->{lang('name')} }}">
+                                        <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
+                                            title="{{ $product->{lang('name')} }}">
+                                    </a>
                                 </div>
                                 <div class="info d-flex justify-content-between">
                                     <p class="price">
@@ -142,8 +144,10 @@
                                     @endif
                                 </div>
                                 <div class="image">
-                                    <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
-                                        title="{{ $product->{lang('name')} }}">
+                                    <a href="{{ $product->url }}" title="{{ $product->{lang('name')} }}">
+                                        <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
+                                            title="{{ $product->{lang('name')} }}">
+                                    </a>
                                 </div>
                                 <div class="info d-flex justify-content-between">
                                     <p class="price">
@@ -202,8 +206,10 @@
                                     @endif
                                 </div>
                                 <div class="image">
-                                    <img class="img-fluid owl-lazy" src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
-                                        title="{{ $product->{lang('name')} }}">
+                                    <a href="{{ $product->url }}" title="{{ $product->{lang('name')} }}">
+                                        <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
+                                            title="{{ $product->{lang('name')} }}">
+                                    </a>
                                 </div>
                                 <div class="info d-flex justify-content-between">
                                     <p class="price">
@@ -276,8 +282,10 @@
                                         @endif
                                     </div>
                                     <div class="image">
-                                        <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
-                                            title="{{ $product->{lang('name')} }}">
+                                        <a href="{{ $product->url }}" title="{{ $product->{lang('name')} }}">
+                                            <img class="img-fluid owl-lazy" data-src="{{ url('storage/'.$product->images[0]->url) }}" alt="{{ $product->{lang('name')} }}"
+                                                title="{{ $product->{lang('name')} }}">
+                                        </a>
                                     </div>
                                     <div class="info d-flex justify-content-between">
                                         <p class="price">

@@ -70,8 +70,10 @@ function gridView(product) {
                 ${product.status? `<span class="tag bg-${ product.handled_status[1] }">${ product.handled_status[0] }</span>` : ''}
             </div>
             <div class="image">
-                <img class="img-fluid" src="${baseData.url}/storage/${ product.first_image.url }" alt="${ product[lang('name')] }"
-                    title="${ product[lang('name')] }">
+                <a href="${ product.url }" title="${ product[lang('name')] }">
+                    <img class="img-fluid" src="${baseData.url}/storage/${ product.first_image.url }" alt="${ product[lang('name')] }"
+                        title="${ product[lang('name')] }">
+                </a>
             </div>
             <div class="info d-flex justify-content-between">
                 <p class="price">
@@ -99,8 +101,10 @@ function listView(product) {
             <div class="row">
                 <div class="col-sm-4 col-lg-4">
                 <div class="image">
-                    <img class="img-fluid" src="${baseData.url}/storage/${ product.first_image.url }" alt="${ product[lang('name')] }"
-                        title="${ product[lang('name')] }">
+                    <a href="${ product.url }" title="${ product[lang('name')] }">
+                        <img class="img-fluid" src="${baseData.url}/storage/${ product.first_image.url }" alt="${ product[lang('name')] }"
+                            title="${ product[lang('name')] }">
+                    </a>
                 </div>
                 </div>
                 <div class="col-sm-8 col-lg-8">
