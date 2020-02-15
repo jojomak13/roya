@@ -102,9 +102,10 @@ export default {
         this.preparedProducts[barcode] = true;
 
         this.isReady = this.readyForShipping() ? true : false;
+
       }
 
-      this.barcode = "";
+      setTimeout(() => this.barcode = "", 300);
     }
   }
 };

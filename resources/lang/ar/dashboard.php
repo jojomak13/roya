@@ -18,6 +18,7 @@ return [
 		'usersCount' => 'عدد المستخدمين',
 		'productsCount' => 'عدد المنتجات',
 		'profit' => 'أجمالى أرباح العام', 
+		'month_profit' => 'أجمالى أرباح الشهر', 
 		'casher_orders' => 'عدد الطلبات لكل موظف',
 		'uncompleted_orders' => 'الطلبات الغير منتهية',
 		'total_price' => 'السعر الكلى',

@@ -42,7 +42,7 @@
                     <th>{{ $product->category->{lang('name')} }}<th>
                     <th>
                         @php 
-                            $data = DNS1D::getBarcodePNG($product->barcode, 'C39+')
+                            $data = DNS1D::getBarcodePNG($product->barcode, 'C39')
                         @endphp
                         <button class="btn btn-success" onclick="printBarCode('{{ $data }}')"><i class="fa fa-print"></i></button>
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>

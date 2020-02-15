@@ -80,7 +80,26 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $yearProfit = \App\Order::selectRaw('
+            YEAR(created_at) year,
+            MONTH(created_at) month,
+            SUM(total_price) total_price'
+        )->havingRaw('year = YEAR(CURRENT_TIMESTAMP)')
+        ->where('user_id', $user->id)
+        ->groupBy('month', 'year')
+        ->get();
+
+        $monthProfit = \App\Order::selectRaw('
+            YEAR(created_at) year,
+            MONTH(created_at) month,
+            DAY(created_at) day,
+            SUM(total_price) total_price'
+        )->havingRaw('year = YEAR(CURRENT_TIMESTAMP) AND month = MONTH(CURRENT_TIMESTAMP)')
+        ->where('user_id', $user->id)
+        ->groupBy('day', 'month', 'year')
+        ->get();
+
+        return view('admin.users.show', compact('user', 'yearProfit', 'monthProfit'));
     }
 
     /**

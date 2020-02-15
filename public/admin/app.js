@@ -2077,6 +2077,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     barcode: function barcode(_barcode) {
+      var _this2 = this;
+
       var validProduct = this.order.products.some(function (product) {
         return product.barcode == _barcode;
       });
@@ -2088,7 +2090,9 @@ __webpack_require__.r(__webpack_exports__);
         this.isReady = this.readyForShipping() ? true : false;
       }
 
-      this.barcode = "";
+      setTimeout(function () {
+        return _this2.barcode = "";
+      }, 300);
     }
   }
 });
