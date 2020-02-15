@@ -33,6 +33,7 @@
                     <th>{{ $user->email }}</th>
                     <th>{{ $user->last_login->diffForHumans() }}</th>
                     <th>
+                        <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
                         <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                         <a href="javascript:void(0)" class="delete-btn btn btn-danger">
                             <i class="fa fa-trash"></i>
