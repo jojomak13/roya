@@ -94,10 +94,13 @@ class CartController extends Controller
 
     public function checkout()
     {
-        $user = auth()->user();
+        $cart = auth()->user()->cart; 
         $countries = Country::all();
 
-        return view('user.checkout', compact('user', 'countries'));
+        return response()->json([
+            'cart' => $cart,
+            'countries' => $countries
+        ]);
     }
 
     public function procced(Request $request)
