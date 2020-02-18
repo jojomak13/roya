@@ -146,9 +146,9 @@ class CartController extends Controller
             'last_name' => 'required',
             'address' => 'required',
             'phone' => 'required|string|min:11|max:13',
-            'city' => 'min:3|max:20|nullable',
-            'country_id' => 'integer|nullable',
-            'postal_code' => 'max:10|nullable',
+            'city' => 'required|min:3|max:20|nullable',
+            'country_id' => 'required|integer|nullable',
+            'postal_code' => 'required|max:10|nullable',
         ]));
     }
 }

@@ -94,11 +94,13 @@ class CartController extends Controller
 
     public function checkout()
     {
-        $cart = auth()->user()->cart; 
+        $user = auth()->user();
+        $cart = $user->cart; 
         $countries = Country::all();
 
         return response()->json([
             'cart' => $cart,
+            'total_price' => $user->totalPrice(),
             'countries' => $countries
         ]);
     }
@@ -130,13 +132,11 @@ class CartController extends Controller
         
             auth()->user()->emptyCart();
 
-            session()->flash('success', __('user.cart.order_created'));
+            return response()->json(['status' => true, 'message' => __('user.cart.order_created')]);
+            
+        } 
 
-        } else {
-            session()->flash('warning', __('user.cart.order_failed'));
-        }
-
-        return redirect()->route('home');
+        return response()->json(['status' => true, 'message' => __('user.cart.order_failed')]);
     }
 
     private function updateUser($user)
@@ -146,9 +146,9 @@ class CartController extends Controller
             'last_name' => 'required',
             'address' => 'required',
             'phone' => 'required|string|min:11|max:13',
-            'city' => 'min:3|max:20|nullable',
-            'country_id' => 'integer|nullable',
-            'postal_code' => 'max:10|nullable',
+            'city' => 'required|min:3|max:20|nullable',
+            'country_id' => 'required|integer|nullable',
+            'postal_code' => 'required|max:10|nullable',
         ]));
     }
 }
