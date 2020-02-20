@@ -20,6 +20,8 @@ Route::prefix('auth')->group(function(){
 	Route::post('/logout', 'AuthController@logout');
 });
 
+Route::middleware('auth:api')->group(function(){
+
 // Home controller
 Route::get('/home', 'HomeController@index');
 
@@ -47,3 +49,5 @@ Route::get('products/{category}', 'ProductController@index');
 // For Front End only
 Route::get('/shop', 'ShopController@index');
 Route::get('/shop/{id}', 'ShopController@show');
+
+});
