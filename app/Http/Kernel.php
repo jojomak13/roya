@@ -68,7 +68,10 @@ class Kernel extends HttpKernel
         'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         // Cart
-        'cart' => \App\Http\Middleware\CheckCart::class
+        'cart' => \App\Http\Middleware\CheckCart::class,
+        // Language
+        'lang' => \App\Http\Middleware\Language::class
+
     ];
 
     /**

@@ -46,8 +46,8 @@ Route::post('/procced', 'CartController@procced')->name('cart.procced');
 
 Route::get('products/{category}', 'ProductController@index');
 
+});
+
 // For Front End only
 Route::get('/shop', 'ShopController@index');
 Route::get('/shop/{id}', 'ShopController@show');
-
-});
