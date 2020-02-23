@@ -103,7 +103,7 @@ return [
 		'sell_price' => 'سعر البيع',
 		'discount' => 'الخصم (%)',
 		'offer' => 'العرض',
-		'weight' => 'الوزن',
+		'weight' => 'الوزن (جرام)',
 		'images' => 'صور المنتج',
 		'stores' => 'المخازن',
 		'quantity' => 'الكمية',
