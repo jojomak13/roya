@@ -82,7 +82,7 @@ class AuthController extends Controller
 
     public function self(){
         try {
-            $user = auth()->userOrFail()->load('country', 'orders');
+            $user = auth()->userOrFail()->load('country', 'orders', 'orders.products');
         } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
             return response()->json(['error' => $e->getMessage()]);
         }

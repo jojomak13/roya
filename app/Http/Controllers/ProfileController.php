@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    
     public function __construct()
     {
-        $this->middleware('verified');
+        $this->middleware('auth');
     }
 
     public function index()
@@ -18,6 +19,7 @@ class ProfileController extends Controller
         $user = auth()->user()->load(['orders' => function($order){
             $order->latest()->with('products');
         }]);
+        
         return view('user.profile.index', compact('user'));
     }
 

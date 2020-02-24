@@ -30,7 +30,9 @@
                         @if($user->email_verified_at)
                         <span class="tag"><i class="fa fa-check"></i> @lang('user.profile.verified')</span>
                         @else
-                        <span class="tag"><i class="text-warning fa fa-exclamation-triangle"></i> @lang('user.profile.unVerified')</span>
+                        <a href="{{ route('verification.notice') }}">
+                            <span class="tag"><i class="text-warning fa fa-exclamation-triangle"></i> @lang('user.profile.unVerified')</span>
+                        </a>
                         @endif
                     </div>
                 </div>
@@ -47,6 +49,9 @@
                                 <p>{{ $user->email }}</p>
                             </div>
                             <div>
+                                @if(!auth()->user()->hasVerifiedEmail())
+                                <a href="{{ route('verification.notice') }}" class="btn btn-success"><i class="fa fa-check"></i></a>
+                                @endif
                                 <a href="{{ route('profile.edit') }}" class="btn btn-primary" alt="@lang('user.profile.editProfile')" title="@lang('user.profile.editProfile')"><i class="fa fa-pencil"></i></a>
                             </div>
                         </div>
