@@ -2,6 +2,10 @@
 
 
 @section('title', $product->{lang('name')})
+@section('description', $product->{lang('description')})
+@section('image', url('storage/'.$product->firstImage->url))
+    
+
 @section('content')
 <!-- Start breadcrumb -->
 <div class="breadcrumb">

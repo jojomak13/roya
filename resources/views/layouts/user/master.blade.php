@@ -9,19 +9,33 @@
     <meta name="theme-color" content="#1976D2">
     <meta name="description" content="{{ __('app.description') }}">
     <meta name="tags" content="{{ __('app.tags') }}">
-    <title>@yield('title',  __('user.title.home') ) - @lang('app.name')</title>
+    <title>@yield('title',  __('user.title.home')) - @lang('app.name')</title>
     <link rel="favicon" href="{{ asset('./favicon.ico') }}">
+
     <meta property="og:title" content="@yield('title',  __('user.title.home') ) - @lang('app.name')">
-    <meta property="og:description" content="@lang('app.description')">
     <meta property="og:site_name" content="@lang('app.name')"> 
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="{{ asset('user/images/banner.jpeg') }}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@roya">
-    <meta name="twitter:title" content="@yield('title',  __('user.title.home') ) - @lang('app.name')">
-    <meta name="twitter:description" content="@lang('app.description')">
-    <meta name="twitter:image" content="{{ asset('user/images/banner.jpeg') }}">
+    <meta name="twitter:title" content="@yield('title',  __('user.title.home')) - @lang('app.name')">
+    
+    @hasSection ('description')
+        <meta property="og:description" content="@yield('description')">
+        <meta name="twitter:description" content="@yield('description')">
+    @else
+        <meta property="og:description" content="@lang('app.description')">
+        <meta name="twitter:description" content="@lang('app.description')">
+    @endif
+    
+    @hasSection ('image')
+        <meta property="og:image" content="@yield('image')">
+        <meta name="twitter:image" content="@yield('image')">
+    @else
+        <meta property="og:image" content="{{ asset('user/images/banner.jpeg') }}">
+        <meta name="twitter:image" content="{{ asset('user/images/banner.jpeg') }}">
+    @endif
+
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
     <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
