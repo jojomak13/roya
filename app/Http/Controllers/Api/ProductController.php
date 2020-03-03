@@ -35,11 +35,12 @@ class ProductController extends Controller
     {
         $product->load('images');
         $productRates = \App\Review::productRates($product->id);
+        $relatedProducts = Product::with('firstImage')->where('category_id', $product->category->id)->take(10)->inRandomOrder()->get();
 
         return response()->json([
             'product' => $product,
             'rate' => $productRates,
-
+            'related' => $relatedProducts 
         ]);
     }
 
