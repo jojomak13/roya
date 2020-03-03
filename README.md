@@ -26,7 +26,13 @@ npm install
 ```
 npm run dev
 ```
-4. you are ready to run it 👌
+
+4. migrate your database
+```
+php artisan migrate --seed
+```
+
+5. you are ready to run it 👌
 ```
 php artisan serve
 ```
