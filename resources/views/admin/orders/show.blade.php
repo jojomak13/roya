@@ -9,7 +9,6 @@
 
 @section('content')
 <section>
-
     {{-- Start logo --}}
     <div class="card">
         <div class="card-body d-flex align-items-center">
