@@ -39,15 +39,18 @@ Route::group($middlewares, function(){
 	Route::resource('/cart', 'CartController');
 	Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
 	Route::post('/procced', 'CartController@procced')->name('cart.procced');
-
+	
 	// Profile
 	Route::get('/profile', 'ProfileController@index')->name('profile');
 	Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 	Route::post('/profile/update', 'ProfileController@update')->name('profile.update');
-
+	
 	// Wishlist
 	Route::get('/wishlist', 'WishlistController@index')->name('wishlist.index');
 	Route::get('/wishlist/show', 'WishlistController@show')->name('wishlist.show');
+
+	// Recommend product 
+	Route::post('/recommend', 'RecommendController@store')->name('recommend');
 
 	// Laravel auth
 	Auth::routes(['verify' => true]);

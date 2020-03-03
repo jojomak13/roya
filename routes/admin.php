@@ -36,5 +36,7 @@ Route::group($middlewares, function(){
 
 		Route::resource('brands', 'BrandController');
 
+		Route::resource('recommends', 'RecommendController');
+
 	});
 });

@@ -25,7 +25,12 @@ return [
         'home' => 'Home',
         'search' => 'Search',
         'editProfile' => 'Edit Profile',
-        'logout' => 'Logout'
+        'logout' => 'Logout',
+        'recommend' => 'Recommend new product',
+        'productName' => 'Product Name',
+        'close' => 'close',
+        'submit' => 'Submit',
+        'recommend_created' => 'Recommeded product sent successfully'
     ],
     'categories' => 'Categories',
     'newProducts' => 'New products',

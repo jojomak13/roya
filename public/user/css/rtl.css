@@ -17,7 +17,8 @@ footer,
 .dropdown-menu,
 .edit-profile-page .card,
 .cart-page .table,
-.checkout-page {
+.checkout-page,
+.modal {
     text-align: right;
 }
 
@@ -116,4 +117,8 @@ footer,
 header .middle-nav .shopping-cart a.btn span.badge{
     right: auto;
     left: 10px;
+}
+
+.modal .modal-header .close {
+    margin: -1rem;
 }

@@ -95,6 +95,15 @@
                     </li>
                     @endif
 
+                    @if(auth()->user()->can('read_recommends'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.recommends.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-commenting-o"></i>
+                            <p>{{ __('dashboard.recommends.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
+
                     @if(auth()->user()->can('read_brands'))
                     <li class="nav-item">
                         <a href="{{ route('admin.brands.index') }}" class="nav-link">

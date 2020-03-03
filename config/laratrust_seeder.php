@@ -15,6 +15,7 @@ return [
             'offers' => 'c,r,u,d',
             'blogs' => 'c,r,u,d',
             'brands' => 'c,r,u,d',
+            'recommends' => 'r,d',
         ],
         'supplier' => [],
         'casher' => [],

@@ -25,7 +25,12 @@ return [
         'home' => 'الرئيسية',
         'search' => 'بحث',
         'editProfile' => 'تعديل الحساب',
-        'logout' => 'تسجيل الخروج'
+        'logout' => 'تسجيل الخروج',
+        'recommend' => 'أقترح منتج جديد',
+        'productName' => 'أسم المنتج',
+        'close' => 'أغلاق',
+        'submit' => 'أرسال',
+        'recommend_created' => 'تم ارسال المنتج المقترح بنجاح'
     ],
     'categories' => 'الأقسام',
     'newProducts' => 'المنتجات الجديدة',
