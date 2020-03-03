@@ -53,7 +53,7 @@ class Category extends Model
 
             $uploadedImage = request()->$imageName->store('categories/');
             
-            \Image::make('storage/'.$uploadedImage)->resize(80, 80)->save();
+            \Image::make('storage/'.$uploadedImage)->resize(24, 24)->save();
 
             $this->update(['image' => $uploadedImage]);
         }

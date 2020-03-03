@@ -73,6 +73,25 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return ucfirst($this->first_name . ' ' . $this->last_name);
     }
  
+    // public function uploadImage($imageName = 'image')
+    // {
+    //     if(request()->has('image')){
+    //         request()->validate(['image' => 'image']);
+
+    //         \Storage::delete($this->image);
+
+    //         $uploadedImage = request()->image->store('users/');
+
+    //         \Image::make('storage/'.$uploadedImage)->resize(350, null, function ($constraint) {
+    //             $constraint->aspectRatio();
+    //         })->save();
+
+    //         $this->update(['image' => $uploadedImage]);
+    //     }
+
+    //     return $this;
+    // }
+
     public function uploadImage($imageName = 'image')
     {
         if(request()->has('image')){
@@ -80,13 +99,14 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 
             \Storage::delete($this->image);
 
-            $uploadedImage = request()->image->store('users/');
+            $image = request()->image;
+            $imageName = Str::random(32) . str_replace(' ', '_', $image->getClientOriginalName());
+            $originalPath = public_path('storage/users/');
 
-            \Image::make('storage/'.$uploadedImage)->resize(350, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save();
+            Image::make($image)
+                ->save($originalPath . $imageName);
 
-            $this->update(['image' => $uploadedImage]);
+            $this->update(['image' => 'users/' . $imageName]);
         }
 
         return $this;

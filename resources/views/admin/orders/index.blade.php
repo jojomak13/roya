@@ -6,61 +6,27 @@
     <li class="breadcrumb-item active">{{ __('dashboard.orders.title') }}</li>
 @endsection
 
+@section('style')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/sp-1.0.1/datatables.min.css"/>
+@endsection
+
 @section('content')
 <section class="card">
     <div class="card-body">
         <a href="{{ route('admin.orders.create') }}" class="btn btn-primary mr-2 mb-2"><i class="fa fa-plus"></i> {{ __('dashboard.orders.create') }}</a>
         <hr>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>{{ __('dashboard.orders.status') }}</th>
-                    <th>{{ __('dashboard.orders.total_price') }}</th>
-                    <th>{{ __('dashboard.orders.created_at') }}</th>
-                    <th>{{ __('dashboard.control') }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($orders as $key => $order)
-                <tr>
-                    <th>{{ $key+1 }}</th>
-                    <th>{{ $order->order_status }}</th>
-                    <th>@money($order->total_price)</th>
-                    <th>{{ $order->created_at->diffForHumans() }}</th>
-                    <th>
-                        <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                        @if($order->status == 'shipping')
-                        @php 
-                            $data = DNS1D::getBarcodePNG($order->barcode, 'C39+')
-                            @endphp
-                        <button class="btn btn-success" onclick="printBarCode('{{ $data }}')"><i class="fa fa-print"></i></button>
-                        @endif
-                        
-                        @if($order->status != 'completed')
-                        <a href="{{ route('admin.orders.edit', $order->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                        @endif
-                        <a href="javascript:void(0)" class="delete-btn btn btn-danger">
-                            <i class="fa fa-trash"></i>
-                            <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                            </form>
-                        </a>
-                    </th>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="2">{{ __('dashboard.no_record') }}</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-        {{ $orders->links() }}
+        {!! $dataTable->table([
+            'class' => 'datatable table table-striped table-hover'
+        ]) !!}
     </div>
 </section>
+
 @endsection
 
 @section('script')
 <script src="{{ asset('admin/js/plugins/printjs/print.min.js') }}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/sp-1.0.1/datatables.min.js"></script>
+<script src="{{ asset('vendor\datatables\buttons.server-side.js') }}"></script>
+
+{!! $dataTable->scripts() !!}
 @endsection

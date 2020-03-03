@@ -18,6 +18,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>{{ __('dashboard.categories.image') }}</th>
                     <th>{{ __('dashboard.categories.name') }}</th>
                     <th>{{ __('dashboard.categories.children_count') }}</th>
                     <th>{{ __('dashboard.control') }}</th>
@@ -26,6 +27,7 @@
             <tbody>
                 @forelse ($categories as $key => $category)
                 <tr>
+                    <th><img style="height:50px" src="{{ $category->category_image }}"></th>
                     <th>{{ $category->{lang('name')} }}</th>
                     <th>{{ $category->children_count }}</th>
                     <th>

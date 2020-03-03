@@ -60,7 +60,7 @@
                     <a class="btn" href="{{ route('cart.index') }}">
                         <i class="fa fa-shopping-cart"></i>
                         @auth
-                            <span class="badge badge-primary">{{ auth()->user()->cartQuantity() }}</span>
+                            <span class="badge badge-danger">{{ auth()->user()->cartQuantity() }}</span>
                         @endauth
                     </a>
                 </div>

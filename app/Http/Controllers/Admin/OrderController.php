@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
+use App\DataTables\OrderDataTable;
 use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
@@ -23,10 +24,9 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OrderDataTable $orders)
     {
-        $orders = Order::latest()->paginate(10);
-        return view('admin.orders.index', compact('orders'));
+        return $orders->render('admin.orders.index');
     }
 
     /**

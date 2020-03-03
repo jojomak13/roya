@@ -8,6 +8,7 @@ use Faker\Factory;
 class Order extends Model
 {
     protected $guarded = [];
+    protected $appends = ['order_status'];
 
     public function user()
     {

@@ -275,13 +275,8 @@ ul {
     padding-inline-start: 0px !important;
 }
 
-/*---------------------------------- Persian Date Picker ---------------------------------- */
 
-.datepicker-plot-area {
-    font-family: 'Vazir', sans-serif;
-}
 /* Product Box */
-
 .product-box {
     position: relative;
 }
@@ -291,4 +286,9 @@ ul {
     position: absolute;
     top: 0;
     border-radius: 0;
+}
+
+/* Order page */
+.dt-buttons {
+    float: left;
 }

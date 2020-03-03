@@ -112,3 +112,8 @@ footer,
 .custom-file-label {
     padding: 0.375rem 5.75rem;
 }
+
+header .middle-nav .shopping-cart a.btn span.badge{
+    right: auto;
+    left: 10px;
+}

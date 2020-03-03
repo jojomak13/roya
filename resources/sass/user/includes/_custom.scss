@@ -184,9 +184,9 @@ header {
         .search button {
             padding: 9px 15px;
             outline: none;
-            border: 1px solid $border;
-            background-color: $primary;
-            color: $primaryText;
+            border: 1px solid $light;
+            background-color: $light;
+            color: #FFF;
         }
 
         .search .search-bar {
@@ -236,15 +236,18 @@ header {
         // End Serach Bar
 
         .shopping-cart a.btn {
-            color: $primaryText;
-            font-size: 1.3em;
-            background-color: $primary;
+            color: #FFF;
+            font-size: 25px;
             border-radius: 0;
             border: 0;
             outline: 0;
 
             span.badge {
-                border-radius: 0;
+                border-radius: 50%;
+                position: relative;
+                top: -15px;
+                right: 10px;
+                font-size: 15px;
             }
         }
 
@@ -309,7 +312,8 @@ header {
         margin-bottom: $padding;
 
         .card-header {
-            background-color: $primary;
+            background-color: $light;
+            color: #fff;
             border-radius: 0;
 
             .card-title {
@@ -347,6 +351,11 @@ header {
                 padding: 10px;
                 color: $primaryText;
                 text-decoration: none;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                }
 
                 i {
                     margin-right: 10px;

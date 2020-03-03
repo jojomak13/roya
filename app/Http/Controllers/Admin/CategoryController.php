@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->middleware(['permission:create_categories'])->only(['create', 'store']);
-        $this->middleware(['permission:read_categories'])->only('index');
+        $this->middleware(['permission:read_categories'])->only(['index', 'products']);
         $this->middleware(['permission:update_categories'])->only(['edit', 'update']);
         $this->middleware(['permission:delete_categories'])->only('destroy');
     }
@@ -65,6 +65,13 @@ class CategoryController extends Controller
         $categories = Category::where('parent_id', $category->id)->paginate(10); 
         
         return view('admin.categories.show', compact('categories'));
+    }
+
+
+    public function products($category)
+    {
+        $products = \App\Product::where('category_id', $category)->paginate(10);
+        return view('admin.products.index', compact('products')); 
     }
 
     /**

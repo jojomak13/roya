@@ -18,6 +18,7 @@
                             @foreach($categories as $parent)
                                 <li class="category-dropdown">
                                     <a href="javascript:void(0)">
+                                        <img src="{{ $parent->category_image }}" alt="{{ $parent->{lang('name')} }}" title="{{ $parent->{lang('name')} }}">
                                         <span>{{ $parent->{lang('name')} }}</span>
                                         <i class="fa fa-chevron-right"></i>
                                     </a>

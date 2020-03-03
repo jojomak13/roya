@@ -16,7 +16,7 @@
     <div class="col-lg-5">
       <div class="card">
         <div class="card-body text-center">
-          <img src="{{ $user->profile_image }}" />
+          <img class="img-fluid" src="{{ $user->profile_image }}" />
         </div>
       </div>
     </div>
