@@ -55,6 +55,7 @@ function addtocart(id)
         },
 		success(res){
 			if(res.status){
+				window.location.reload();
 				toast.fire({
 					icon: 'info',
 					title: res.message

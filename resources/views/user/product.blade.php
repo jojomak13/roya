@@ -258,6 +258,7 @@ $('#addtocart').on('submit', function(e){
 		data: $(this).serialize(),
 		success(res){
 			if(res.status){
+                window.location.reload();
 				toast.fire({
 					icon: 'info',
 					title: res.message
