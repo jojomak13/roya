@@ -9,6 +9,77 @@
 
 @section('content')
 <section>
+
+    {{-- Start logo --}}
+    <div class="card">
+        <div class="card-body d-flex align-items-center">
+            <div>
+                <img style="width:150px" class="img-fluid" src="{{ asset('user/images/logo.png') }}">
+            </div>
+        </div>
+    </div>
+    {{-- End logo --}}
+
+    {{-- Start today date --}}
+    <div class="card">
+        <div class="card-body d-flex justify-content-between">
+            <div>
+                <strong>@lang('dashboard.orders.code')</strong>
+                :
+                {{ $order->barcode }}
+            </div>
+            <div>
+                <strong>@lang('dashboard.orders.printTime')</strong>
+                :
+                {{ Carbon\Carbon::now()->toFormattedDateString() }}
+            </div>
+        </div>
+    </div>
+    {{-- End today date --}}
+    
+    {{-- Start Order Details --}}
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span>@lang('dashboard.users.name')</span>
+                    : {{ $order->user->fullName() }}
+                </li>
+                <li class="list-group-item">
+                    <span>@lang('dashboard.users.email')</span>
+                    : {{ $order->user->email }}
+                </li>
+                <li class="list-group-item">
+                    <span>@lang('dashboard.users.country')</span>
+                    :
+                    {{ $order->user->country->{lang('name')} }}
+                </li>
+                <li class="list-group-item">
+                    <span>@lang('dashboard.users.city')</span>
+                    :
+                    {{ $order->user->city }}
+                </li>
+                <li class="list-group-item">
+                    <span>@lang('dashboard.users.address')</span>
+                    :
+                    {{ $order->user->address }}
+                </li>
+                <li class="list-group-item">
+                    <span>@lang('dashboard.orders.created_at')</span>
+                    :
+                    {{ $order->created_at }}
+                </li>
+                <li class="list-group-item">
+                    <span>@lang('dashboard.orders.total_price')</span>
+                    :
+                    @money($order->total_price) @lang('dashboard.currency')
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{-- End Order Details --}}
+
+    {{-- Start Order products --}}
     <div class="card">
         <div class="card-body">
             <table class="table">
@@ -30,12 +101,13 @@
                     </tr>
                     @endforeach
                     <tr>
-                        <td colspan="3">السعر الاجمالى</td>
-                        <td>@money($order->total_price)</td>
+                        <td colspan="3">@lang('dashboard.orders.total_price')</td>
+                        <td>@money($order->total_price) @lang('dashboard.currency')</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    {{-- End Order products --}}
 </section>
 @endsection
