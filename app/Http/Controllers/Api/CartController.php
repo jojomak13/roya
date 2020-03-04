@@ -26,7 +26,10 @@ class CartController extends Controller
     {
         $cart = auth()->user()->cart;
 
-        return response()->json(['products' => $cart]);
+        return response()->json([
+            'products' => $cart,
+            'total_price' => auth()->user()->totalPrice()
+        ]);
     }
 
 

@@ -49,18 +49,18 @@ class OrderController extends Controller
     {
         $data = Order::handleOrder($request->all());
 
-        Order::create([
+        $order = Order::create([
             'status' => 'completed',
             'total_price' => $data['total_price'],
             'user_id' => auth()->user()->id
 
-        ])->createOrder($data['products']);
+        ]);
+        $order->createOrder($data['products']);
         
 
         Product::updateQuantity($data['products']);
-
-        session()->flash('success', __('dashboard.orders.create_success'));
-        return redirect()->route('admin.orders.index');
+        
+        return response()->json(['order' => $order->id]);
     }
 
     /**
@@ -74,6 +74,13 @@ class OrderController extends Controller
         $order = $order->load(['products', 'user']);
         
         return view('admin.orders.show', compact('order'));
+    }
+
+    public function print(Order $order)
+    {
+        $order = $order->load(['products', 'user']);
+        
+        return view('admin.orders.print', compact('order'));
     }
 
     /**

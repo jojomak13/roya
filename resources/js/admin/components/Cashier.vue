@@ -105,6 +105,7 @@ export default {
           icon: "success",
           title: "تم الطلب بنجاح"
         });
+        window.location = `${baseData.url}/${baseData.lang}/dashboard/orders/print/${res.data.order}`
       });
     }
   },

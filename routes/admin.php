@@ -25,6 +25,7 @@ Route::group($middlewares, function(){
 		Route::resource('products', 'ProductController');
 
 		Route::resource('orders', 'OrderController');
+		Route::get('orders/print/{order}', 'OrderController@print')->name('orders.print');
 
 		Route::resource('images', 'ImageController');
 

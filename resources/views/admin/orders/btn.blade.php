@@ -6,6 +6,10 @@
 <button class="btn btn-success" onclick="printBarCode('{{ $data }}')"><i class="fa fa-print"></i></button>
 @endif
 
+@if($status == 'completed')
+<a href="{{ route('admin.orders.print', $id) }}" class="btn btn-success"><i class="fa fa-print"></i></a>
+@endif
+
 @if($status != 'completed')
     <a href="{{ route('admin.orders.edit', $id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
 @endif
