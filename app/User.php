@@ -95,7 +95,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     public function uploadImage($imageName = 'image')
     {
         if(request()->has('image')){
-            request()->validate(['image' => 'image']);
+            request()->validate(['image' => 'mimes:jpeg,jpg,bmp,png']);
 
             \Storage::delete($this->image);
 

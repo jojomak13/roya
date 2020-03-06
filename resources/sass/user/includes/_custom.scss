@@ -530,6 +530,11 @@ footer {
             margin: $padding 0;
 			color: #d2cdcd;
 
+            a {
+                text-decoration: none;
+                color: #d2cdcd;
+            }
+
             i {
                 background-color: #333;
                 height: 30px;
@@ -543,21 +548,12 @@ footer {
         }
     }
 
-    .site-map {
+    .info, .site-map, .latest-blogs {
         li {
-            margin: 10px 0;
-
             a {
                 text-decoration: none;
                 color: #d2cdcd;
             }
-        }
-    }
-
-    .latest-blogs {
-        a {
-            text-decoration: none;
-            color: #d2cdcd;
         }
     }
 
