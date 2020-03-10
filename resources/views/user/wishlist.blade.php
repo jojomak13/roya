@@ -29,7 +29,26 @@
                         <th>@lang('user.cart.product')</th>
                     </tr>
                 </thead>
-                <tbody id="view">
+                <tbody>
+                @foreach($wishlist as $product)
+                    <tr>
+                        <td class="delete">
+                            <a href="javascript:void(0)" onclick="toggleWishlist({{ $product->id  }})" title="@lang('user.cart.delete')">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </td>
+                        <td class="image d-none d-sm-block">
+                            <div class="image">
+                                <img src="{{ url('storage/'.$product->firstImage->url) }}" alt="{{ $product->{lang('name')} }}" title="{{ $product->{lang('name')} }}">
+                            </div>
+                        </td>
+                        <td class="name">
+                            <div class="d-flex align-self-center">
+                                <a href="{{ $product->url }}" title="{{ $product->{lang('name')} }}">{{ $product->{lang('name')} }}</a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -37,43 +56,4 @@
 
 </main>
 
-@endsection
-
-@section('script')
-<script src="{{ asset('user/js/wishlist.js') }}"></script>
-
-<script>
-let view = document.getElementById('view');
-if(wishlist.list().length){
-    $.ajax({
-        url: baseData.url + '/wishlist/show',
-        method: 'GET',
-        data: {products: wishlist.list()},
-        success(res){
-            res.products.forEach(product => {
-                view.innerHTML += (`
-                <tr>
-                    <td class="delete">
-                        <a href="javascript:void(0)" onclick="wishlist.toggle(${ product.id });window.location.reload()" title="@lang('user.cart.delete')">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </td>
-                    <td class="image d-none d-sm-block">
-                        <div class="image">
-                            <img src="${ baseData.url }/storage/${ product.first_image.url }" alt="${ product[lang('name')] }" title="${ product[lang('name')] }">
-                        </div>
-                    </td>
-                    <td class="name">
-                        <div class="d-flex align-self-center">
-                            <a href="${ product.url }" title="${ product[lang('name')] }">${ product[lang('name')] }</a>
-                        </div>
-                    </td>
-                </tr>
-                `)     
-            });
-            
-        } 
-    })
-}
-</script>
 @endsection

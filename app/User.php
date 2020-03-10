@@ -73,40 +73,20 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return ucfirst($this->first_name . ' ' . $this->last_name);
     }
  
-    // public function uploadImage($imageName = 'image')
-    // {
-    //     if(request()->has('image')){
-    //         request()->validate(['image' => 'image']);
-
-    //         \Storage::delete($this->image);
-
-    //         $uploadedImage = request()->image->store('users/');
-
-    //         \Image::make('storage/'.$uploadedImage)->resize(350, null, function ($constraint) {
-    //             $constraint->aspectRatio();
-    //         })->save();
-
-    //         $this->update(['image' => $uploadedImage]);
-    //     }
-
-    //     return $this;
-    // }
-
     public function uploadImage($imageName = 'image')
     {
         if(request()->has('image')){
-            request()->validate(['image' => 'mimes:jpeg,jpg,bmp,png']);
+            request()->validate(['image' => 'image']);
 
             \Storage::delete($this->image);
 
-            $image = request()->image;
-            $imageName = Str::random(32) . str_replace(' ', '_', $image->getClientOriginalName());
-            $originalPath = public_path('storage/users/');
+            $uploadedImage = request()->image->store('users/');
 
-            Image::make($image)
-                ->save($originalPath . $imageName);
+            \Image::make('storage/'.$uploadedImage)->resize(350, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save();
 
-            $this->update(['image' => 'users/' . $imageName]);
+            $this->update(['image' => $uploadedImage]);
         }
 
         return $this;
@@ -138,6 +118,10 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->belongsToMany(Product::class)->withPivot(['stars', 'feedback'])->withTimeStamps();
     }
     
+    public function favorites(){
+        return $this->belongsToMany(Product::class, 'favorites')->withTimeStamps();
+    } 
+
     public function country()
     {
         return $this->belongsTo(Country::class);

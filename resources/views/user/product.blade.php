@@ -48,7 +48,12 @@
                         <span class="text-success">@lang('user.inStock')</span>
                     @endif
                     </p>
-                    <a href="javasrcipt:void(0)" id="addToWishlist" data-id="{{ $product->id }}" title="@lang('user.wishlist.title')" class="wishlist"><i class="fa fa-heart"></i> @lang('user.wishlist.name')</a>
+                    
+                    @auth
+                    <a href="javasrcipt:void(0)" title="@lang('user.wishlist.title')" class="wishlist {{ auth()->user()->favorites->find($product->id)? 'active':''}}" onclick="toggleWishlist({{ $product->id }})">
+                        <i class="fa fa-heart"></i> @lang('user.wishlist.name')
+                    </a>
+                    @endauth
                 </div>
                 <p class="caret"></p>
                 <div class="info">
@@ -234,22 +239,6 @@
 @section('script')
 <script src="{{ asset('user/js/wishlist.js') }}"></script>
 <script>
-window.onload = function(){
-    let wishlistBtn = document.getElementById('addToWishlist');
-
-    if(wishlist.has(wishlistBtn.getAttribute('data-id'))){
-        wishlistBtn.classList.add('active')
-    }
-}
-
-$('#addToWishlist').on('click', function(){
-    if(wishlist.toggle($(this).data('id')) === 'add'){
-        $(this).addClass('active');
-    } else {
-        $(this).removeClass('active');
-    }
-})
-
 $('#addtocart').on('submit', function(e){
     e.preventDefault();
 

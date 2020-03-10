@@ -1,21 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class WishlistController extends Controller
+class wishlistController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $wishlist = auth()->user()->favorites;
-        return view('user.wishlist', compact('wishlist'));
+        return auth()->user()->favorites;
     }
 
     public function store(Request $request)
@@ -28,5 +22,5 @@ class WishlistController extends Controller
             return response()->json(['status' => true, 'message' => __('user.wishlist.add_success')]);
 
         return response()->json(['status' => true, 'message' => __('user.wishlist.delete_success')]);
-    }    
+    }
 }

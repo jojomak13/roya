@@ -148,7 +148,7 @@
         ],
         xkey: "ym",
         ykeys: ["value"],
-		labels: ["Profit"],
+		labels: ["revenues"],
 		lineColors: ["#17a2b8"],
 		pointFillColors: ['#28a745'],
 		formatter: function(x) { return x.tolocaleString() }

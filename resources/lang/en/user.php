@@ -42,7 +42,9 @@ return [
     'outOfStock' => 'Out of stock',
     'wishlist' => [
         'name' => 'Wishlist',
-        'title' => 'add to wishlist'
+        'title' => 'add to wishlist',
+        'add_success' => 'added to wishlist',
+        'delete_success' => 'deleted from wishlist' 
     ],
     'color' => 'Color',
     'addtocart' => 'Add to cart',

@@ -16,7 +16,7 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $user = auth()->user()->load(['orders' => function($order){
+        $user = auth()->user()->load(['favorites', 'orders' => function($order){
             $order->latest()->with('products');
         }]);
         

@@ -69,6 +69,31 @@ function addtocart(id)
 }
 // End Add to cart button
 
+
+// Start toggleWishlist
+function toggleWishlist(id) {
+	$.post({
+		url: `${baseData.url}/${baseData.lang}/wishlist`,
+		data: {product: id},
+		headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+		success(res){
+			if(res.status){
+				window.location.reload();
+				toast.fire({
+					icon: 'info',
+					title: res.message
+				})
+			}
+		},
+		error(){
+			window.location = '/login';
+		}
+	})
+}
+// End toggleWishlist
+
 // Start Slideshow
 let slideshow = $("#slideshow").owlCarousel({
 	items: 1,

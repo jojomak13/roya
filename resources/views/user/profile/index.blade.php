@@ -140,7 +140,26 @@
                     <h2>@lang('user.profile.wishlist')</h2>
                 </div>
                 <div class="card wishlist">
-                    <div class="card-body" id="view"></div>
+                    <div class="card-body">
+                        @foreach($user->favorites as $product)
+                        <div class="row product">
+                            <div class="col-5">
+                                <a href="{{ $product->url }}" title="{{ $product->{lang('name')} }}">
+                                    <img src="{{ url('storage/'.$product->firstImage->url) }}" class="img-fluid" alt="{{ $product->{lang('name')} }}" title="{{ $product->{lang('name')} }}">
+                                </a>
+                            </div>
+                            <div class="col-7">
+                                <span><a href="{{ $product->category->url }}">{{ $product->category->{lang('name')} }}</a></span>
+                                <h5><a href="{{ $product->url }}">{{ $product->{lang('name')} }}</a></h5>
+                                <div class="product-review">
+                                    @foreach($product->product_rate as $rate)
+                                    {!! $rate !!}
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
             <!-- End wishlist -->
@@ -148,40 +167,4 @@
     </div>
 </main>
 <!-- End Profile -->
-@endsection
-
-@section('script')
-<script src="{{ asset('user/js/wishlist.js') }}"></script>
-
-<script>
-let view = document.getElementById('view');
-if(wishlist.list().length){
-    $.ajax({
-        url: baseData.url + '/wishlist/show',
-        method: 'GET',
-        data: {products: wishlist.list()},
-        success(res){
-            res.products.forEach(product => {
-                view.innerHTML += (`
-                    <div class="row product">
-                        <div class="col-5">
-                            <a href="${ product.url }" title="${product[lang('name')]}">
-                                <img src="${baseData.url}/storage/${ product.first_image.url }" class="img-fluid" alt="${product[lang('name')]}" title="${product[lang('name')]}">
-                            </a>
-                        </div>
-                        <div class="col-7">
-                            <span><a href="${ product.category.url }">${product.category[lang('name')]}</a></span>
-                            <h5><a href="${product.url}">${product[lang('name')]}</a></h5>
-                            <div class="product-review">
-                                ${product.product_rate.join(' ')}
-                            </div>
-                        </div>
-                    </div>
-                `)     
-            });
-            
-        } 
-    })
-}
-</script>
 @endsection

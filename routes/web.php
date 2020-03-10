@@ -47,7 +47,7 @@ Route::group($middlewares, function(){
 	
 	// Wishlist
 	Route::get('/wishlist', 'WishlistController@index')->name('wishlist.index');
-	Route::get('/wishlist/show', 'WishlistController@show')->name('wishlist.show');
+	Route::post('/wishlist', 'WishlistController@store')->name('wishlist.store');
 
 	// Recommend product 
 	Route::post('/recommend', 'RecommendController@store')->name('recommend');

@@ -44,8 +44,12 @@ Route::resource('/cart', 'CartController');
 Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
 Route::post('/procced', 'CartController@procced')->name('cart.procced');
 
-Route::get('products/{category}', 'ProductController@index');
 
+// Wishlist Controller
+Route::get('/wishlist', 'wishlistController@index');
+Route::post('/wishlist', 'wishlistController@store');
+
+Route::get('products/{category}', 'ProductController@index');
 });
 
 // For Front End only
