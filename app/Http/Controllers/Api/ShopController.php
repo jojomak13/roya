@@ -52,22 +52,22 @@ class ShopController extends Controller
         if($colors && $brands)
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->whereIn('color', $colors)
-                ->whereIn('brand_id', $brands)
+                ->where('color', $colors)
+                ->where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
         else if($colors)
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->whereIn('color', $colors)
+                ->where('color', $colors)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
         else if($brands)
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->whereIn('brand_id', $brands)
+                ->where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
@@ -89,8 +89,8 @@ class ShopController extends Controller
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->where('category_id', $cat_id)
-                ->whereIn('color', $colors)
-                ->whereIn('brand_id', $brands)
+                ->where('color', $colors)
+                ->where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
@@ -98,7 +98,7 @@ class ShopController extends Controller
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->where('category_id', $cat_id)
-                ->whereIn('color', $colors)
+                ->where('color', $colors)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
@@ -106,7 +106,7 @@ class ShopController extends Controller
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->where('category_id', $cat_id)
-                ->whereIn('brand_id', $brands)
+                ->where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
