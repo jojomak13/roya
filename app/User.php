@@ -119,7 +119,9 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     }
     
     public function favorites(){
-        return $this->belongsToMany(Product::class, 'favorites')->withTimeStamps();
+        return $this->belongsToMany(Product::class, 'favorites')
+            ->with('firstImage')
+            ->withTimeStamps();
     } 
 
     public function country()
