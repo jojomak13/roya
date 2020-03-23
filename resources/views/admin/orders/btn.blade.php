@@ -13,7 +13,7 @@
 @if($status != 'completed')
     <a href="{{ route('admin.orders.edit', $id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
 @endif
-<a href="javascript:void(0)" class="delete-btn btn btn-danger">
+<a href="javascript:void(0)" class="btn btn-danger" onclick="if(confirm('Are you sure?'))this.children[1].submit()">
     <i class="fa fa-trash"></i>
     <form action="{{ route('admin.orders.destroy', $id) }}" method="POST">
         @csrf
