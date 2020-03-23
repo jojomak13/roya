@@ -160,7 +160,7 @@ class ProductController extends Controller
             'description_ar' => 'required',
             'weight' => 'required',
             'stores' => 'required|exists:stores,id',
-            'quantity' => 'required',
+            'quantity' => 'required|int|min:5|max:9999',
             'status' => '',
             'brand_id' => 'required|exists:brands,id',
             'color' => 'required',
