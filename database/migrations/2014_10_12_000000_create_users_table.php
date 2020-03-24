@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamp('last_login')->default(Carbon::now()->toDateTimeString());
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

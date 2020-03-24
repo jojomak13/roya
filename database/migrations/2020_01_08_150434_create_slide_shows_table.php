@@ -20,6 +20,7 @@ class CreateSlideShowsTable extends Migration
             $table->string('link')->nullable();
             $table->string('image');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

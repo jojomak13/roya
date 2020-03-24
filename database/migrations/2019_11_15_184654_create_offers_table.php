@@ -19,6 +19,7 @@ class CreateOffersTable extends Migration
             $table->string('name_ar');
             $table->string('image');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

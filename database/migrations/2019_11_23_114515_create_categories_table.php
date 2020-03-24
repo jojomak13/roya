@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('image')->nullable();
             $table->unsignedInteger('parent_id')->default(0);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
