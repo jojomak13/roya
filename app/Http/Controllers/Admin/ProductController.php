@@ -160,11 +160,11 @@ class ProductController extends Controller
             'description_ar' => 'required',
             'weight' => 'required',
             'stores' => 'required|exists:stores,id',
-            'quantity' => 'required|int|min:5|max:9999',
+            'quantity' => 'required|int|min:1|max:9999',
             'status' => '',
             'brand_id' => 'required|exists:brands,id',
             'color' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3500',
         ];
         
         if(!$product) $roles['images'] = 'required';
