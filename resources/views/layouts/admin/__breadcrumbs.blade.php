@@ -26,3 +26,14 @@
     }
 </script>
 @endif
+
+@if(session()->has('warning'))
+<script>
+    window.onload = function () {
+        toast.fire({
+            icon: 'warning',
+            title: "{{ session('warning') }}"
+        })
+    }
+</script>
+@endif

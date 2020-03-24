@@ -131,6 +131,7 @@ return [
 	],
 	'images' => [
 		'delete_success' => 'تم حذف الصورة بنجاح',
+		'delete_failed' => 'لا يمكن حذف اخر صورة للممنتج',
 	],
 	'orders' => [
 		'title' => 'الطلبات',

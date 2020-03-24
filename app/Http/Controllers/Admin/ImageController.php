@@ -81,9 +81,15 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        \Storage::delete($image->url);
-        $image->delete();
+        if($image->imageable->images->count() == 1){
+            session()->flash('warning', __('dashboard.images.delete_failed'));
+            
+        } else {
 
-        session()->flash('success', __('dashboard.images.delete_success'));
+            \Storage::delete($image->url);
+            $image->delete();
+
+            session()->flash('success', __('dashboard.images.delete_success'));
+        }
     }
 }
