@@ -30,7 +30,6 @@ $(window).ready(function() {
 
     // Image Preview
     $("#uploader").change(function() {
-        console.log(this, this.files);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
@@ -41,6 +40,18 @@ $(window).ready(function() {
             reader.readAsDataURL(this.files[0]);
         }
     });
+
+    $('input[type="file"]').on('change', function(){
+        $('button[type="submit"]').attr('disabled', false)
+
+        Array.from(this.files).forEach(file => {
+            let size = Math.ceil(file.size / 1024);
+            if(size >= 3500){
+                $(this).addClass('is-invalid');
+                $('button[type="submit"]').attr('disabled', true)
+            }
+        })
+    })
 });
 
 function printBarCode(base64ocde) {
