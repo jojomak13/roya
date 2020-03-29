@@ -24,13 +24,16 @@ class HomeController extends Controller
         
         $latestBlogs = \App\Blog::latest()->take(5)->get();
 
+        $brands = \App\Brand::latest()->get();
+
         return response()->json([
             'slideshow' => $slideshows,
             'categories' => $categories,
             'newProducts' => $newProducts,
             'hotProducts' => $hotProducts,
             'offers' => $offers,
-            'latestBlogs' => $latestBlogs
+            'latestBlogs' => $latestBlogs,
+            'brands' => $brands
         ]);
     }
 
