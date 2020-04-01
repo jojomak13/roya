@@ -237,7 +237,6 @@
 
 
 @section('script')
-<script src="{{ asset('user/js/wishlist.js') }}"></script>
 <script>
 $('#addtocart').on('submit', function(e){
     e.preventDefault();
