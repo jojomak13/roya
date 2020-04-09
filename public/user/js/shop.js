@@ -78,7 +78,7 @@ function gridView(product) {
             <div class="info d-flex justify-content-between">
                 <p class="price">
                     <span>${money(product.price)} <span>${ baseData.currency }</span></span>
-                    ${product.discount? `<del>${ money(product.sell_price) }</del>` : '' }
+                    ${parseInt(product.discount)? `<del>${ money(product.sell_price) }</del>` : '' }
                 </p>
                 <div class="d-flex align-self-center">
                     <a href="javascript:void(0)" title="${ addToCart }" onclick="addtocart(${ product.id })" class="cart">
@@ -116,7 +116,7 @@ function listView(product) {
                     <div class="info">
                         <p class="price">
                             <span>${money(product.price)} <span>${ baseData.currency }</span></span>
-                            ${product.discount? `<del>${ money(product.sell_price) }</del>` : '' }
+                            ${parseInt(product.discount)? `<del>${ money(product.sell_price) }</del>` : '' }
                         </p>
                     </div>
                     <div class="stars">
