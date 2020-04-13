@@ -17,7 +17,7 @@ class ShopController extends Controller
         return response()->json([
             'brands' => $brands,
             'colors' => $colors,
-            'products' => $this->search()
+            'products' => $this->search('where')
         ]);
     }
 
@@ -29,7 +29,7 @@ class ShopController extends Controller
         return response()->json([
             'brands' => $brands,
             'colors' => $colors,
-            'products' => $this->searchWith($request->category_id)
+            'products' => $this->searchWith($request->category_id, 'where')
         ]);
     }
 
@@ -43,7 +43,7 @@ class ShopController extends Controller
         return $this->searchWith($id);    
     }
 
-    private function search()
+    private function search($where = 'whereIn')
     {
         $sortType = $this->sortType();
         $colors = request('colors');
@@ -52,22 +52,22 @@ class ShopController extends Controller
         if($colors && $brands)
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->where('color', $colors)
-                ->where('brand_id', $brands)
+                ->$where('color', $colors)
+                ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
         else if($colors)
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->where('color', $colors)
+                ->$where('color', $colors)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
         else if($brands)
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->where('brand_id', $brands)
+                ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
@@ -79,7 +79,7 @@ class ShopController extends Controller
     }
 
 
-    private function searchWith($cat_id)
+    private function searchWith($cat_id, $where = 'whereIn')
     {
         $sortType = $this->sortType();
         $colors = request('colors');
@@ -89,8 +89,8 @@ class ShopController extends Controller
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->where('category_id', $cat_id)
-                ->where('color', $colors)
-                ->where('brand_id', $brands)
+                ->$where('color', $colors)
+                ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
@@ -98,7 +98,7 @@ class ShopController extends Controller
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->where('category_id', $cat_id)
-                ->where('color', $colors)
+                ->$where('color', $colors)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
@@ -106,7 +106,7 @@ class ShopController extends Controller
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->where('category_id', $cat_id)
-                ->where('brand_id', $brands)
+                ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(9);
 
