@@ -37,7 +37,7 @@
                                     </a>
                                     <ul class="category-dropdown-items">
                                     @foreach($parent->childrens as $child)
-                                        <li><a href="{{ $child->url }}">{{ $child->{lang('name')} }}</a></li>
+                                        <li><a href="{{ $child->url }}#shop-view">{{ $child->{lang('name')} }}</a></li>
                                     @endforeach
                                     </ul>
                                 </li>
@@ -83,7 +83,7 @@
     </section>
     <!-- End Head -->
 
-    <div class="container">
+    <div class="container" id="shop-view">
         <div class="row">
             <div class="col-lg-3">
                 <div class="shop-by">

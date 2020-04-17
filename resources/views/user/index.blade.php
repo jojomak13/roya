@@ -24,7 +24,7 @@
                                     </a>
                                     <ul class="category-dropdown-items">
                                     @foreach($parent->childrens as $child)
-                                        <li><a href="{{ $child->url }}">{{ $child->{lang('name')} }}</a></li>
+                                        <li><a href="{{ $child->url }}#shop-view">{{ $child->{lang('name')} }}</a></li>
                                     @endforeach
                                     </ul>
                                 </li>

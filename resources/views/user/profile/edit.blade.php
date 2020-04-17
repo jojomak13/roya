@@ -39,6 +39,35 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card mt-3" id="payment-cards">
+                        <div class="card-body">
+                            <!-- Start Availble Cards -->
+                            <ul class="list-group cards-list">
+                                @forelse ($cards as $card)
+                                <li class="list-group-item d-flex justify-content-between">
+                                    @if($card->brand == 'Visa Card')
+                                    <span><i class="fa fa-cc-visa"></i></span>
+                                    @elseif($card->brand == 'MasterCard')
+                                    <span><i class="fa fa-cc-mastercard"></i></span>
+                                    @else
+                                    <span><i class="fa fa-credit-card"></i></span>
+                                    @endif
+                                    <span class="card-number">************{{ $card->lastFourDigits }}</span>   
+                                    <button class="btn btn-danger deleteCard" data-token="{{ $card->token }}">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </li>
+                                @empty
+                                    <li style="list-style:none">@lang('user.auth.noCards')</li>
+                                @endforelse
+
+                            </ul>
+                            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#newCard">
+                                @lang('user.auth.newCard')
+                            </button>
+                            <!-- End Availble Cards -->
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="col-lg-7 col-md-12">
@@ -137,6 +166,50 @@
             </div>
         </form> 
     </div>
+  
+    <!-- Start New Card Modal -->
+    <div class="modal fade" id="newCard" tabindex="-1" role="dialog" aria-labelledby="newCard" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newCard">@lang('user.auth.newCard')</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="needs-validation" autocomplete="off" action="{{ route('cards.create') }}" method="POST" novalidate>
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 mt-3 form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" name="cardNumber" maxlength="16"  minlength="16" id="cardNumber" class="form-control" required>
+                            </div>
+
+                            <div class="col-4 form-group">
+                                <label for="expireMonth">Expire Month</label>
+                                <input type="text" name="expireMonth" maxlength="2" minlength="2" id="expireMonth" class="form-control" required>
+                            </div>
+                            
+                            <div class="col-4 form-group">
+                                <label for="expireYear">Expire Year</label>
+                                <input type="text" name="expireYear" maxlength="2" minlength="2" id="expireYear" class="form-control" required>
+                            </div>
+
+                            <div class="col-4 form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" name="cvv" maxlength="3" minlength="3" id="cvv" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">@lang('user.auth.newCard')</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End New Card Modal -->
 </main>
 <!-- End edit profile -->
 @endsection

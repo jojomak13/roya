@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\ProductCreatedEvent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +41,11 @@ Route::group($middlewares, function(){
 	Route::resource('/cart', 'CartController');
 	Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
 	Route::post('/procced', 'CartController@procced')->name('cart.procced');
-	
+
+	// Cards Token
+	Route::post('cards', 'CardController@store')->name('cards.create');
+	Route::delete('cards', 'CardController@destroy')->name('cards.delete');
+
 	// Profile
 	Route::get('/profile', 'ProfileController@index')->name('profile');
 	Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');

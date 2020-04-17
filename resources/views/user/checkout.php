@@ -18,7 +18,6 @@
         <div class="header">
             <h1>@lang('user.title.checkout')</h1>
         </div>
-
         <form id="needs-validation" action="{{ route('cart.procced') }}" method="POST" class="needs-validation payment-form" novalidate>
             @csrf
             <div class="row">
@@ -129,12 +128,11 @@
                             </table>
                         </div>
                     </div>
-                    <div class="form-group mt-2">
-                        <div id="card-element" class="form-control">
-                            <!-- A Stripe Element will be inserted here. -->
-                        </div>
-                        <div id="card-errors" role="alert"></div>
-                    </div>
+
+                    <!-- Start Payment -->
+                    <input type="hidden" name="cardToken">
+                    <!-- End Payment -->
+
                     <!-- End Cart Details -->
                     <div class="col-12 form-group mt-3 form-check">
                         <input type="checkbox" class="form-check-input" name="agree" id="agree" required>
@@ -153,53 +151,25 @@
 @endsection
 
 @section('script')
-<script src="https://js.stripe.com/v3/"></script>
+<script src="https://cdn.checkout.com/sandbox/js/checkout.js"></script>
 <script>
-const stripe = Stripe('pk_test_vs2mJM5i18UsWUw58nkhYNK6004VW6Y7YE');
-const elements = stripe.elements();
+    $('button[type="submit"]').on('click', function(e){
+        e.preventDefault();
+        Checkout.open();
+    })
 
-// Custom styling can be passed to options when creating an Element.
-const style = {
-  base: {
-    fontSize: '16px',
-    color: '#32325d',
-  },
-};
-
-// Create an instance of the card Element.
-const card = elements.create('card', {style});
-
-// Add an instance of the card Element into the `card-element` <div>.
-card.mount('#card-element');
-
-// Create a token or display an error when the form is submitted.
-const form = document.getElementsByClassName('payment-form')[0];
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const {token, error} = await stripe.createToken(card);
-
-  if (error) {
-    // Inform the customer that there was an error.
-    const errorElement = document.getElementById('card-errors');
-    errorElement.textContent = error.message;
-  } else {
-    // Send the token to your server.
-    stripeTokenHandler(token);
-  }
-});
-
-const stripeTokenHandler = (token) => {
-  // Insert the token ID into the form so it gets submitted to the server
-  const form = document.getElementsByClassName('payment-form')[0];
-  const hiddenInput = document.createElement('input');
-  hiddenInput.setAttribute('type', 'hidden');
-  hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id);
-  form.appendChild(hiddenInput);
-
-  // Submit the form
-  form.submit();
-}
+    Checkout.configure({
+        publicKey: 'pk_test_8dad0f22-959d-4db0-98ae-ba269607aa9f',
+        customerEmail: 'user@email.com',
+        value: {{ auth()->user()->totalPrice() * 100 }},
+        currency: 'EGP',
+        payButtonSelector: '.customButton' || '#customButton',
+        paymentMode: 'cards',
+        cardFormMode: 'cardTokenisation',
+        cardTokenised: function (event) {
+            $('input[name="cardToken"]').val(event.data.cardToken);
+            $('form').submit();
+        }
+    });
 </script>
 @endsection

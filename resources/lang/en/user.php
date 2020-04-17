@@ -102,7 +102,13 @@ return [
         'sendAgain' => 'Send Again',
         'update' => 'Update',
         'chooseImage' => 'Choose Image',
-        'editSuccess' => 'User details updated successfully'
+        'editSuccess' => 'User details updated successfully',
+        'newCard' => 'New Card',
+        'noCards' => 'There is no payment card yet',
+        'cardDeleted' => 'Card deleted successfully',
+        'cardCreated' => 'Card added successfully',
+        'cardInvalid' => 'Invalid Payment Credit Card',
+        'cardExists' => 'This card already exists before'
     ],
     'user_created' => 'Your account created successfully',
     'verifyEmailSent' => 'A fresh verification link has been sent to your email address.',
@@ -166,6 +172,7 @@ return [
         'placeOrder' => 'Place Order',
         'agree' => 'I’ve read and accept the',
         'conditions' => 'terms & conditions',
-        'required' => 'required'
+        'required' => 'required',
+        'selectCard' => 'Select Card',
     ]
 ];

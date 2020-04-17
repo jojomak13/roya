@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Country;
+use App\Helpers\Fawry;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -27,8 +28,9 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $countries = Country::all();
+        $cards = (new Fawry)->listCustomerTokens(auth()->user());
 
-        return view('user.profile.edit', compact('user', 'countries'));
+        return view('user.profile.edit', compact('user', 'countries', 'cards'));
     }
 
     public function update(Request $request)

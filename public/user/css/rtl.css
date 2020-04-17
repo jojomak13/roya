@@ -2,6 +2,7 @@ body {
     font-family: "Cairo", sans-serif;
 }
 
+.bottom-nav nav .navbar-nav li a.nav-link,
 .section-head h2,
 .cats.card,
 .product-card .card-head,
@@ -18,7 +19,7 @@ footer,
 .edit-profile-page .card,
 .cart-page .table,
 .checkout-page,
-.modal {
+.modal{
     text-align: right;
 }
 
@@ -28,7 +29,8 @@ footer,
 }
 
 .carousel-control,
-.slideshow {
+.slideshow,
+.cards-list li span.card-number{
     direction: ltr;
 }
 

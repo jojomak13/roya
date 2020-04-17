@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Country;
 use App\Product;
+use App\Helpers\Fawry;
 use App\Mail\OrderInvoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class CartController extends Controller
 {
@@ -101,25 +101,26 @@ class CartController extends Controller
     {
         $user = auth()->user();
         $countries = Country::all();
+        $cards = (new Fawry)->listCustomerTokens(auth()->user());
 
-        return view('user.checkout', compact('user', 'countries'));
+        return view('user.checkout', compact('user', 'countries', 'cards'));
     }
-
+    
     public function procced(Request $request)
     {
         $request->validate(['agree' => 'required']);
         $user = auth()->user();
         
         $this->updateUser($user);         
-
-        $charge = Stripe::charges()->create([
-            'currency' => 'EGP',
-            'source' => $request->stripeToken,
-            'amount' => auth()->user()->totalPrice(),
-            'description' => 'Order'
-        ]);
-
-        if($charge['id']){
+        
+        $charge = (new Fawry)->charge(
+            $request->merchantRefNum,
+            $request->cardToken,
+            $user, 
+            'the charge request description'
+        );
+        
+        if($charge->statusCode == 200){
             $handledProducts = auth()->user()->handleProducts();
 
             $order = Order::create([

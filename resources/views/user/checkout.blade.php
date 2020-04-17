@@ -18,8 +18,7 @@
         <div class="header">
             <h1>@lang('user.title.checkout')</h1>
         </div>
-
-        <form id="needs-validation" action="{{ route('cart.procced') }}" method="POST" class="needs-validation payment-form" novalidate>
+        <form action="{{ route('cart.procced') }}" method="POST" class="needs-validation payment-form">
             @csrf
             <div class="row">
                 <div class="col-lg-6">
@@ -129,17 +128,46 @@
                             </table>
                         </div>
                     </div>
-                    <div class="form-group mt-2">
-                        <input type="image" onclick="FawryPay.checkout(chargeRequest,successPageUrl, failerPageUrl)"; src="https://www.atfawry.com/assets/img/FawryPayLogo.jpg"/>
-                    </div>
                     <!-- End Cart Details -->
-                    <div class="col-12 form-group mt-3 form-check">
-                        <input type="checkbox" class="form-check-input" name="agree" id="agree" required>
-                        <label class="form-check-label" for="agree">@lang('user.checkout.agree') <a href="#">@lang('user.checkout.conditions') *</a></label>
+
+                    <!-- Start Availble Cards -->
+                    @if(sizeof($cards))
+                    <ul class="list-group cards-list mt-3">
+                        <li><label for="card">@lang('user.checkout.selectCard') <abbr title="@lang('user.checkout.required')">*</abbr></label></li>
+                        @foreach($cards as $card)
+                        <li class="list-group-item d-flex justify-content-between">
+                            <input type="radio" value="{{ $card->token }}" checked class="form-check-input" name="cardToken" id="card" required>
+                            <span class="card-number">************{{ $card->lastFourDigits }}</span>   
+                            @if($card->brand == 'Visa Card')
+                                <span><i class="fa fa-cc-visa"></i></span>
+                            @elseif($card->brand == 'MasterCard')
+                                <span><i class="fa fa-cc-mastercard"></i></span>
+                            @else
+                                <span><i class="fa fa-credit-card"></i></span>
+                            @endif
+                        </li>
+                        @endforeach
+                    </ul>
+                    @else
+                    <div class="mt-3">
+                        <h5>@lang('user.auth.noCards')</h5>
+                        <a href="{{ route('profile.edit', '#payment-cards') }}" class="btn btn-primary">@lang('user.auth.newCard')</a>
                     </div>
+                    @endif
+                    <!-- End Availble Cards -->
+
+                    @if(sizeof($cards))
+                    <div class="row">
+                        <div class="col-12 form-group mt-3 form-check">
+                            <input type="checkbox" class="form-check-input" name="agree" id="agree" required>
+                            <label class="form-check-label" for="agree">@lang('user.checkout.agree') <a href="#">@lang('user.checkout.conditions') *</a></label>
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-lg">@lang('user.checkout.placeOrder')</button>
                     </div>
+                    @endif
                 </div>
             </div>
         </form> 
@@ -151,4 +179,62 @@
 
 @section('script')
 <script src="https://atfawry.fawrystaging.com/ECommercePlugin/scripts/FawryPay.js"></script>
+
+<script>
+
+$('form').on('submit', function(e){
+    e.preventDefault();
+
+    FawryPay.checkoutJS(chargeRequest, success, function(){
+        window.location.reload();
+    });   
+})
+
+
+function success(res){
+    $.ajax({
+        url: `${baseData.url}/${baseData.lang}/procced`,
+        method: 'POST',
+        data: $('form').serialize() + `&merchantRefNum=${res.merchantRefNum}`,
+        success(res){
+            window.location = '/';
+        }, 
+        error(err){
+            console.log("Error", err.response)
+        }
+    })
+}
+
+
+const chargeRequest = {
+    language: 'ar-eg',
+    merchantCode: '1tSa6uxz2nQwSjk0665RAg==',
+    merchantRefNumber: new Date().getTime(),
+    customer: {
+        name: '',
+        mobile: '',
+        email: '',
+        customerProfileId: ''
+    },
+    order: {
+        description: 'bill inq',
+        expiry: '',
+        orderItems: []
+    }
+}
+
+let item = {};
+@foreach($user->cart as $product)
+        item = {};
+        item.productSKU = '12222';
+        item.description ='{{ $product->{lang('name')} }}';
+        item.price = '{{ $product->price }}';
+        item.quantity ='{{ $product->pivot->quantity }}';
+        item.width = '12222';
+        item.height = '12222';
+        item.length = '12222';
+        item.weight = '{{ $product->weight }}';
+    chargeRequest.order.orderItems.push(item);
+@endforeach
+</script>
 @endsection

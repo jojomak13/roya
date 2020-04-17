@@ -69,6 +69,25 @@ function addtocart(id)
 }
 // End Add to cart button
 
+// Start Add Card
+$('.deleteCard').on('click', function(e){
+	e.preventDefault();
+
+	if(confirm('Are you sure?')){
+		$.ajax({
+			url: `${baseData.url}/${baseData.lang}/cards`,
+			method: 'delete',	
+			data: {cardToken: $(this).data('token')},
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			success(res){
+				window.location.reload();
+			}
+		})
+	}
+});
+// End Add Card
 
 // Start toggleWishlist
 function toggleWishlist(id) {
