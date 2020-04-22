@@ -38,7 +38,7 @@ class AuthController extends Controller
         $roles = $request->all();
         $roles['password'] = bCrypt($request->password);  
 
-        User::create($roles);
+        User::create($roles)->attachRole('user');
 
         return response()->json(['message' => __('user.user_created')], 201);  
     }
