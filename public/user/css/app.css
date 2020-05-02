@@ -14740,6 +14740,10 @@ header .middle-nav {
   padding: 20px 0;
 }
 
+header .middle-nav .image img {
+  height: 150px;
+}
+
 header .middle-nav .search input {
   width: 350px;
 }
@@ -15070,7 +15074,7 @@ header .middle-nav .navbar-toggler:focus {
 .brands {
   margin-top: 50px;
   padding: 20px 0;
-  background-color: #eee;
+  background-color: #10457b;
 }
 
 footer {

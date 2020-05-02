@@ -7,6 +7,10 @@
 <li class="breadcrumb-item active">{{ __('dashboard.products.create') }}</li>
 @endsection
 
+@section('style')
+<link rel="stylesheet" href="{{ asset('admin/css/bootstrap-select.min.css') }}">
+@endsection
+
 @section('content')
 <form autocomplete="off" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
     <div class="row">
@@ -59,8 +63,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="offer_id">{{ __('dashboard.products.offer') }}</label>
-                            <select class="form-control @error('offer_id') is-invalid @enderror" id="offer_id" name="offer_id">
-                                <option value="">{{ __('dashboard.products.select_offer') }}</option>
+                            <select data-live-search="true" title="@lang('dashboard.products.select_offer')" class="selectpicker form-control @error('offer_id') is-invalid @enderror" id="offer_id" name="offer_id" data-size="4">
                                 @foreach ($offers as $offer)
                                 <option {{ old('offer_id') == $offer->id? 'selected':'' }} value="{{ $offer->id }}">{{ $offer->{lang('name')} }}</option>
                                 @endforeach
@@ -71,8 +74,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="user_id">{{ __('dashboard.products.owner') }}</label>
-                            <select class="form-control @error('user_id') is-invalid @enderror" id="user_id" name="user_id">
-                                <option value="">{{ __('dashboard.products.select_owner') }}</option>
+                            <select data-live-search="true" title="@lang('dashboard.products.select_owner')" class="selectpicker form-control @error('user_id') is-invalid @enderror" id="user_id" name="user_id">
                                 @foreach ($users as $user)
                                 <option {{ old('user_id') == $user->id? 'selected':'' }} value="{{ $user->id }}">{{ $user->fullName() }}</option>
                                 @endforeach
@@ -83,8 +85,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="category_id">{{ __('dashboard.products.category') }}</label>
-                            <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
-                                <option value="">{{ __('dashboard.products.select_category') }}</option>
+                            <select data-live-search="true" title="@lang('dashboard.products.select_category')" class="selectpicker form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
                                 @foreach ($categories as $cat)
                                 <option {{ old('category_id') == $cat->id? 'selected':'' }} value="{{ $cat->id }}">{{ $cat->{lang('name')} }}</option>
                                 @endforeach
@@ -133,8 +134,7 @@
                     </div>
                     <div class="form-group">
                         <label for="brand">{{ __('dashboard.products.brand') }}</label>
-                        <select name="brand_id" id="brand" class="form-control @error('brand_id') is-invalid @enderror">
-                            <option value="">@lang('dashboard.products.select_brand')</option>
+                        <select data-live-search="true" title="@lang('dashboard.products.select_brand')" name="brand_id" id="brand" class="selectpicker form-control @error('brand_id') is-invalid @enderror" data-size="5">
                             @foreach($brands as $brand)
                             <option value="{{ $brand->id }}">{{ $brand->{lang('name')} }}</option>
                             @endforeach
@@ -153,7 +153,7 @@
                     </div>
                     <div class="form-group">
                         <label for="color">{{ __('dashboard.products.color') }}</label>
-                        <select name="color" id="color" class="form-control @error('color') is-invalid @enderror">
+                        <select title="{{ __('dashboard.products.select_colors')  }}" name="color" id="colors" class="selectpicker form-control @error('color') is-invalid @enderror" data-size="4">
                             @foreach(\App\Product::colors() as $color => $code)
                             <option value="{{ $color }}" style="background:{{ $code }}"></option>
                             @endforeach
@@ -164,8 +164,8 @@
                     </div>
                     <div class="form-group">
                         <label for="status">{{ __('dashboard.products.status') }}</label>
-                        <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                            <option value="">None</option>
+                        <select name="status" id="status" class="selectpicker form-control @error('status') is-invalid @enderror">
+                            <option value="">Default</option>
                             @foreach(\App\Product::status() as $key => $value)
                             <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
@@ -184,7 +184,7 @@
                     </div>
                     <div class="form-group">
                         <label for="stores">{{ __('dashboard.products.stores') }}</label>
-                        <select name="stores" id="stores" class="form-control @error('stores') is-invalid @enderror">
+                        <select name="stores" id="stores" class="selectpicker form-control @error('stores') is-invalid @enderror">
                             @foreach($stores as $store)
                             <option value="{{ $store->id }}">{{ $store->name }}</option>
                             @endforeach
@@ -203,6 +203,7 @@
 
 @section('script')
 <script src="{{ asset('admin/js/plugins/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('admin/js/plugins/select/bootstrap-select.min.js') }}"></script>
 <script>
     CKEDITOR.replace(document.getElementById('desc_en'))
     CKEDITOR.replace(document.getElementById('desc_ar'))

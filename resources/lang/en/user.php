@@ -148,6 +148,7 @@ return [
     'cart' => [
         'product' => 'Product',
         'price' => 'Price',
+        'color' => 'Color',
         'quantity' => 'Quantity',
         'totalPrice' => 'Total Price',
         'checkout' => 'Proceed To Checkout',

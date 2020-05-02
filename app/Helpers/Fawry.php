@@ -77,6 +77,24 @@ class Fawry
         return $res->cards; 
     }
 
+    public function orderStatus($referenceNumber)
+    {
+        $res = $this->get(
+            $this->endpoint("payments/status"),[
+                'merchantCode' => $this->merchantCode,
+                'merchantRefNumber' => $referenceNumber,
+                'signature' => hash(
+                    'sha256', 
+                    $this->merchantCode.
+                    $referenceNumber.
+                    $this->securityKey
+                )
+            ]
+        );
+
+        return $res;
+    }
+
     private function chargeItems($cart)
     {
         $chargeItems = [];
@@ -94,7 +112,6 @@ class Fawry
 
     public function charge($merchantRefNum, $cardToken, $user, $description = null)
     {
-
         $signature = hash(
             'sha256',
             $this->merchantCode.

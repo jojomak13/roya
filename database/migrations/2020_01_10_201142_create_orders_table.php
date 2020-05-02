@@ -16,6 +16,8 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->BigIncrements('id');
             $table->string('barcode')->uniquie();
+            $table->string('reference_number')->nullable();
+            $table->string('merchant_ref_number')->nullable();
             $table->double('total_price', 8, 2);
             $table->enum('status', ['payment_pending', 'preparing', 'shipping', 'completed', 'error']);
             $table->unsignedInteger('user_id');

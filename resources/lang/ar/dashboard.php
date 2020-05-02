@@ -119,6 +119,7 @@ return [
 		'category' => 'القسم',
 		'select_offer' => 'أختر العرض',
 		'select_category' => 'أختر القسم',
+		'select_colors' => 'أختر الالوان',
 		'owner' => 'التاجر',
 		'select_owner' => 'أختر التاجر',
 		'quantity' => 'الكمية',
@@ -207,6 +208,14 @@ return [
 		'create_success' => 'تم انشاء العلامة التجارية بنجاح',
 		'edit_success' => 'تم تعديل العلامة التجارية بنجاح',
 		'delete_success' => 'تم حذف العلامة التجارية بنجاح',
+	],
+	'reviews' => [
+		'title' => 'التعليقات',
+		'content' => 'التعليق',
+		'user' => 'صاحب التعليق',
+		'product' => 'أسم المنتج',		
+		'stars' => 'التقييم',
+		'delete_success' => 'تم حذف التقييم بنجاح',
 	],
 	'recommends' => [
 		'title' => 'المنتجات المقترحة',

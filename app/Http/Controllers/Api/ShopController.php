@@ -55,27 +55,27 @@ class ShopController extends Controller
                 ->$where('color', $colors)
                 ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
-                ->paginate(9);
+                ->paginate(30);
 
         else if($colors)
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->$where('color', $colors)
                 ->with(['firstImage', 'category'])
-                ->paginate(9);
+                ->paginate(30);
 
         else if($brands)
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
-                ->paginate(9);
+                ->paginate(30);
 
         else
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->with(['firstImage', 'category'])
-                ->paginate(9);
+                ->paginate(30);
     }
 
 
@@ -92,7 +92,7 @@ class ShopController extends Controller
                 ->$where('color', $colors)
                 ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
-                ->paginate(9);
+                ->paginate(30);
 
         else if($colors)
             return Product::orderBy(...$sortType)
@@ -100,7 +100,7 @@ class ShopController extends Controller
                 ->where('category_id', $cat_id)
                 ->$where('color', $colors)
                 ->with(['firstImage', 'category'])
-                ->paginate(9);
+                ->paginate(30);
 
         else if($brands)
             return Product::orderBy(...$sortType)
@@ -108,14 +108,14 @@ class ShopController extends Controller
                 ->where('category_id', $cat_id)
                 ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
-                ->paginate(9);
+                ->paginate(30);
 
         else
             return Product::orderBy(...$sortType)
                 ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
                 ->where('category_id',  $cat_id)
                 ->with(['firstImage', 'category'])
-                ->paginate(9);
+                ->paginate(30);
     }
 
     private function sortType()

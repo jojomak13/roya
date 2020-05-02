@@ -60,6 +60,7 @@
             </div>
             <div class="shopping-cart d-flex">
                 <div>
+                    <a href="{{ route('wishlist.index') }}" class="text-white" title="@lang('user.header.wishlist')"><i class="fa fa-heart"></i></a>
                     <a class="btn" href="{{ route('cart.index') }}">
                         <i class="fa fa-shopping-cart"></i>
                         @auth

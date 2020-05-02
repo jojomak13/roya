@@ -15,6 +15,7 @@
             <div>
                 <img style="width:150px" class="img-fluid" src="{{ asset('user/images/logo.png') }}">
             </div>
+            <h1>@lang('app.name')</h1>
         </div>
     </div>
     {{-- End logo --}}

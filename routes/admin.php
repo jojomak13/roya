@@ -39,5 +39,7 @@ Route::group($middlewares, function(){
 
 		Route::resource('recommends', 'RecommendController');
 
+		Route::get('reviews', 'ReviewController@index')->name('reviews.index');
+		Route::delete('reviews/delete/{id}', 'ReviewController@destroy')->name('reviews.destroy');
 	});
 });

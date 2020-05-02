@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Offer;
+use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OfferController extends Controller
 {
@@ -66,7 +67,7 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        $products = $offer->products;
+        $products = Product::where('offer_id', $offer->id)->paginate(10);
         return view('admin.offers.show', compact('offer', 'products'));
     }
 

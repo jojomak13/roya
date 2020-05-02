@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('news')->default(false);
             $table->rememberToken();
-            $table->timestamp('last_login')->default(Carbon::now()->toDateTimeString());
+            $table->timestamp('last_login')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

@@ -162,6 +162,10 @@ header {
     .middle-nav {
         padding: $padding 0;
 
+        .image img {
+            height: 150px;
+        }
+
         // Start Serach Bar
         .search input {
             width: 350px;
@@ -513,7 +517,7 @@ header {
 .brands {
     margin-top: 50px;
     padding: $padding 0;
-    background-color: #eee;
+    background-color: $light;
 }
 // End Brands
 

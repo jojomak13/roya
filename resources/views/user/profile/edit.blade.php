@@ -44,7 +44,7 @@
                             <!-- Start Availble Cards -->
                             <ul class="list-group cards-list">
                                 @forelse ($cards as $card)
-                                <li class="list-group-item d-flex justify-content-between">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
                                     @if($card->brand == 'Visa Card')
                                     <span><i class="fa fa-cc-visa"></i></span>
                                     @elseif($card->brand == 'MasterCard')

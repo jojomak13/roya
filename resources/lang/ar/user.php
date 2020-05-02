@@ -146,6 +146,7 @@ return [
     'cart' => [
         'product' => 'المنتج',
         'price' => 'السعر',
+        'color' => 'اللون',
         'quantity' => 'الكمية',
         'totalPrice' => 'السعر الأجمالى',
         'checkout' => 'باشر فى الدفع',

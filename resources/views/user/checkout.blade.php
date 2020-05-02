@@ -100,7 +100,7 @@
                                 <thead>
                                     <tr>
                                         <th>@lang('user.checkout.product')</th>
-                                        <th></th>
+                                        <th>@lang('user.cart.quantity')</th>
                                         <th>@lang('user.checkout.total')</th>
                                     </tr>
                                 </thead>
@@ -182,13 +182,13 @@
 
 <script>
 
-$('form').on('submit', function(e){
-    e.preventDefault();
+// $('form').on('submit', function(e){
+//     e.preventDefault();
 
-    FawryPay.checkoutJS(chargeRequest, success, function(){
-        window.location.reload();
-    });   
-})
+//     FawryPay.checkoutJS(chargeRequest, success, function(){
+//         window.location.reload();
+//     });   
+// })
 
 
 function success(res){
@@ -197,7 +197,8 @@ function success(res){
         method: 'POST',
         data: $('form').serialize() + `&merchantRefNum=${res.merchantRefNum}`,
         success(res){
-            window.location = '/';
+            // window.location = '/';
+            console.log(res)
         }, 
         error(err){
             console.log("Error", err.response)
@@ -226,7 +227,7 @@ const chargeRequest = {
 let item = {};
 @foreach($user->cart as $product)
         item = {};
-        item.productSKU = '12222';
+        item.productSKU = '{{ $product->{lang('name')} }}';
         item.description ='{{ $product->{lang('name')} }}';
         item.price = '{{ $product->price }}';
         item.quantity ='{{ $product->pivot->quantity }}';

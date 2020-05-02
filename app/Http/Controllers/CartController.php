@@ -113,19 +113,24 @@ class CartController extends Controller
         
         $this->updateUser($user);         
         
-        $charge = (new Fawry)->charge(
-            $request->merchantRefNum,
-            $request->cardToken,
-            $user, 
-            'the charge request description'
-        );
-        
-        if($charge->statusCode == 200){
-            $handledProducts = auth()->user()->handleProducts();
+        // $charge = (new Fawry)->charge(
+        //     $request->merchantRefNum,
+        //     $request->cardToken,
+        //     $user, 
+        //     'the charge request description'
+        // );
 
+        // $res = (new Fawry)->orderStatus(1587154928199);
+        // dd($charge);
+
+        // if($charge->statusCode == 200){
+        if(true){
+            $handledProducts = auth()->user()->handleProducts();
             $order = Order::create([
                 'user_id' => $user->id,
                 'total_price' => auth()->user()->totalPrice(),
+                // 'reference_number' => $charge->referenceNumber,
+                // 'merchant_ref_number' => $charge->merchantRefNumber,
                 'status' => 'preparing'
             ]);
             
@@ -143,7 +148,7 @@ class CartController extends Controller
             session()->flash('warning', __('user.cart.order_failed'));
         }
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
     }
 
     private function updateUser($user)

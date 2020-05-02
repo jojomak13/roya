@@ -40,6 +40,15 @@
                         </a>
                     </li>
                     @endif
+                    
+                    @if(auth()->user()->can('read_comments'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.reviews.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-comments"></i>
+                            <p>{{ __('dashboard.reviews.title') }}</p>
+                        </a>
+                    </li>
+                    @endif
 
                     @if(auth()->user()->can('read_slideshow'))
                     <li class="nav-item">
