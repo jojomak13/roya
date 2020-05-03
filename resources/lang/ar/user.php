@@ -148,6 +148,7 @@ return [
         'price' => 'السعر',
         'color' => 'اللون',
         'quantity' => 'الكمية',
+        'unknown' => 'غير محدد',
         'totalPrice' => 'السعر الأجمالى',
         'checkout' => 'باشر فى الدفع',
         'delete' => 'حذف من العربة',

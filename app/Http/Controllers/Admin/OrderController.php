@@ -106,7 +106,7 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
 
-        if($order->status == 'preparing'){
+        if($order->status == 'preparing' || $order->status == 'unpaid'){
             $order->update([
                 'status' => 'shipping'
             ]);   

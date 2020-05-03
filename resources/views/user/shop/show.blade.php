@@ -111,8 +111,8 @@
                                     @foreach($colors as $color)
                                     <li>
                                         <label class="d-flex justify-content-between align-items-center">
-                                            <span><i class="fa fa-circle-o text-{{ $color->color }}"></i> {{ $color->color }}</span>
-                                            <input type="checkbox" name="colors[]" multiple id="{{ $color->color }}" value="{{ $color->color }}">
+                                            <span><i class="fa fa-circle-o" style="color: {{ $color->code }}"></i> {{ $color->{lang('name')} }}</span>
+                                            <input type="checkbox" name="colors[]" multiple id="{{ $color->id }}" value="{{ $color->id }}">
                                         </label>
                                     </li>
                                     @endforeach

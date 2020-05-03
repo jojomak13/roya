@@ -22,6 +22,11 @@ class Product extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
     
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class, 'color_product')->withTimeStamps();
+    }
+    
     public function stores()
     {
         return $this->belongsToMany(Store::class)->withPivot(['quantity'])->withTimeStamps();
@@ -116,20 +121,6 @@ class Product extends Model
                 $product->save();
             }
         }
-    }
-
-    public static function colors()
-    {
-        return [
-            'black' => '#000',
-            'white' => '#fff',
-            'gray' => '#CCC',
-            'red' => '#900',
-            'blue' => '#009',
-            'green' => '#090',
-            'yellow' => '#990',
-            'purple' => '#909'
-        ];
     }
 
     public static function status()

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class ProductsOrder extends Model
 {
     protected $table = 'order_product';
-    protected $fillable = ['name_en', 'name_ar', 'price', 'quantity', 'order_id', 'barcode'];
+    protected $fillable = ['name_en', 'name_ar', 'price', 'quantity', 'order_id', 'barcode', 'data'];
+    protected $appends = ['serialized_data'];
+
+    public function getSerializedDataAttribute()
+    {
+        return unserialize($this->data);
+    }
 }

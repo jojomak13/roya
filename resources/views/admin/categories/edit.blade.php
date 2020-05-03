@@ -35,7 +35,23 @@
                 @enderror
             </div>
             <div class="form-group">
-                <img src="{{ $category->category_image }}" class="img-thumbnail img-fluid">
+                <label for="background_image">{{ __('dashboard.categories.background_image') }}</label>
+                <input type="file" class="form-control @error('background_image') is-invalid @enderror" id="background_image" name="background_image">
+                @error('background_image')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <img src="{{ $category->category_image }}" class="img-thumbnail img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <img src="{{ $category->category_background }}" class="img-thumbnail img-fluid">
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">{{ __('dashboard.save') }}</button>

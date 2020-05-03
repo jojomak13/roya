@@ -45,7 +45,7 @@ Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
 Route::post('/procced', 'CartController@procced')->name('cart.procced');
 
 // Card token Controller
-Route::apiResource('/cards', 'CardController');
+// Route::apiResource('/cards', 'CardController');
 
 // Wishlist Controller
 Route::get('/wishlist', 'wishlistController@index');

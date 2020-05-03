@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Color;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class ShopController extends Controller
         $slideshows = \App\SlideShow::latest()->get();
         $categories = \App\Category::parent()->with('childrens')->get();
         $brands = \App\Brand::latest()->get();
-        $colors = Product::select('color')->distinct()->get();    
+        $colors = Color::all();    
  
         return view('user.shop.index', compact(
             'slideshows',
@@ -28,7 +29,7 @@ class ShopController extends Controller
         $slideshows = \App\SlideShow::latest()->get();
         $categories = \App\Category::parent()->with('childrens')->get();
         $brands = \App\Brand::latest()->get();
-        $colors = Product::select('color')->distinct()->get();    
+        $colors = Color::all();    
  
         return view('user.shop.show', compact(
             'slideshows',

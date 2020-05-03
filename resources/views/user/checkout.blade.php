@@ -18,7 +18,7 @@
         <div class="header">
             <h1>@lang('user.title.checkout')</h1>
         </div>
-        <form action="{{ route('cart.procced') }}" method="POST" class="needs-validation payment-form">
+        <form id="needs-validation" action="{{ route('cart.procced') }}" method="POST" class="needs-validation payment-form" novalidate>
             @csrf
             <div class="row">
                 <div class="col-lg-6">
@@ -100,28 +100,32 @@
                                 <thead>
                                     <tr>
                                         <th>@lang('user.checkout.product')</th>
+                                        <th>@lang('user.cart.color')</th>
                                         <th>@lang('user.cart.quantity')</th>
                                         <th>@lang('user.checkout.total')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($user->cart as $product)
-                                    <tr>
-                                        <td>{{ $product->{lang('name')} }}</td>
-                                        <td>x{{ $product->pivot->quantity }}</td>
-                                        <td>@money($product->price * $product->pivot->quantity) @lang('user.currency')</td>
-                                    </tr>
+                                        @foreach(unserialize($product->pivot->data) as $color => $quantity)
+                                        <tr>
+                                            <td>{{ $product->{lang('name')} }}</td>
+                                            <td>{{ $color }}</td>
+                                            <td>x{{ $quantity }}</td>
+                                            <td>@money($product->price * $quantity) @lang('user.currency')</td>
+                                        </tr>
+                                        @endforeach
                                     @endforeach
                                     <tr class="calc">
-                                        <td colspan="2">@lang('user.checkout.subtotal')</td>
+                                        <td colspan="3">@lang('user.checkout.subtotal')</td>
                                         <td>@money($user->totalPrice()) @lang('user.currency')</td>
                                     </tr>
                                     <tr class="calc">
-                                        <td colspan="2">@lang('user.checkout.shipping')</td>
+                                        <td colspan="3">@lang('user.checkout.shipping')</td>
                                         <td>0 @lang('user.currency')</td>
                                     </tr>
                                     <tr class="calc">
-                                        <td colspan="2">@lang('user.checkout.total')</td>
+                                        <td colspan="3">@lang('user.checkout.total')</td>
                                         <td>@money($user->totalPrice()) @lang('user.currency')</td>
                                     </tr>
                                 </tbody>
@@ -131,7 +135,7 @@
                     <!-- End Cart Details -->
 
                     <!-- Start Availble Cards -->
-                    @if(sizeof($cards))
+                    {{-- @if(sizeof($cards))
                     <ul class="list-group cards-list mt-3">
                         <li><label for="card">@lang('user.checkout.selectCard') <abbr title="@lang('user.checkout.required')">*</abbr></label></li>
                         @foreach($cards as $card)
@@ -153,10 +157,9 @@
                         <h5>@lang('user.auth.noCards')</h5>
                         <a href="{{ route('profile.edit', '#payment-cards') }}" class="btn btn-primary">@lang('user.auth.newCard')</a>
                     </div>
-                    @endif
+                    @endif --}}
                     <!-- End Availble Cards -->
 
-                    @if(sizeof($cards))
                     <div class="row">
                         <div class="col-12 form-group mt-3 form-check">
                             <input type="checkbox" class="form-check-input" name="agree" id="agree" required>
@@ -167,7 +170,6 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-lg">@lang('user.checkout.placeOrder')</button>
                     </div>
-                    @endif
                 </div>
             </div>
         </form> 
@@ -178,17 +180,16 @@
 @endsection
 
 @section('script')
-<script src="https://atfawry.fawrystaging.com/ECommercePlugin/scripts/FawryPay.js"></script>
-
+{{-- <script src="https://atfawry.fawrystaging.com/ECommercePlugin/scripts/FawryPay.js"></script> --}}
+{{-- 
 <script>
+$('form').on('submit', function(e){
+    e.preventDefault();
 
-// $('form').on('submit', function(e){
-//     e.preventDefault();
-
-//     FawryPay.checkoutJS(chargeRequest, success, function(){
-//         window.location.reload();
-//     });   
-// })
+    FawryPay.checkoutJS(chargeRequest, success, function(){
+        window.location.reload();
+    });   
+})
 
 
 function success(res){
@@ -237,5 +238,5 @@ let item = {};
         item.weight = '{{ $product->weight }}';
     chargeRequest.order.orderItems.push(item);
 @endforeach
-</script>
+</script> --}}
 @endsection

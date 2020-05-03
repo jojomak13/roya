@@ -149,6 +149,7 @@ return [
         'product' => 'Product',
         'price' => 'Price',
         'color' => 'Color',
+        'unknown' => 'UnKnown',
         'quantity' => 'Quantity',
         'totalPrice' => 'Total Price',
         'checkout' => 'Proceed To Checkout',

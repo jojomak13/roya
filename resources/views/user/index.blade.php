@@ -103,11 +103,6 @@
                                         <del>@money($product->sell_price)</del>
                                         @endif
                                     </p>
-                                    <div class="d-flex align-self-center">
-                                        <a href="javascript:void(0)" title="@lang('user.addtocart')" onclick="addtocart({{ $product->id }})" class="cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </a>
-                                    </div>
                                 </div>
                                 <div class="stars">
                                     @foreach($product->product_rate as $rate)
@@ -157,11 +152,6 @@
                                         <del>@money($product->sell_price)</del>
                                         @endif
                                     </p>
-                                    <div class="d-flex align-self-center">
-                                        <a href="javascript:void(0)" title="@lang('user.addtocart')" onclick="addtocart({{ $product->id }})" class="cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </a>
-                                    </div>
                                 </div>
                                 <div class="stars">
                                     @foreach($product->product_rate as $rate)
@@ -190,7 +180,7 @@
                         <div class="content">
                             <h2>{{ $offer->{lang('name')} }}</h2>
                             <h4>@lang('user.offer') <span class="text-warning">{{ $offer->max_discount }}%</span></h4>
-                            <a href="#" class="btn btn-primary">Show More</a>
+                            {{-- <a href="#" class="btn btn-primary">Show More</a> --}}
                         </div>
                     </div>
                 </div>
@@ -219,11 +209,6 @@
                                         <del>@money($product->sell_price)</del>
                                         @endif
                                     </p>
-                                    <div class="d-flex align-self-center">
-                                        <a href="javascript:void(0)" onclick="addtocart({{ $product->id }})" title="@lang('user.addtocart')" class="cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </a>
-                                    </div>
                                 </div>
                                 <div class="stars">
                                     @foreach($product->product_rate as $rate)
@@ -295,11 +280,6 @@
                                             <del>@money($product->sell_price)</del>
                                             @endif
                                         </p>
-                                        <div class="d-flex align-self-center">
-                                            <a href="javascript:void(0)" onclick="addtocart({{ $product->id }})" title="@lang('user.addtocart')" class="cart">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                     <div class="stars">
                                         @foreach($product->product_rate as $rate)

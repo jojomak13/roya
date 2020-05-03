@@ -160,13 +160,13 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="color">{{ __('dashboard.products.color') }}</label>
-                        <select title="@lang('dashboard.products.select_colors')" name="color" id="color" class="selectpicker form-control @error('color') is-invalid @enderror" data-size="4">
-                            @foreach(\App\Product::colors() as $color => $code)
-                            <option {{ $product->color == $color? 'selected': '' }} value="{{ $color }}" style="background:{{ $code }}"></option>
+                        <label for="colors">{{ __('dashboard.products.color') }}</label>
+                        <select data-live-search="true" title="{{ __('dashboard.products.select_colors')  }}" name="colors[]" id="colors" class="selectpicker form-control @error('colors') is-invalid @enderror" multiple data-actions-box="true" data-size="4">
+                            @foreach($colors as $color)
+                            <option {{ $product->colors->contains($color)?'selected':'' }} value="{{ $color->id }}">{{ $color->{lang('name')} }}</option>
                             @endforeach
                         </select>
-                        @error('color')
+                        @error('colors')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

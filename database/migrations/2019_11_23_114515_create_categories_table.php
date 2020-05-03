@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name_en');
             $table->string('name_ar');
             $table->string('image')->nullable();
+            $table->string('background_image')->nullable();
             $table->unsignedInteger('parent_id')->default(0);
             $table->timestamps();
             $table->engine = 'InnoDB';

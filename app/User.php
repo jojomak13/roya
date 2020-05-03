@@ -138,7 +138,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->belongsToMany(Product::class, 'cart')
             ->with(['firstImage'])
-            ->withPivot(['quantity'])
+            ->withPivot(['quantity', 'data'])
             ->withTimestamps();
     }
     
@@ -170,7 +170,8 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         foreach($this->cart as $product){
             $products[$product->id] = [
                 'quantity' => $product->pivot->quantity,
-                'total_price' => $product->pivot->quantity * $product->price 
+                'total_price' => $product->pivot->quantity * $product->price,
+                'data' => $product->pivot->data
             ];
         }
 

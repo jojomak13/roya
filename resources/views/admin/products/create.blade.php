@@ -74,7 +74,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="user_id">{{ __('dashboard.products.owner') }}</label>
-                            <select data-live-search="true" title="@lang('dashboard.products.select_owner')" class="selectpicker form-control @error('user_id') is-invalid @enderror" id="user_id" name="user_id">
+                            <select data-live-search="true" title="@lang('dashboard.products.select_owner')" class="selectpicker form-control @error('user_id') is-invalid @enderror" id="user_id" name="user_id" data-size="4">
                                 @foreach ($users as $user)
                                 <option {{ old('user_id') == $user->id? 'selected':'' }} value="{{ $user->id }}">{{ $user->fullName() }}</option>
                                 @endforeach
@@ -85,7 +85,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="category_id">{{ __('dashboard.products.category') }}</label>
-                            <select data-live-search="true" title="@lang('dashboard.products.select_category')" class="selectpicker form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
+                            <select data-live-search="true" title="@lang('dashboard.products.select_category')" class="selectpicker form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id" data-size="4">
                                 @foreach ($categories as $cat)
                                 <option {{ old('category_id') == $cat->id? 'selected':'' }} value="{{ $cat->id }}">{{ $cat->{lang('name')} }}</option>
                                 @endforeach
@@ -134,7 +134,7 @@
                     </div>
                     <div class="form-group">
                         <label for="brand">{{ __('dashboard.products.brand') }}</label>
-                        <select data-live-search="true" title="@lang('dashboard.products.select_brand')" name="brand_id" id="brand" class="selectpicker form-control @error('brand_id') is-invalid @enderror" data-size="5">
+                        <select data-live-search="true" title="@lang('dashboard.products.select_brand')" name="brand_id" id="brand" class="selectpicker form-control @error('brand_id') is-invalid @enderror" data-size="4">
                             @foreach($brands as $brand)
                             <option value="{{ $brand->id }}">{{ $brand->{lang('name')} }}</option>
                             @endforeach
@@ -152,13 +152,13 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="color">{{ __('dashboard.products.color') }}</label>
-                        <select title="{{ __('dashboard.products.select_colors')  }}" name="color" id="colors" class="selectpicker form-control @error('color') is-invalid @enderror" data-size="4">
-                            @foreach(\App\Product::colors() as $color => $code)
-                            <option value="{{ $color }}" style="background:{{ $code }}"></option>
+                        <label for="colors">{{ __('dashboard.products.color') }}</label>
+                        <select data-live-search="true" title="{{ __('dashboard.products.select_colors')  }}" name="colors[]" id="colors" class="selectpicker form-control @error('colors') is-invalid @enderror" multiple data-actions-box="true" data-size="4">
+                            @foreach($colors as $color)
+                            <option value="{{ $color->id }}">{{ $color->{lang('name')} }}</option>
                             @endforeach
                         </select>
-                        @error('color')
+                        @error('colors')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

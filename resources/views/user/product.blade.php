@@ -65,20 +65,22 @@
                     <del>@money($product->sell_price)</del>
                     @endif
                 </div>
-                <div class="caret product-color">
-                    <label for="color">@lang('user.color')</label>
-                    <select name="color" id="color">
-                        <option value="{{ $product->color }}">{{ $product->color }}</option>
-                    </select>
-                </div>
-                <div class="addtocart-btn">
-                    <form id="addtocart">
+                <form id="addtocart">
+                    <div class="caret product-color">
+                        <label for="color">@lang('user.color')</label>
+                        <select name="color" id="color">
+                            @foreach($product->colors as $color)
+                            <option value="{{ $color->name_en }}">{{ $color->{lang('name')} }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="addtocart-btn">
                         @csrf
                         <input type="number" min="1" name="quantity" value="1">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <button type="submit"><i class="fa fa-shopping-cart"></i> @lang('user.addtocart')</button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -213,11 +215,6 @@
                                 <del>@money($product->sell_price)</del>
                                 @endif
                             </p>
-                            <div class="d-flex align-self-center">
-                                <a href="#" title="add to cart" class="cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                </a>
-                            </div>
                         </div>
                         <div class="stars">
                             @foreach($product->product_rate as $rate)

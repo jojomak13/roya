@@ -80,11 +80,6 @@ function gridView(product) {
                     <span>${money(product.price)} <span>${ baseData.currency }</span></span>
                     ${parseInt(product.discount)? `<del>${ money(product.sell_price) }</del>` : '' }
                 </p>
-                <div class="d-flex align-self-center">
-                    <a href="javascript:void(0)" title="${ addToCart }" onclick="addtocart(${ product.id })" class="cart">
-                        <i class="fa fa-shopping-cart"></i>
-                    </a>
-                </div>
             </div>
             <div class="stars">
                 ${product.product_rate.join(' ')}
@@ -121,12 +116,6 @@ function listView(product) {
                     </div>
                     <div class="stars">
                         ${product.product_rate.join(' ')}
-                    </div>
-                    <div class="mt-2">
-                        <a href="javascript:void(0)" onclick="addtocart(${ product.id })"  title="${ addToCart }" class="btn btn-primary cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>${ addToCart }</span>
-                        </a>
                     </div>
                 </div>                                 
             </div>

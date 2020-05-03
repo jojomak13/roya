@@ -15188,6 +15188,12 @@ footer .copyright p i:last-child {
 
 .sort-type ul {
   list-style-type: none;
+  max-height: 130px;
+  overflow-y: scroll;
+}
+
+.sort-type ul li {
+  padding: 0 5px;
 }
 
 .sort-type ul li label {

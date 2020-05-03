@@ -37,6 +37,13 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="background_image">{{ __('dashboard.categories.background_image') }}</label>
+                <input type="file" class="form-control @error('background_image') is-invalid @enderror" id="background_image" name="background_image">
+                @error('background_image')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label for="parent_id">{{ __('dashboard.categories.parent') }}</label>
                 <select class="form-control @error('parent_id') is-invalid @enderror" id="parent_id" name="parent_id">
                     <option value="0">{{ __('dashboard.categories.parent_cat') }}</option>

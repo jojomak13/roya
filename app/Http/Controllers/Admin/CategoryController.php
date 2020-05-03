@@ -48,7 +48,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($this->validateForm())->uploadImage();
+        Category::create($this->validateForm())
+            ->uploadImage()
+            ->uploadImage('background_image', [840, 380]);
 
         session()->flash('success', __('dashboard.categories.create_success'));
         return redirect()->route('admin.categories.index');
@@ -95,7 +97,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->update($this->validateForm());
-        $category->uploadImage();
+        $category->uploadImage()->uploadImage('background_image', [840, 380]);
         
         session()->flash('success', __('dashboard.categories.edit_success'));
         return redirect()->route('admin.categories.index');
@@ -111,6 +113,7 @@ class CategoryController extends Controller
     {
         $category->childrens()->delete();
         \Storage::delete($category->image);
+        \Storage::delete($category->background_image);
         $category->delete();
 
         session()->flash('success', __('dashboard.categories.delete_success'));

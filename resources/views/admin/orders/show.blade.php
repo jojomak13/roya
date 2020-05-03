@@ -86,21 +86,35 @@
                     <tr>
                         <th>#</th>
                         <th>@lang('dashboard.orders.product')</th>
+                        <th>@lang('dashboard.orders.color')</th>
                         <th>@lang('dashboard.orders.quantity')</th>
                         <th>@lang('dashboard.orders.price')</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($order->products as $index => $product)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $product->{lang('name')} }}</td>
-                        <td>{{ $product->quantity }}</td>
-                        <td>@money($product->price)</td>
-                    </tr>
+                    @if(unserialize($product->data))
+                        @foreach(unserialize($product->data) as $color => $quantity)    
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $product->{lang('name')} }}</td>
+                            <td>{{ $color }}</td>
+                            <td>{{ $quantity }}</td>
+                            <td>@money($product->price * $quantity)</td>
+                        </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $product->{lang('name')} }}</td>
+                            <td>@lang('dashboard.orders.unknown')</td>
+                            <td>{{ $product->quantity }}</td>
+                            <td>@money($product->price * $product->quantity)</td>
+                        </tr>
+                    @endif
                     @endforeach
                     <tr>
-                        <td colspan="3">@lang('dashboard.orders.total_price')</td>
+                        <td colspan="4">@lang('dashboard.orders.total_price')</td>
                         <td>@money($order->total_price) @lang('dashboard.currency')</td>
                     </tr>
                 </tbody>

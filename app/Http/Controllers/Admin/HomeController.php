@@ -32,7 +32,7 @@ class HomeController extends Controller
         $casher_profit = Order::selectRaw('users.first_name, users.last_name, COUNT(*) AS orders, SUM(total_price) as total_price')
             ->join('users', 'orders.user_id', '=', 'users.id')
             ->wherein('user_id', $users)
-            ->groupBy('user_id')
+            ->groupBy('user_id', 'first_name', 'last_name')
             ->get(); 
 
         $uncompletedOrders = Order::Where('status', '!=', 'completed')->get();

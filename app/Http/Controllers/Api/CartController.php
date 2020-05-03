@@ -33,6 +33,28 @@ class CartController extends Controller
     }
 
 
+    private function calcCart($product, $quantity)
+    {
+        $res = \DB::table('cart')
+            ->where('user_id', auth()->user()->id)
+            ->where('product_id', $product->id)
+            ->get();
+
+        $data = [];
+        if($res->count()){
+            $data = unserialize($res[0]->data);
+        }
+
+        $data[request()->color] = $quantity;
+
+        $quantity = 0;
+        foreach ($data as $key => $value) {
+            $quantity += $value;
+        }
+
+        return ['data' => serialize($data), 'quantity' => $quantity];
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,14 +66,17 @@ class CartController extends Controller
         $product = Product::findOrFail($request->product_id);
         $quantity = $request->quantity ?: 1;
         
+        $res = $this->calcCart($product, $quantity);
+
         $maxQuantity = $product->stores->first()->pivot->quantity;
 
-        if($quantity > $maxQuantity){
+        if($res['quantity'] > $maxQuantity){
             return response()->json(['status' => false, 'message' => __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
         }
 
         auth()->user()->cart()->syncWithoutDetaching([$request->product_id => [
-            'quantity' => $quantity
+            'quantity' => $res['quantity'],
+            'data' => $res['data']
         ]]);
 
         return response()->json(['status' => true, 'message' => __('user.cart.addSuccess')]);
@@ -69,12 +94,15 @@ class CartController extends Controller
         $product = Product::findOrFail($id);
         $maxQuantity = $product->stores->first()->pivot->quantity;
 
-        if($request->quantity > $maxQuantity){
+        $res = $this->calcCart($product, $request->quantity);
+
+        if($res['quantity'] > $maxQuantity){
             return response()->json(['status' => false, 'message' =>  __('user.cart.outOfQuantity', ['quantity' => $maxQuantity])]);
             
         } else {
             auth()->user()->cart()->syncWithoutDetaching([$id => [
-                'quantity' => $request->quantity
+                'quantity' => $res['quantity'],
+                'data' => $res['data']
             ]]);
             
             return response()->json(['status' => true, 'message' => __('user.cart.updated')]);
@@ -89,7 +117,30 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        auth()->user()->cart()->detach($id);
+        $product = Product::findOrFail($id);
+
+        $res = \DB::table('cart')
+            ->where('user_id', auth()->user()->id)
+            ->where('product_id', $product->id)
+            ->get();
+        
+        $res = unserialize($res[0]->data);
+
+        unset($res[request()->color]);
+        
+        if(!count($res)){
+            auth()->user()->cart()->detach($id);
+        } else {
+            $quantity = 0;
+            foreach($res as $key => $value){
+                $quantity += $value;
+            }
+
+            auth()->user()->cart()->syncWithoutDetaching([$id => [
+                'quantity' => $quantity,
+                'data' => serialize($res)
+            ]]);
+        }
 
         return response()->json(['status' => true, 'message' => __('user.cart.removed')]);
     }
@@ -114,14 +165,7 @@ class CartController extends Controller
         
         $this->updateUser($user);         
 
-        $charge = Stripe::charges()->create([
-            'currency' => 'EGP',
-            'source' => $request->stripeToken,
-            'amount' => auth()->user()->totalPrice(),
-            'description' => 'Order'
-        ]);
-
-        if($charge['id']){
+        if(true){
             $handledProducts = auth()->user()->handleProducts();
 
             $order = Order::create([

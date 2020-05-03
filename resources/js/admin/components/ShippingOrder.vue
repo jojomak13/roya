@@ -51,7 +51,13 @@
             <tr v-for="(product, index) in order.products" :key="product.id">
               <td>{{ index + 1 }}</td>
               <td>{{ product | trans }}</td>
-              <td>{{ product.quantity }}</td>
+              <td>
+                <ul class="product-colors">
+                  <li v-for="(quantity, color) in product.serialized_data" :key="color">
+                    <i class="fa fa-circle" :style="{'color': color}"></i> <strong>{{ quantity }}</strong>
+                  </li>
+                </ul>
+              </td>
               <td>{{ product.price.toLocaleString() }} ج.م</td>
               <td>
                 <span class="badge badge-success p-2">تم الأضافة</span>
@@ -89,3 +95,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.product-colors{
+  list-style-type: none;
+}
+</style>

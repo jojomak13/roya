@@ -9,7 +9,7 @@
 
 @section('content')
 <section>
-    @if($order->status == 'preparing')
+    @if($order->status == 'preparing' || $order->status == 'unpaid')
     <prepare-order data="{{ $order }}"></prepare-order>
     @else
     <shipping-order data="{{ $order }}"></shipping-order>

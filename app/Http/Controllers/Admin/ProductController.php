@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\Brand;
+use App\Color;
 use App\Offer;
 use App\Store;
 use App\Product;
@@ -46,9 +47,10 @@ class ProductController extends Controller
         $users = User::whereRoleIs('supplier')->get();
         $stores = Store::all();
         $offers = Offer::all();
+        $colors = Color::all();
         $brands = Brand::all();
 
-        return view('admin.products.create', compact('categories', 'users', 'stores', 'offers', 'brands'));
+        return view('admin.products.create', compact('categories', 'users', 'stores', 'offers', 'brands', 'colors'));
     }
 
     /**
@@ -62,6 +64,8 @@ class ProductController extends Controller
         $product = Product::create($this->formValidate());
         
         $product->upload($request->images);
+
+        $product->colors()->sync($request->colors);
         $product->stores()->sync([
             $request->stores => [
                 'quantity' => $request->quantity
@@ -100,9 +104,10 @@ class ProductController extends Controller
         $users = User::whereRoleIs('supplier')->get();
         $stores = Store::all();
         $offers = Offer::all();
+        $colors = Color::all();
         $brands = Brand::all();
 
-        return view('admin.products.edit', compact('product', 'categories', 'users', 'stores', 'offers', 'brands'));
+        return view('admin.products.edit', compact('product', 'categories', 'users', 'stores', 'offers', 'brands', 'colors'));
     }
 
     /**
@@ -118,6 +123,8 @@ class ProductController extends Controller
             $product->upload($request->images);
         
         $product->update($this->formValidate($product));
+
+        $product->colors()->sync($request->colors);
         $product->stores()->sync([
             $request->stores => [
                 'quantity' => $request->quantity
@@ -162,7 +169,7 @@ class ProductController extends Controller
             'quantity' => 'required|int|min:1|max:9999',
             'status' => '',
             'brand_id' => 'required|exists:brands,id',
-            'color' => 'required',
+            'colors' => 'required|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3500',
         ];
         

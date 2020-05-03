@@ -54,7 +54,7 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        $product = Product::with('images')->findOrFail($id);
+        $product = Product::with('images', 'colors')->findOrFail($id);
         $relatedProducts = Product::with('firstImage')->where('category_id', $product->category->id)->take(10)->inRandomOrder()->get();
 
         $productRates = \App\Review::productRates($id);

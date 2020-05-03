@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name_en', 'name_ar', 'parent_id', 'image'];
-    protected $appends = ['children_count', 'url', 'category_image'];
+    protected $fillable = ['name_en', 'name_ar', 'parent_id', 'image', 'background_image'];
+    protected $appends = ['children_count', 'url', 'category_image', 'category_background'];
 
     public function getChildrenCountAttribute()
     {
@@ -44,19 +44,26 @@ class Category extends Model
         return $this->image? url('storage/'.$this->image) : asset('admin/images/category.png');
     }
 
-    public function uploadImage($imageName = 'image')
+    public function getCategoryBackgroundAttribute()
+    {
+        return $this->background_image? url('storage/'.$this->background_image) : asset('admin/images/category_background.png');
+    }
+
+    public function uploadImage($imageName = 'image', $size = [24, 24])
     {
         if(request()->has($imageName)){
-            request()->validate(['image' => 'image']);
+            request()->validate([$imageName => 'image']);
 
-            \Storage::delete($this->image);
+            \Storage::delete($this->$imageName);
 
             $uploadedImage = request()->$imageName->store('categories/');
             
-            \Image::make('storage/'.$uploadedImage)->resize(24, 24)->save();
+            \Image::make('storage/'.$uploadedImage)->resize(...$size)->save();
 
-            $this->update(['image' => $uploadedImage]);
+            $this->update([$imageName => $uploadedImage]);
         }
+
+        return $this;
     }
 
 }

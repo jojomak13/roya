@@ -113,16 +113,29 @@
                                 <table class="table">
                                     <thead>
                                         <th>@lang('user.cart.product')</th>
+                                        <th>@lang('user.cart.color')</th>
                                         <th>@lang('user.cart.price')</th>
                                         <th>@lang('user.cart.totalPrice')</th>
                                     </thead>
                                     <tbody>
                                         @foreach($order->products as $product)
-                                        <tr>
-                                            <td>{{ $product->{lang('name')} }}</td>
-                                            <td>{{ $product->quantity }}x @money($product->price)</td>
-                                            <td>@money($product->price * $product->quantity) @lang('user.currency')</td>
-                                        </tr>
+                                            @if(unserialize($product->data))
+                                                @foreach(unserialize($product->data) as $color => $quantity)
+                                                <tr>
+                                                    <td>{{ $product->{lang('name')} }}</td>
+                                                    <td>{{ $color }}</td>
+                                                    <td>{{ $quantity }}x @money($product->price)</td>
+                                                    <td>@money($product->price * $quantity) @lang('user.currency')</td>
+                                                </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td>{{ $product->{lang('name')} }}</td>
+                                                    <td>@lang('user.cart.unknown')</td>
+                                                    <td>{{ $product->quantity }}x @money($product->price)</td>
+                                                    <td>@money($product->price * $product->quantity) @lang('user.currency')</td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>

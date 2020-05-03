@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('barcode')->uniquie();
             $table->string('name_en');
             $table->string('name_ar');
-            $table->string('color');
             $table->enum('status', ['available', 'hot', 'offer', 'outOfStock'])->nullable();
             $table->double('buy_price', 8, 2);
             $table->double('sell_price', 8, 2);

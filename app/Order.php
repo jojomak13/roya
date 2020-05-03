@@ -34,10 +34,11 @@ class Order extends Model
     {
         return [
             'payment_pending' =>  __('dashboard.orders.payment_pending'),
-            'preparing' =>  __('dashboard.orders.preparing'),
-            'shipping' =>  __('dashboard.orders.shipping'),
-            'completed' =>  __('dashboard.orders.completed'),
-            'error' =>  __('dashboard.orders.error'),
+            'unpaid'          =>  __('dashboard.orders.unpaid'),
+            'preparing'       =>  __('dashboard.orders.preparing'),
+            'shipping'        =>  __('dashboard.orders.shipping'),
+            'completed'       =>  __('dashboard.orders.completed'),
+            'error'           =>  __('dashboard.orders.error'),
         ][$this->status];
     }
 
@@ -65,12 +66,13 @@ class Order extends Model
         foreach($products as $id => $productData){
             $product = Product::findOrFail($id);
 
-           $this->products()->create([
-                'barcode' => $product->barcode,
+            $this->products()->create([
+                'barcode'  => $product->barcode,
                 'name_en'  => $product->name_en,
                 'name_ar'  => $product->name_ar,
                 'price'    => $product->price,
-                'quantity' => $productData['quantity']
+                'quantity' => $productData['quantity'],
+                'data'     => $productData['data'] ?? 'a:0:{}'
             ]);
         }   
     }

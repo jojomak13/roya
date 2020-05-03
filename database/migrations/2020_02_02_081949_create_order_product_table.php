@@ -20,6 +20,7 @@ class CreateOrderProductTable extends Migration
             $table->string('name_ar');
             $table->smallInteger('quantity');
             $table->double('price', 8, 2);
+            $table->string('data', 500)->default('a:0:{}');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

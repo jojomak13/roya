@@ -12,6 +12,5 @@ class CategoryController extends Controller
     public function index()
     {
         return Category::where('parent_id', '0')->with('childrens')->get();       
-
     }
 }

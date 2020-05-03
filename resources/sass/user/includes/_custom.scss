@@ -639,11 +639,18 @@ footer {
 
     ul {
         list-style-type: none;
-        li label {
-            cursor: pointer;
+        max-height: 130px;
+        overflow-y: scroll;
 
-            &:hover {
-                color: $light;
+        li {
+            padding: 0 5px;
+
+            label {
+                cursor: pointer;
+
+                &:hover {
+                    color: $light;
+                }
             }
         }
     }

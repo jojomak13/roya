@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Color;
 use App\Product;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ShopController extends Controller
 {
@@ -12,7 +13,7 @@ class ShopController extends Controller
     public function home()
     {
         $brands = \App\Brand::latest()->get();
-        $colors = \DB::table('products')->select('color')->distinct()->get();
+        $colors = Color::all(); 
 
         return response()->json([
             'brands' => $brands,
@@ -24,7 +25,7 @@ class ShopController extends Controller
     public function category(Request $request)
     {
         $brands = \App\Brand::latest()->get();
-        $colors = \DB::table('products')->select('color')->distinct()->get();
+        $colors = Color::all(); 
 
         return response()->json([
             'brands' => $brands,
@@ -51,16 +52,18 @@ class ShopController extends Controller
 
         if($colors && $brands)
             return Product::orderBy(...$sortType)
-                ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->$where('color', $colors)
+                ->select('products.id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount', 'color_product.color_id')
+                ->join('color_product', 'product_id', 'products.id')
+                ->$where('color_product.color_id', $colors)
                 ->$where('brand_id', $brands)
                 ->with(['firstImage', 'category'])
                 ->paginate(30);
 
         else if($colors)
             return Product::orderBy(...$sortType)
-                ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->$where('color', $colors)
+                ->select('products.id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount', 'color_product.color_id')
+                ->join('color_product', 'product_id', 'products.id')
+                ->$where('color_product.color_id', $colors)
                 ->with(['firstImage', 'category'])
                 ->paginate(30);
 
@@ -87,18 +90,20 @@ class ShopController extends Controller
 
         if($colors && $brands)
             return Product::orderBy(...$sortType)
-                ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
-                ->where('category_id', $cat_id)
-                ->$where('color', $colors)
+                ->select('products.id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount', 'color_product.color_id')
+                ->join('color_product', 'product_id', 'products.id')
+                ->$where('color_product.color_id', $colors)
                 ->$where('brand_id', $brands)
+                ->where('category_id', $cat_id)
                 ->with(['firstImage', 'category'])
                 ->paginate(30);
 
         else if($colors)
             return Product::orderBy(...$sortType)
-                ->select('id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount')
+                ->select('products.id', 'category_id', 'name_en', 'name_ar', 'status', 'sell_price', 'discount', 'color_product.color_id')
+                ->join('color_product', 'product_id', 'products.id')
+                ->$where('color_product.color_id', $colors)
                 ->where('category_id', $cat_id)
-                ->$where('color', $colors)
                 ->with(['firstImage', 'category'])
                 ->paginate(30);
 
