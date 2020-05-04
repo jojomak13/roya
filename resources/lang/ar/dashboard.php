@@ -143,7 +143,7 @@ return [
 		'total_price' => 'أجمالى السعر',
 		'first_name' => 'الأسم الاول',
 		'last_name' => 'الأسم الأخير',
-		'upaid' => 'غير مدفوع',
+		'unpaid' => 'غير مدفوع',
 		'payment_pending' => 'أنتظار الدفع',
 		'preparing' =>  'جارى التحضير',
 		'shipping' => 'جارى الشحن',

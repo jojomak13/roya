@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Api\Controller;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use App\Order;
 use App\Country;
 use App\Product;
+use Illuminate\Http\Request;
+use App\Http\Resources\UserCart;
+use App\Http\Controllers\Api\Controller;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class CartController extends Controller
 {
@@ -27,7 +28,7 @@ class CartController extends Controller
         $cart = auth()->user()->cart;
 
         return response()->json([
-            'products' => $cart,
+            'products' => new UserCart($cart),
             'total_price' => auth()->user()->totalPrice()
         ]);
     }
@@ -152,7 +153,7 @@ class CartController extends Controller
         $countries = Country::all();
 
         return response()->json([
-            'cart' => $cart,
+            'cart' => new UserCart($cart),
             'total_price' => $user->totalPrice(),
             'countries' => $countries
         ]);
