@@ -15,7 +15,15 @@ class UserCart extends ResourceCollection
     public function toArray($request)
     {
         foreach($this->collection as $product){
-            $product->pivot->data = unserialize($product->pivot->data);
+            $data = [];
+            foreach(unserialize($product->pivot->data) as $color => $quantity){
+                $data[] = [
+                    'color' => $color,
+                    'quantity' => $quantity
+                ];
+            }
+
+            $product->pivot->data = $data;
         }
 
         return $this->collection;

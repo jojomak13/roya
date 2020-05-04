@@ -78,7 +78,11 @@
                         @csrf
                         <input type="number" min="1" name="quantity" value="1">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <button type="submit"><i class="fa fa-shopping-cart"></i> @lang('user.addtocart')</button>
+                        @if($product->status == 'outOfStock')
+                            <button type="submit" style="cursor:not-allowed" disabled><i class="fa fa-shopping-cart"></i> @lang('user.addtocart')</button>
+                        @else
+                            <button type="submit"><i class="fa fa-shopping-cart"></i> @lang('user.addtocart')</button>
+                        @endif
                     </div>
                 </form>
             </div>
@@ -249,7 +253,10 @@ $('#addtocart').on('submit', function(e){
 					title: res.message
 				})
 			}
-		}
+		},
+        error(){
+            window.location = "/login"
+        }
 	})
 })
 </script>
