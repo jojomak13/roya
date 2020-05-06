@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Tymon\JWTAuth\Facades\JWTAuth;
 use App\User;
+use Illuminate\Http\Request;
+use App\Http\Resources\UserOrders;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Api\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -82,7 +83,7 @@ class AuthController extends Controller
 
     public function self(){
         try {
-            $user = auth()->userOrFail()->load('country', 'orders', 'orders.products');
+            $user = auth()->userOrFail()->load('country', 'orders.products');
         } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
             return response()->json(['error' => $e->getMessage()]);
         }

@@ -52,6 +52,10 @@ Route::get('/wishlist', 'wishlistController@index');
 Route::post('/wishlist', 'wishlistController@store');
 
 Route::get('products/{category}', 'ProductController@index');
+
+// Recommend product 
+Route::post('/recommend', 'RecommendController@store');
+
 });
 
 // For Front End only

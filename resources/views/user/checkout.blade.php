@@ -122,7 +122,7 @@
                                     </tr>
                                     <tr class="calc">
                                         <td colspan="3">@lang('user.checkout.shipping')</td>
-                                        <td>0 @lang('user.currency')</td>
+                                        <td>@money(40) @lang('user.currency')</td>
                                     </tr>
                                     <tr class="calc">
                                         <td colspan="3">@lang('user.checkout.total')</td>

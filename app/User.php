@@ -157,7 +157,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         $totalPrice = 0;
 
         foreach($this->cart as $product){
-            $totalPrice += $product->price * $product->pivot->quantity;
+            $totalPrice += ($product->price * $product->pivot->quantity) + 40;
         }
 
         return $totalPrice;
