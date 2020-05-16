@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'مكتبة رؤية للأدوات المدرسية',
+    'name' => 'مكتبة رؤية',
     'address' => 'العاشر من رمضان',
     'phone' => '+20554357543',
     'mail' => 'customer_service@royabookstore.com',

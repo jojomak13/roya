@@ -45,6 +45,10 @@
                     : {{ $order->user->fullName() }}
                 </li>
                 <li class="list-group-item">
+                    <span>@lang('dashboard.users.phone')</span>
+                    : {{ $order->user->phone }}
+                </li>
+                <li class="list-group-item">
                     <span>@lang('dashboard.users.email')</span>
                     : {{ $order->user->email }}
                 </li>

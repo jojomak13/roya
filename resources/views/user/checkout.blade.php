@@ -163,7 +163,7 @@
                     <div class="row">
                         <div class="col-12 form-group mt-3 form-check">
                             <input type="checkbox" class="form-check-input" name="agree" id="agree" required>
-                            <label class="form-check-label" for="agree">@lang('user.checkout.agree') <a href="#">@lang('user.checkout.conditions') *</a></label>
+                            <label class="form-check-label" for="agree">@lang('user.checkout.agree') <a href="{{ route('terms') }}">@lang('user.checkout.conditions') *</a></label>
                         </div>
                     </div>
                     

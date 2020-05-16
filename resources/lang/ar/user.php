@@ -15,6 +15,7 @@ return [
         'editProfile' => 'تعديل الحساب',
         'wishlist' => 'قائمة المفضلة',
         'checkout' => 'الدفع',
+        'terms' => 'الشروط وسياسة البيانات'
     ],
     'header' => [
         'myAccount' => 'حسابى',

@@ -21,6 +21,7 @@ $middlewares = [
 Route::group($middlewares, function(){
 	// Home Page
 	Route::get('/', 'HomeController@index')->name('home');
+	Route::get('/terms', 'HomeController@terms')->name('terms');
 
 	// Main Search
 	Route::post('/search', 'HomeController@search')->name('search');

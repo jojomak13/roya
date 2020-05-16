@@ -18,6 +18,7 @@
                     <li><a href="{{ route('home') }}">@lang('user.title.home')</a></li>
                     <li><a href="{{ route('shop') }}">@lang('user.title.shop')</a></li>
                     <li><a href="{{ route('blog.index') }}">@lang('user.title.blog')</a></li>
+                    <li><a href="{{ route('terms') }}">@lang('user.title.terms')</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 latest-blogs">

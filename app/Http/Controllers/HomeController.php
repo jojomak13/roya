@@ -92,4 +92,9 @@ class HomeController extends Controller
         return $products;
     }
 
+    public function terms()
+    {
+        return view('user.terms');
+    }
+
 }

@@ -15,6 +15,7 @@ return [
         'editProfile' => 'Edit Profile',
         'wishlist' => 'Wishlist',
         'checkout' => 'checkout',
+        'terms' => 'Terms and conditions'
     ],
     'header' => [
         'myAccount' => 'My Account',

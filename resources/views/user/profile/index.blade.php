@@ -137,6 +137,10 @@
                                                 </tr>
                                             @endif
                                         @endforeach
+                                        <tr class="calc">
+                                            <td colspan="3">@lang('user.checkout.shipping')</td>
+                                            <td>@money(40) @lang('user.currency')</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
