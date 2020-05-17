@@ -63,16 +63,16 @@
                     </div>
                     <div class="options bg-primary d-flex justify-content-between p-3 text-center text-white">
                         <div class="item">
-                            <h5>Money Back</h5>
-                            <p>30 Days Money Back Guarantee</p>
+                            <h5>Walk Throw</h5>
+                            <p>Our offline store and find more products and services</p>
                         </div>
                         <div class="item">
                             <h5>Free Shiping</h5>
-                            <p>Shipping on orders over $99</p>
+                            <p>Shipping on orders over 700EGP</p>
                         </div>
                         <div class="item">
                             <h5>Special Sale</h5>
-                            <p>Extra $5 off on all items</p>
+                            <p>Up to 20% on selective items</p>
                         </div>
                     </div>
                 </div>
