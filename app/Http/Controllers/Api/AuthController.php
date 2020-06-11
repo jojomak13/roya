@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Http\Resources\UserOrders;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Api\Controller;
@@ -24,6 +25,10 @@ class AuthController extends Controller
         if(!$token = JWTAuth::attempt($cred)){
             return response()->json(['status' => false, 'error' => __('auth.failed')], 401);
         }
+
+        auth()->user()->update([
+            'last_login' => Carbon::now()->toDateTimeString() 
+        ]);
 
         return $this->respondWithToken($token);
     }
