@@ -44,7 +44,9 @@ class AuthController extends Controller
         $roles = $request->all();
         $roles['password'] = bCrypt($request->password);  
 
-        User::create($roles)->attachRole('user');
+        $user = User::create($roles)->attachRole('user');
+        $user->last_login = Carbon::now()->toDateTimeString();
+        $user->save();
 
         return response()->json(['message' => __('user.user_created')], 201);  
     }

@@ -71,7 +71,11 @@ class RegisterController extends Controller
         session()->flash('success', __('user.user_created'));
 
         $data['password'] = bCrypt($data['password']);
-        return User::create($data)->attachRole('user');
+        $user = User::create($data)->attachRole('user');
+        $user->last_login = Carbon::now()->toDateTimeString();
+        $user->save();
+        
+        return  $user;
     }
 
 }
