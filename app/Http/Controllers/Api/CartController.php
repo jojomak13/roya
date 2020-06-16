@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Order;
 use App\Country;
 use App\Product;
+use App\Mail\OrderInvoice;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserCart;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Api\Controller;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
@@ -173,11 +175,14 @@ class CartController extends Controller
                 'user_id' => $user->id,
                 'total_price' => auth()->user()->totalPrice(),
                 'status' => 'preparing'
-            ])->createOrder($handledProducts);
+            ]);
+            $order->createOrder($handledProducts);
             
             Product::updateQuantity($handledProducts);
         
             auth()->user()->emptyCart();
+
+            Mail::to(auth()->user()->email)->queue(new OrderInvoice($order));
 
             return response()->json(['status' => true, 'message' => __('user.cart.order_created')]);
             

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = ['name_en', 'name_ar', 'barcode', 'buy_price', 'sell_price', 'weight', 'description_en', 'description_ar', 'user_id', 'category_id', 'status', 'color', 'discount', 'offer_id', 'brand_id'];
-    protected $appends = ['total_rate', 'product_rate', 'price', 'url', 'handled_status'];
+    protected $appends = ['total_rate', 'product_rate', 'price', 'url', 'handled_status', 'barcode'];
 
     protected $with = ['category'];
 
@@ -81,6 +81,11 @@ class Product extends Model
     public function getUrlAttribute()
     {
         return route('product', [$this->id, \Str::slug($this->{lang('name')})]);
+    }
+
+    public function getBarcodeAttribute()
+    {
+        return $this->id;
     }
 
     public static function search($request)

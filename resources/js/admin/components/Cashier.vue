@@ -114,7 +114,7 @@ export default {
       axios.get(`/dashboard/products/${data}`).then(res => {
         if (res.data.status) {
           let isExist = this.products.some(
-            el => el.barcode == res.data.product.barcode
+            el => el.id == res.data.product.id
           );
 
           if (!isExist) {
